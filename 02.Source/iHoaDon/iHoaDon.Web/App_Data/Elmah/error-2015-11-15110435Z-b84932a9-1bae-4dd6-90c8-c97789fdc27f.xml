@@ -1,0 +1,209 @@
+﻿<error errorId="b84932a9-1bae-4dd6-90c8-c97789fdc27f" application="/" host="DESKTOP-IVBN7P9" type="System.InvalidCastException" message="Unable to cast object of type 'System.Decimal' to type 'System.String'." source="System.ComponentModel.DataAnnotations" detail="System.InvalidCastException: Unable to cast object of type 'System.Decimal' to type 'System.String'.&#xD;&#xA;   at System.ComponentModel.DataAnnotations.StringLengthAttribute.IsValid(Object value)&#xD;&#xA;   at System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid(Object value, ValidationContext validationContext)&#xD;&#xA;   at System.ComponentModel.DataAnnotations.ValidationAttribute.GetValidationResult(Object value, ValidationContext validationContext)&#xD;&#xA;   at System.Web.Mvc.DataAnnotationsModelValidator.&lt;Validate&gt;d__1.MoveNext()&#xD;&#xA;   at System.Web.Mvc.ModelValidator.CompositeModelValidator.&lt;Validate&gt;d__5.MoveNext()&#xD;&#xA;   at System.Web.Mvc.DefaultModelBinder.OnModelUpdated(ControllerContext controllerContext, ModelBindingContext bindingContext)&#xD;&#xA;   at System.Web.Mvc.DefaultModelBinder.BindComplexElementalModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Object model)&#xD;&#xA;   at System.Web.Mvc.DefaultModelBinder.BindComplexModel(ControllerContext controllerContext, ModelBindingContext bindingContext)&#xD;&#xA;   at System.Web.Mvc.DefaultModelBinder.BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.GetParameterValue(ControllerContext controllerContext, ParameterDescriptor parameterDescriptor)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.GetParameterValues(ControllerContext controllerContext, ActionDescriptor actionDescriptor)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeAction(ControllerContext controllerContext, String actionName)&#xD;&#xA;   at System.Web.Mvc.Controller.ExecuteCore()&#xD;&#xA;   at System.Web.Mvc.ControllerBase.Execute(RequestContext requestContext)&#xD;&#xA;   at System.Web.Mvc.ControllerBase.System.Web.Mvc.IController.Execute(RequestContext requestContext)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClass6.&lt;&gt;c__DisplayClassb.&lt;BeginProcessRequest&gt;b__5()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass1.&lt;MakeVoidDelegate&gt;b__0()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass8`1.&lt;BeginSynchronous&gt;b__7(IAsyncResult _)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClasse.&lt;EndProcessRequest&gt;b__d()&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.&lt;GetCallInAppTrustThunk&gt;b__0(Action f)&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.ProcessInApplicationTrust(Action action)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="09876599999" time="2015-11-15T11:04:35.1705025Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:max-age=0&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_CONTENT_LENGTH:543&#xD;&#xA;HTTP_CONTENT_TYPE:multipart/form-data; boundary=----WebKitFormBoundary6BkA2SYw826BAyYp&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:vi&#xD;&#xA;HTTP_COOKIE:CKFinder_Path=Images%3A%2F%3A1; _culture=vi-VN; _pk_id.47.1fff=8a2c6946598d08be.1443027516.12.1446486882.1446485960.; ASP.NET_SessionId=4rabvbrnue3urwqsylczkrtv; .iHoaDonTvan=5ABE53DB1FCB1E9ABAD4094D8E6EAE282391208299E3992C4121C3BDCF9AA79988191E12E97F2709607ECBBEDA573BFF42B7685E2890BF5F7A1048BE610CD1BF8F090DB2C4F8B62DE4FC0A1FEF63DA3D8B5C7783F80E4A5597E400111C215FA2392275962243C225DD20EA91497442674D1FC2BA76DDD27DC544FE3979276EA7278B7AF7309853DD745B390326A0B772E9B509688E44CADB48EE8D57B7A76ECE6BF9C3D876CE2A8D06640CCDF1751D5D386B055C9BF446CCCDBCFB0ACF01F866B5AA28F4D08DA9283B00C857270A62AC; checkLogin=09876599999&#xD;&#xA;HTTP_HOST:localhost:18331&#xD;&#xA;HTTP_REFERER:http://localhost:18331/Product/Add/0&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36&#xD;&#xA;HTTP_ORIGIN:http://localhost:18331&#xD;&#xA;HTTP_UPGRADE_INSECURE_REQUESTS:1&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: max-age=0&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Content-Length: 543&#xD;&#xA;Content-Type: multipart/form-data; boundary=----WebKitFormBoundary6BkA2SYw826BAyYp&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate&#xD;&#xA;Accept-Language: vi&#xD;&#xA;Cookie: CKFinder_Path=Images%3A%2F%3A1; _culture=vi-VN; _pk_id.47.1fff=8a2c6946598d08be.1443027516.12.1446486882.1446485960.; ASP.NET_SessionId=4rabvbrnue3urwqsylczkrtv; .iHoaDonTvan=5ABE53DB1FCB1E9ABAD4094D8E6EAE282391208299E3992C4121C3BDCF9AA79988191E12E97F2709607ECBBEDA573BFF42B7685E2890BF5F7A1048BE610CD1BF8F090DB2C4F8B62DE4FC0A1FEF63DA3D8B5C7783F80E4A5597E400111C215FA2392275962243C225DD20EA91497442674D1FC2BA76DDD27DC544FE3979276EA7278B7AF7309853DD745B390326A0B772E9B509688E44CADB48EE8D57B7A76ECE6BF9C3D876CE2A8D06640CCDF1751D5D386B055C9BF446CCCDBCFB0ACF01F866B5AA28F4D08DA9283B00C857270A62AC; checkLogin=09876599999&#xD;&#xA;Host: localhost:18331&#xD;&#xA;Referer: http://localhost:18331/Product/Add/0&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36&#xD;&#xA;Origin: http://localhost:18331&#xD;&#xA;Upgrade-Insecure-Requests: 1&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="P:\Projects\iHoaDon\iHoaDon.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="Custom" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="09876599999" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="DESKTOP-IVBN7P9\LP_Admin" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="09876599999" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="543" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="multipart/form-data; boundary=----WebKitFormBoundary6BkA2SYw826BAyYp" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="" />
+    </item>
+    <item name="HTTPS">
+      <value string="" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/Product/Add/0" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="P:\Projects\iHoaDon\iHoaDon.Web\Product\Add\0" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="POST" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/Product/Add/0" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="18331" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="" />
+    </item>
+    <item name="URL">
+      <value string="/Product/Add/0" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="max-age=0" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_CONTENT_LENGTH">
+      <value string="543" />
+    </item>
+    <item name="HTTP_CONTENT_TYPE">
+      <value string="multipart/form-data; boundary=----WebKitFormBoundary6BkA2SYw826BAyYp" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="vi" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="CKFinder_Path=Images%3A%2F%3A1; _culture=vi-VN; _pk_id.47.1fff=8a2c6946598d08be.1443027516.12.1446486882.1446485960.; ASP.NET_SessionId=4rabvbrnue3urwqsylczkrtv; .iHoaDonTvan=5ABE53DB1FCB1E9ABAD4094D8E6EAE282391208299E3992C4121C3BDCF9AA79988191E12E97F2709607ECBBEDA573BFF42B7685E2890BF5F7A1048BE610CD1BF8F090DB2C4F8B62DE4FC0A1FEF63DA3D8B5C7783F80E4A5597E400111C215FA2392275962243C225DD20EA91497442674D1FC2BA76DDD27DC544FE3979276EA7278B7AF7309853DD745B390326A0B772E9B509688E44CADB48EE8D57B7A76ECE6BF9C3D876CE2A8D06640CCDF1751D5D386B055C9BF446CCCDBCFB0ACF01F866B5AA28F4D08DA9283B00C857270A62AC; checkLogin=09876599999" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:18331" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:18331/Product/Add/0" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36" />
+    </item>
+    <item name="HTTP_ORIGIN">
+      <value string="http://localhost:18331" />
+    </item>
+    <item name="HTTP_UPGRADE_INSECURE_REQUESTS">
+      <value string="1" />
+    </item>
+  </serverVariables>
+  <form>
+    <item name="ProductCode">
+      <value string="BPHON" />
+    </item>
+    <item name="ProductName">
+      <value string="Ấm chén" />
+    </item>
+    <item name="UnitID">
+      <value string="1" />
+    </item>
+    <item name="Price">
+      <value string="2000" />
+    </item>
+    <item name="Note">
+      <value string="không " />
+    </item>
+  </form>
+  <cookies>
+    <item name="CKFinder_Path">
+      <value string="Images%3A%2F%3A1" />
+    </item>
+    <item name="_culture">
+      <value string="vi-VN" />
+    </item>
+    <item name="_pk_id.47.1fff">
+      <value string="8a2c6946598d08be.1443027516.12.1446486882.1446485960." />
+    </item>
+    <item name="ASP.NET_SessionId">
+      <value string="4rabvbrnue3urwqsylczkrtv" />
+    </item>
+    <item name=".iHoaDonTvan">
+      <value string="5ABE53DB1FCB1E9ABAD4094D8E6EAE282391208299E3992C4121C3BDCF9AA79988191E12E97F2709607ECBBEDA573BFF42B7685E2890BF5F7A1048BE610CD1BF8F090DB2C4F8B62DE4FC0A1FEF63DA3D8B5C7783F80E4A5597E400111C215FA2392275962243C225DD20EA91497442674D1FC2BA76DDD27DC544FE3979276EA7278B7AF7309853DD745B390326A0B772E9B509688E44CADB48EE8D57B7A76ECE6BF9C3D876CE2A8D06640CCDF1751D5D386B055C9BF446CCCDBCFB0ACF01F866B5AA28F4D08DA9283B00C857270A62AC" />
+    </item>
+    <item name="checkLogin">
+      <value string="09876599999" />
+    </item>
+  </cookies>
+</error>

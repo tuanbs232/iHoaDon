@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:inv="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1"
+    targetNamespace="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1" elementFormDefault="qualified"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+
+    <xs:include schemaLocation="commons.xsd">
+        <xs:annotation>
+            <xs:documentation>Import of commons.</xs:documentation>
+        </xs:annotation>
+    </xs:include>
+
+    <xs:element name="transaction">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="invoices" type="inv:invoices"> </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="invoices">
+        <xs:sequence>
+            <xs:element name="invoice" type="inv:invoice" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="invoice">
+        <xs:all>
+            <xs:element name="invoiceData" type="inv:voidInvoiceData" minOccurs="1"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="voidInvoiceData">
+        <xs:all>
+            <xs:element name="invoiceType">
+                <xs:simpleType>
+                    <xs:restriction base="string">
+                        <xs:maxLength value="10"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="templateCode">
+                <xs:simpleType>
+                    <xs:restriction base="string">
+                        <xs:maxLength value="20"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="invoiceSeries">
+                <xs:simpleType>
+                    <xs:restriction base="string">
+                        <xs:maxLength value="20"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="startNumber">
+                <xs:simpleType>
+                    <xs:restriction base="string">
+                        <xs:maxLength value="20"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="endNumber">
+                <xs:simpleType>
+                    <xs:restriction base="string">
+                        <xs:maxLength value="20"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="quantity" type="xs:unsignedInt" maxOccurs="1" minOccurs="1"/>
+            <xs:element name="createdDate" type="xs:dateTime"/>
+            <xs:element name="modifiedDate" type="xs:dateTime"/>
+            <xs:element name="createdBy" type="xs:string" maxOccurs="1" minOccurs="1"/>
+            <xs:element name="modifiedBy" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="invoiceCreation" type="xs:string" maxOccurs="1" minOccurs="0"/>
+        </xs:all>
+        <xs:attribute name="id" type="xs:string"/>
+    </xs:complexType>
+</xs:schema>

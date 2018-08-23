@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <!-- Bootstrap -->
+    <link href="/Content/Vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="/Content/Vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- NProgress -->
+    <link href="/Content/Vendors/nprogress/nprogress.css" rel="stylesheet" />
+    <link href="/Content/Vendors/pnotify/pnotify.custom.css" rel="stylesheet" />
+    <!-- Custom Theme Style -->
+    <link href="/Content/css/custom.css" rel="stylesheet" />
+</head>
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="/Home/Dashboard" class="site_title"><i class="fa fa-paw"></i> <span>IHoaDon</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="/Content/Images/default_avatar.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            @if (Request.IsAuthenticated)
+                            {
+                                <span>Xin chào, </span><br />
+                                if (User.IsInRole(iHoaDon.Entities.Roles.Admin) || User.IsInRole(iHoaDon.Entities.Roles.AdminAccountManager) || User.IsInRole(iHoaDon.Entities.Roles.AdminTechSupport))
+                                {
+                                    @Html.ActionLink(User.Identity.Name, "Me", "User", new { area = "" }, null)
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(User.Identity.Name, "Index", "Accounts", new { area = "" })
+                                }
+
+                            }
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- /menu profile quick info -->
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a><i class="fa fa-home"></i> Hệ thống <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="#">Tạo mẫu hóa đơn</a></li>
+                                        <li><a href="/ListReleaseInvoice">Phát hành hóa đơn</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-">
+                                    <a><i class="fa fa-paper-plane-o"></i> Xuất hóa đơn <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="/Invoice?id=01GTKT">Hóa đơn GTGT</a></li>
+                                        <li><a href="/InvoiceMarket?id=02GTTT">Hóa đơn bán hàng</a></li>
+                                        <li><a href="/InvoiceTollTariffs?id=07KPTQ">Hóa đơn bán hàng (phi thuế quan)</a></li>
+                                        <li><a href="/InvoiceTollTariffs?id=07KPTQ">Phiếu xuất kho kiêm vận chuyển nội bộ</a></li>
+                                        <li><a href="/InvoiceTollTariffs?id=07KPTQ">Phiếu xuất kho gửi bán hàng đại lý</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-danhmuc">
+                                    <a><i class="fa fa-tags"></i> Danh mục <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li class="nav-customer"><a href="/Customer">Danh mục khách hàng</a></li>
+                                        <li class="nav-product"><a href="/Product">Danh mục hàng hóa</a></li>
+                                        <li class="nav-unit"><a href="/Unit">Danh mục đơn vị tính</a></li>
+                                        <li class="nav-xx"><a href="#">Danh mục tỷ giá</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-danhmuc">
+                                    <a><i class="fa fa-pie-chart"></i> Thống kê <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li class="nav-customer"><a href="/SearchInvoice">Tra cứu hóa đơn</a></li>
+                                        <li class="nav-product"><a href="#">Báo cáo</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="menu_section">
+                            <h3>Tiện ích</h3>
+                            <ul class="nav side-menu"></ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                </div>
+            </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="/Content/Images/default_avatar.jpg" alt="">@User.Identity.Name
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="/Accounts/index"> Tài khoản</a></li>
+                                    <li><a href="/Accounts/LogOffUser"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
+                                </ul>
+                            </li>
+                            <li role="presentation" class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="badge bg-green">1</span>
+                                </a>
+                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                    <li>
+                                        <a>
+                                            <span class="image"><img src="/Content/Images/default_avatar.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>Hệ thống</span>
+                                                <span class="time">Vừa xong</span>
+                                            </span>
+                                            <span class="message">
+                                                Không có thông báo mới...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="text-center">
+                                            <a>
+                                                <strong>Xem tất cả</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h3>@ViewBag.PageTitle</h3>
+                        </div>
+                        @if (ViewBag.EnabledSearch != null && ViewBag.EnabledSearch)
+    {
+
+                        <div class="title_right">
+                            <form action="@ViewBag.SearchAction" method="post">
+                                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="@ViewBag.SearchPlaceholder">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+}
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>@ViewBag.PageSubTitle</h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li>
+                                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>
+                                                    <a href="#">Settings 1</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Settings 2</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <!--  -->
+                                    @RenderBody()
+                                    <!--  -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="/Content/Vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/Content/Vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="/Content/Vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="/Content/Vendors/nprogress/nprogress.js"></script>
+    <script src="/Content/Vendors/pnotify/pnotify.custom.js"></script>
+
+    @RenderSection("ContentScript", required: false)
+
+    <!-- Custom Theme Scripts -->
+    <script src="/Content/js/custom.js"></script>
+    <input type="hidden" id="message" value="@ViewBag.Message" />
+    <input type="hidden" id="message-type" value="@ViewBag.MessageType" />
+
+    <script>
+        $(document).ready(function () {
+            var message = $('#message').val();
+            var messageType = $('#message-type').val();
+            if (message != null && message != "") {
+                if (messageType == "error") {
+                    errorMessage(message);
+                } else if (messageType == "info") {
+                    successMessage(message);
+                }
+                var url = window.location.href;
+                url = url.substring(0, url.indexOf("message=") - 1);
+                window.history.pushState({}, document.title, url);
+            }
+        });
+        function successMessage(mess) {
+            new PNotify({
+                title: 'Thông báo',
+                text: mess,
+                type: 'custom',
+                addclass: 'notification-primary',
+                icon: 'fa fa-check',
+                width: "350px",
+                min_height: "95px",
+                shadow: true
+            });
+        }
+
+        function errorMessage(mess) {
+            new PNotify({
+                title: 'Cảnh báo',
+                text: mess,
+                type: 'error',
+                shadow: true,
+                cornerclass: 'ui-pnotify-sharp',
+                icon: 'fa fa-times',
+                width: "350px",
+                min_height: "95px",
+                shadow: true
+            });
+        }
+    </script>
+</body>
+</html>

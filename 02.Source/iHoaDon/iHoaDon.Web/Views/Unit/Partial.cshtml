@@ -1,0 +1,106 @@
+﻿@using iHoaDon.Web
+@model IEnumerable<iHoaDon.Entities.Unit>
+    @{
+        var sortAndPage = ViewBag.SortAndPage as iHoaDon.Web.Models.SortAndPageModel;
+        var search = ViewBag.ModelSearch as SearchUnitModel;
+    }
+    <div class="row">
+        <div class="col-md-12">
+            <a href="/Unit/Add?id=0" class="btn btn-success"><i class="fa fa-user-plus"></i> Thêm mới đơn vị tính</a>
+            <br /><br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped projects">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên đơn vị tính</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var index = (sortAndPage.CurrentPageIndex - 1) * sortAndPage.PageSize;
+                    }
+                    @if (Model != null && Model.Count() > 0)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr id="row-@index" @(index % 2 == 1 ? "class=even-row" : "")>
+                                <td align="center">
+                                    @(index + 1)
+                                </td>
+                                <td style="padding-left: 10px;">
+                                    @item.Name
+                                </td>
+
+
+                                <td align="center">
+                                    <table class="table_column">
+                                        <tr>
+                                            <td>
+                                                <a href="@Url.Action("Add", "Unit", new { id = item.Id })" class="btn btn-xs btn-outline-primary">
+                                                    <i class="fa fa-pencil-square-o"></i> Chỉnh sửa
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="btn btn-xs btn-danger">
+                                                    <i class="fa fa-trash-o"></i> Xóa
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            index++;
+                        }
+                    }
+                    @if (Model == null || Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="3">
+                                Không có bản ghi nào!
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                @if (Model != null && Model.Count() > 0)
+                {
+
+                }
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table>
+                <tfoot class="pager-content">
+                    <tr>
+                        <td colspan="3">
+                            @Ajax.Pager(sortAndPage.PageSize,
+                                        sortAndPage.CurrentPageIndex,
+                                        sortAndPage.TotalRecordCount,
+                                        "SortingAndPagingAccounts",
+                                        new
+                                        {
+                                            sortBy = sortAndPage.SortBy,
+                                            sortDesc = sortAndPage.SortDescending
+                                        },
+                                         new AjaxOptions
+                                         {
+                                             UpdateTargetId = "divGridCustomer",
+                                             OnBegin = "OnBegin",
+                                             OnSuccess = "OnSuccess",
+                                             OnFailure = "OnFailure"
+                                         },
+                                        "pagerButton",
+                                        "pagerButtonDisabled",
+                                        "pagerButtonCurrentPage")
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>

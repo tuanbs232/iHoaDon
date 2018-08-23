@@ -1,0 +1,180 @@
+﻿<error errorId="5b547706-ea57-4b38-a713-a19cc46fc2e0" application="/" host="DESKTOP-IVBN7P9" type="System.InvalidOperationException" message="No route in the route table matches the supplied values." source="System.Web.Mvc" detail="System.InvalidOperationException: No route in the route table matches the supplied values.&#xD;&#xA;   at System.Web.Mvc.Html.ChildActionExtensions.ActionHelper(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues, TextWriter textWriter)&#xD;&#xA;   at System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues)&#xD;&#xA;   at System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName)&#xD;&#xA;   at ASP._Page_Views_Shared__Layout_cshtml.Execute() in p:\Projects\eHoaDon\eHoaDon.Web\Views\Shared\_Layout.cshtml:line 17&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)&#xD;&#xA;   at System.Web.WebPages.WebPageBase.&lt;&gt;c__DisplayClass7.&lt;RenderPageCore&gt;b__6(TextWriter writer)&#xD;&#xA;   at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)&#xD;&#xA;   at System.Web.WebPages.WebPageBase.Write(HelperResult result)&#xD;&#xA;   at System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)&#xD;&#xA;   at System.Web.WebPages.WebPageBase.PopContext()&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)&#xD;&#xA;   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)&#xD;&#xA;   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)&#xD;&#xA;   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.&lt;&gt;c__DisplayClass1c.&lt;InvokeActionResultWithFilters&gt;b__19()&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.&lt;&gt;c__DisplayClass1c.&lt;&gt;c__DisplayClass1e.&lt;InvokeActionResultWithFilters&gt;b__1b()&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeAction(ControllerContext controllerContext, String actionName)&#xD;&#xA;   at System.Web.Mvc.Controller.ExecuteCore()&#xD;&#xA;   at System.Web.Mvc.ControllerBase.Execute(RequestContext requestContext)&#xD;&#xA;   at System.Web.Mvc.ControllerBase.System.Web.Mvc.IController.Execute(RequestContext requestContext)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClass6.&lt;&gt;c__DisplayClassb.&lt;BeginProcessRequest&gt;b__5()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass1.&lt;MakeVoidDelegate&gt;b__0()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass8`1.&lt;BeginSynchronous&gt;b__7(IAsyncResult _)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClasse.&lt;EndProcessRequest&gt;b__d()&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.&lt;GetCallInAppTrustThunk&gt;b__0(Action f)&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.ProcessInApplicationTrust(Action action)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="thuandv" time="2015-11-05T17:18:25.8337671Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:no-cache&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_PRAGMA:no-cache&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, sdch&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:vi&#xD;&#xA;HTTP_COOKIE:CKFinder_Path=Images%3A%2F%3A1; _culture=vi-VN; _pk_id.47.1fff=8a2c6946598d08be.1443027516.12.1446486882.1446485960.; .eHoaDonTvan=65BE027621984AD856D9B651F48F545D6D073385E1FB9C58779B7C2566FD64E5436C3C55ED5A748408EBD99E9D2792DE5A7DD4C15A129B824525E9A025DF6A105F407BD3298A2342B5228FE54D83C57346A148AB161A67E0FC81F5ECB3AC1AE7C1DD20A90046A888528BAC8915E719C6ED6D507578D5C9C9243341AA5AD6048AE6E49D1D68D97B1F1A0411E9D4F8A07963879F33DB64BCD6C55F56E19E13E8248159D17FBCFF9359AA20F16373327B4410AF413F68CF2C6F91C1281309F25BD81194DFBF6A7829549683EA5B9BBAF56B; checkLogin=thuandv&#xD;&#xA;HTTP_HOST:localhost:18331&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36&#xD;&#xA;HTTP_UPGRADE_INSECURE_REQUESTS:1&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: no-cache&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Pragma: no-cache&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate, sdch&#xD;&#xA;Accept-Language: vi&#xD;&#xA;Cookie: CKFinder_Path=Images%3A%2F%3A1; _culture=vi-VN; _pk_id.47.1fff=8a2c6946598d08be.1443027516.12.1446486882.1446485960.; .eHoaDonTvan=65BE027621984AD856D9B651F48F545D6D073385E1FB9C58779B7C2566FD64E5436C3C55ED5A748408EBD99E9D2792DE5A7DD4C15A129B824525E9A025DF6A105F407BD3298A2342B5228FE54D83C57346A148AB161A67E0FC81F5ECB3AC1AE7C1DD20A90046A888528BAC8915E719C6ED6D507578D5C9C9243341AA5AD6048AE6E49D1D68D97B1F1A0411E9D4F8A07963879F33DB64BCD6C55F56E19E13E8248159D17FBCFF9359AA20F16373327B4410AF413F68CF2C6F91C1281309F25BD81194DFBF6A7829549683EA5B9BBAF56B; checkLogin=thuandv&#xD;&#xA;Host: localhost:18331&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36&#xD;&#xA;Upgrade-Insecure-Requests: 1&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="P:\Projects\eHoaDon\eHoaDon.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="Custom" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="thuandv" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="DESKTOP-IVBN7P9\LP_Admin" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="thuandv" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="" />
+    </item>
+    <item name="HTTPS">
+      <value string="" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="P:\Projects\eHoaDon\eHoaDon.Web" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="18331" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="" />
+    </item>
+    <item name="URL">
+      <value string="/" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="no-cache" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_PRAGMA">
+      <value string="no-cache" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, sdch" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="vi" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="CKFinder_Path=Images%3A%2F%3A1; _culture=vi-VN; _pk_id.47.1fff=8a2c6946598d08be.1443027516.12.1446486882.1446485960.; .eHoaDonTvan=65BE027621984AD856D9B651F48F545D6D073385E1FB9C58779B7C2566FD64E5436C3C55ED5A748408EBD99E9D2792DE5A7DD4C15A129B824525E9A025DF6A105F407BD3298A2342B5228FE54D83C57346A148AB161A67E0FC81F5ECB3AC1AE7C1DD20A90046A888528BAC8915E719C6ED6D507578D5C9C9243341AA5AD6048AE6E49D1D68D97B1F1A0411E9D4F8A07963879F33DB64BCD6C55F56E19E13E8248159D17FBCFF9359AA20F16373327B4410AF413F68CF2C6F91C1281309F25BD81194DFBF6A7829549683EA5B9BBAF56B; checkLogin=thuandv" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:18331" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36" />
+    </item>
+    <item name="HTTP_UPGRADE_INSECURE_REQUESTS">
+      <value string="1" />
+    </item>
+  </serverVariables>
+  <cookies>
+    <item name="CKFinder_Path">
+      <value string="Images%3A%2F%3A1" />
+    </item>
+    <item name="_culture">
+      <value string="vi-VN" />
+    </item>
+    <item name="_pk_id.47.1fff">
+      <value string="8a2c6946598d08be.1443027516.12.1446486882.1446485960." />
+    </item>
+    <item name=".eHoaDonTvan">
+      <value string="65BE027621984AD856D9B651F48F545D6D073385E1FB9C58779B7C2566FD64E5436C3C55ED5A748408EBD99E9D2792DE5A7DD4C15A129B824525E9A025DF6A105F407BD3298A2342B5228FE54D83C57346A148AB161A67E0FC81F5ECB3AC1AE7C1DD20A90046A888528BAC8915E719C6ED6D507578D5C9C9243341AA5AD6048AE6E49D1D68D97B1F1A0411E9D4F8A07963879F33DB64BCD6C55F56E19E13E8248159D17FBCFF9359AA20F16373327B4410AF413F68CF2C6F91C1281309F25BD81194DFBF6A7829549683EA5B9BBAF56B" />
+    </item>
+    <item name="checkLogin">
+      <value string="thuandv" />
+    </item>
+  </cookies>
+</error>

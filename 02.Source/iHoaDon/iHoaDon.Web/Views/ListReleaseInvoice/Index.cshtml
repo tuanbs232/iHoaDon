@@ -1,0 +1,66 @@
+﻿@model iHoaDon.Web.SearchListReleaseInvoiceModel
+@{
+    ViewBag.Title = "iHoaDon | Phát hành hóa đơn";
+
+    ViewBag.PageTitle = "Thông báo phát hành hóa đơn điện tử";
+
+    Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
+}
+<style>
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th{
+        vertical-align: middle;
+    }
+</style>
+<script type="text/javascript">
+    function OnBegin() {
+        $('#divGridListReleaseInvoice').block({
+            message: '<img src="/Content/images/ajax-loader.gif" width="32" height="32" /><br /><strong>Đang xử lý...</strong>',
+            css: {
+                width: '100px',
+                height: '50px',
+                padding: '5px 0px 5px 0px'
+            }
+        });
+    }
+
+    function OnSuccess() {
+        $('#divGridListReleaseInvoice').unblock();
+    }
+
+    function OnFailure() {
+        alert("Có lỗi xảy ra");
+        $('#divGridListReleaseInvoice').unblock();
+    }
+
+    function SetPageSize() {
+        var dropDown = $("#divGridListReleaseInvoice select[name='pageSize']");
+        var currentPageSize = $("#currentPageSize");
+        if (dropDown.length != 0) {
+            currentPageSize.val(dropDown.val());
+        } else {
+            if (currentPageSize.val() == '') {
+                currentPageSize.val('25');
+            }
+        }
+    }
+</script>
+@using (Ajax.BeginForm("SearchListReleaseInvoice", new AjaxOptions { UpdateTargetId = "divGridListReleaseInvoice", OnBegin = "OnBegin", OnSuccess = "OnSuccess", OnFailure = "OnFailure", HttpMethod = "Get" }))
+{
+    //trường hợp thêm điều kiện tìm kiếm
+    <input id="currentPageSize" name="pageSize" type="hidden" />
+}
+
+<a href="@Url.Action("Reissueinvoice", "ListReleaseInvoice")" class="btn btn-success">
+    <i class="fa fa-bell"></i>
+    Phát hành mới
+</a>
+
+<div id="divGridListReleaseInvoice">
+    @{
+        var listReleaseInvoice = ViewBag.ListReleaseInvoice as IEnumerable<iHoaDon.Entities.ListReleaseInvoice>;
+        Html.RenderPartial("Partial", listReleaseInvoice);
+    }
+</div>
+<br />
+<div>
+</div>

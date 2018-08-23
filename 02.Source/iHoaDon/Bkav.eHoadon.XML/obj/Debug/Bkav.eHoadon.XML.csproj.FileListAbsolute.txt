@@ -1,0 +1,66 @@
+S:\Projects\Invoice\02_Source\HDTI-HDDT\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.dll
+S:\Projects\Invoice\02_Source\HDTI-HDDT\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.pdb
+S:\Projects\Invoice\02_Source\HDTI-HDDT\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.dll.CodeAnalysisLog.xml
+S:\Projects\Invoice\02_Source\HDTI-HDDT\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.dll.lastcodeanalysissucceeded
+S:\Projects\Invoice\02_Source\HDTI-HDDT\Bkav.eHoadon.XML\bin\Debug\RestSharp.dll
+S:\Projects\Invoice\02_Source\HDTI-HDDT\Bkav.eHoadon.XML\bin\Debug\RestSharp.xml
+S:\Projects\Invoice\02_Source\HDTI-HDDT\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.xsd.Resource.resources
+S:\Projects\Invoice\02_Source\HDTI-HDDT\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csproj.GenerateResource.Cache
+S:\Projects\Invoice\02_Source\HDTI-HDDT\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.dll
+S:\Projects\Invoice\02_Source\HDTI-HDDT\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.pdb
+S:\Projects\Invoice\02_Source\HDTI-HDDT\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csprojResolveAssemblyReference.cache
+E:\BKAV\iHoadon\iHoaDon_22-11-2015\iHoaDon\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.dll
+E:\BKAV\iHoadon\iHoaDon_22-11-2015\iHoaDon\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.pdb
+E:\BKAV\iHoadon\iHoaDon_22-11-2015\iHoaDon\Bkav.eHoadon.XML\bin\Debug\RestSharp.xml
+E:\BKAV\iHoadon\iHoaDon_22-11-2015\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csprojResolveAssemblyReference.cache
+E:\BKAV\iHoadon\iHoaDon_22-11-2015\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.xsd.Resource.resources
+E:\BKAV\iHoadon\iHoaDon_22-11-2015\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csproj.GenerateResource.Cache
+E:\BKAV\iHoadon\iHoaDon_22-11-2015\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.dll
+E:\BKAV\iHoadon\iHoaDon_22-11-2015\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.pdb
+H:\Projects\LHD\SourceCode\27-11-015\iHoaDon\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.dll
+H:\Projects\LHD\SourceCode\27-11-015\iHoaDon\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.pdb
+H:\Projects\LHD\SourceCode\27-11-015\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csprojResolveAssemblyReference.cache
+H:\Projects\LHD\SourceCode\27-11-015\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.xsd.Resource.resources
+H:\Projects\LHD\SourceCode\27-11-015\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csproj.GenerateResource.Cache
+H:\Projects\LHD\SourceCode\27-11-015\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.dll
+H:\Projects\LHD\SourceCode\27-11-015\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.pdb
+V:\Projects\LHD\SourceCode\27-11-015\iHoaDon\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.dll
+V:\Projects\LHD\SourceCode\27-11-015\iHoaDon\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.pdb
+V:\Projects\LHD\SourceCode\27-11-015\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csprojResolveAssemblyReference.cache
+V:\Projects\LHD\SourceCode\27-11-015\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.xsd.Resource.resources
+V:\Projects\LHD\SourceCode\27-11-015\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csproj.GenerateResource.Cache
+V:\Projects\LHD\SourceCode\27-11-015\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.dll
+V:\Projects\LHD\SourceCode\27-11-015\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.pdb
+S:\Github\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.dll
+S:\Github\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.pdb
+S:\Github\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csprojResolveAssemblyReference.cache
+S:\Github\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.xsd.Resource.resources
+S:\Github\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csproj.GenerateResource.Cache
+S:\Github\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.dll
+S:\Github\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.pdb
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.dll
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.pdb
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.xsd.Resource.resources
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csproj.GenerateResource.cache
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csproj.CoreCompileInputs.cache
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csproj.CopyComplete
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.dll
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.pdb
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.dll
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.pdb
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csprojResolveAssemblyReference.cache
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.xsd.Resource.resources
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csproj.GenerateResource.cache
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csproj.CoreCompileInputs.cache
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csproj.CopyComplete
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.dll
+E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.pdb
+D:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.dll
+D:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\bin\Debug\Bkav.eHoadon.XML.pdb
+D:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csprojResolveAssemblyReference.cache
+D:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.xsd.Resource.resources
+D:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csproj.GenerateResource.cache
+D:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csproj.CoreCompileInputs.cache
+D:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.csproj.CopyComplete
+D:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.dll
+D:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Debug\Bkav.eHoadon.XML.pdb

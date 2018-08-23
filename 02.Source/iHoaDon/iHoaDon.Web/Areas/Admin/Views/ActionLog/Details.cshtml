@@ -1,0 +1,53 @@
+﻿@model iHoaDon.Entities.ActionLog
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2 class="title_text">Thông tin chi tiết nhật ký</h2>
+<fieldset>
+    <table class="table_column">
+        <tr>
+            <td>Tên đăng nhập
+            </td>
+            <td>
+                @Model.LoginName
+            </td>
+        </tr>
+        <tr>
+            <td>Thao tác
+            </td>
+            <td>
+                @Model.ActionContent
+            </td>
+        </tr>
+        <tr>
+            <td>Thời gian thao tác
+            </td>
+            <td>
+                @Model.ActionTime.ToString("dd/MM/yyyy hh:mm:ss tt")
+            </td>
+        </tr>
+        <tr>
+            <td>Dữ liệu trước khi thay đổi
+            </td>
+            <td>
+                <textarea id="txtDataBefore" cols="100" rows="10" name="txtDataBefore">
+                @Model.DataBeforeChange
+                </textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>Dữ liệu sau khi thay đổi
+            </td>
+            <td>
+                <textarea id="txtDataAfter" cols="100" rows="10" name="txtDataAfter">
+                @Model.DataAfterChange
+                </textarea>
+            </td>
+        </tr>
+    </table>
+    <div>
+        <a href= '@Url.Action("ActionLog")' class="button" >
+            <img alt="" src="@Url.Content("~/Content/icons/shape_move_back.png")" />Trở về</a>
+    </div>
+</fieldset>

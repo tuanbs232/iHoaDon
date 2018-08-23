@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "iHoaDon - Hóa đơn điện tử";
+    if (Request.IsAuthenticated)
+    {
+        Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_UnAuthenticatedLayout.cshtml";
+    }
+}

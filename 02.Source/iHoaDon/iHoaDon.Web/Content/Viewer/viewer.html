@@ -1,0 +1,140 @@
+﻿<html xmlns:inv="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1">
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-16">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Hóa Đơn Điện Tử</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link href="style.css" rel="stylesheet"><script type="text/javascript" src="jquery-1.8.2.min.js"></script><script type="text/javascript" src="details.js"></script><script type="text/javascript" src="qrcode.js"></script><script type="text/javascript" src="jquery.qrcode.js"></script></head>
+  <body>
+    <div class="container">
+      <div class="row-fluid">
+        <div class="span9">
+          <div class="row-fluid">
+            <div class="span4"><b>Mẫu số: </b>01GTKT3/001<br><b>Ký hiệu: </b>AA/14T<br><b>Số: </b>2</div>
+            <div class="span8">
+              <p class="invName">Hóa đơn giá trị gia tăng</p>
+              <p class="text-center"><br><i>Ngày 09 tháng 10 năm 2014</i></p>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span12"><b>Số hóa đơn xác thực: </b><span class="border">012139000038057</span><div><b>Mã xác thực hóa đơn: </b><span style="font-size: 11px;">0rxWGE2YfSpb0eaImMWaMVSqUaJN1CNbVlCoeTaB3QG50gFpaigd1h55zcxUZebc</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="span3 text-right">
+          <div id="qrcodeTable"></div>
+        </div>
+      </div>
+      <table style="margin-top:5px;" class="table table-bordered table-condensed">
+        <tr>
+          <td style="width:50%;">
+            <fieldset>
+              <legend>THÔNG TIN ĐƠN VỊ BÁN</legend>
+              <div><b>Đơn vị bán hàng: </b>Công ty cổ phần Bkav<br><b>Mã số thuế: </b>0101360697<br><b>Địa chỉ: </b>HH1 - Yên Hòa<br><b>Điện thoại: </b>0988899998<br><b>Số tài khoản: </b></div>
+            </fieldset>
+          </td>
+          <td style="width:50%;">
+            <fieldset>
+              <legend>THÔNG TIN KHÁCH HÀNG</legend>
+              <div><b>Họ tên người mua: </b><br><b>Tên đơn vị: </b>Bkav<br><b>Mã số thuế: </b>0311055869<br><b>Địa chỉ: </b>Hà Nội<br><b>Số tài khoản: </b></div>
+            </fieldset>
+          </td>
+        </tr>
+      </table>
+      <div class="row-fluid">
+        <div class="span6 text-center"><b>Phương thức thanh toán: </b>Tiền mặt/chuyển khoản</div>
+        <div class="span3 pull-right"><b>Loại tiền: </b>VND</div>
+      </div>
+      <table class="table table-bordered table-condensed">
+        <tbody>
+          <tr class="thead">
+            <th>STT</th>
+            <th>Mã hàng hóa, dịch vụ</th>
+            <th style="width: 250px;">Tên hàng hóa, dịch vụ</th>
+            <th>Đơn vị tính</th>
+            <th>Số lượng</th>
+            <th>Đơn giá trước thuế GTGT</th>
+            <th>Thuế suất GTGT</th>
+            <th>Thành tiền trước thuế GTGT</th>
+          </tr>
+          <tr class="thead">
+            <th>(1)</th>
+            <th>(2)</th>
+            <th>(3)</th>
+            <th>(4)</th>
+            <th>(5)</th>
+            <th>(6)</th>
+            <th>(7)</th>
+            <th>(8=5x6)</th>
+          </tr>
+          <tr>
+            <td class="text-center">1</td>
+            <td>Bkav</td>
+            <td>Bkav Pro</td>
+            <td class="text-left">Bộ</td>
+            <td class="text-right">5</td>
+            <td class="text-right">300.000</td>
+            <td class="text-right percentage">10</td>
+            <td class="text-right">1.500.000</td>
+          </tr>
+        </tbody>
+      </table>
+      <table style="margin-top:15px;" class="table table-bordered table-condensed">
+        <tbody>
+          <tr class="thead">
+            <th class="text-center">Loại thuế suất</th>
+            <th class="text-center">Tiền thuế GTGT</th>
+            <th class="text-center">Thành tiền VNĐ</th>
+          </tr>
+          <tr>
+            <td>
+													Hàng hóa DV
+												<span class="percentage">10</span></td>
+            <td class="text-right">300.000</td>
+            <td class="text-right">200.000</td>
+          </tr>
+          <tr>
+            <td>
+										Tổng tiền thuế GTGT
+									</td>
+            <td class="text-right">1.500.000</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+										Tổng tiền thanh toán:
+									</td>
+            <td></td>
+            <td class="text-right">1.650.000</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row-fluid">
+        <div class="span12"><b>Số tiền viết bằng chữ: <i>Một triệu sáu trăm năm mươi nghìn đồng chẵn</i></b></div>
+      </div>
+      <div class="row-fluid">
+        <div class="span6">
+          <p class="text-center">
+									Người mua hàng<br>
+									(Ký, ghi rõ họ, tên)
+								</p><br><br></div>
+        <div class="span6">
+          <p class="text-center">
+									Người bán hàng<br>
+									(Ký, đóng dấu, ghi rõ họ, tên)
+								</p><br><br></div>
+      </div>
+      <div class="row-fluid">
+        <div class="span6"></div>
+        <div class="span6">
+          <p class="text-center">
+										Được ký bởi Công ty cổ phần Bkav</p>
+        </div>
+      </div>
+      <p class="text-center footer">
+					(Cần kiểm tra, đối chiếu khi lập, giao, nhận hóa đơn)<br>
+					Hóa đơn điện tử được xác thực bởi Tổng cục Thuế Việt Nam
+				</p><input type="hidden" id="qrcodeContent" value="2014-10-09T00:37:11.2411457+07:00"><input id="InvoiceID" name="InvoiceID" type="hidden" value="012139000038057"><input id="SellerTaxCode" name="SellerTaxCode" type="hidden" value="0101360697"><input id="BuyerTaxCode" name="BuyerTaxCode" type="hidden" value="0311055869"><input id="InvoiceIssuedDate" name="InvoiceIssuedDate" type="hidden" value="2014-10-09T00:37:11.2411457+07:00"><input id="OriginalInvoiceId" name="OriginalInvoiceId" type="hidden" value=""><input id="TotalVATAmount" name="TotalVATAmount" type="hidden" value="1500000"><input id="AmountForPayment" name="AmountForPayment" type="hidden" value="1650000"><input type="hidden" id="AntiFraudCode" name="AntiFraudCode" value="0rxWGE2YfSpb0eaImMWaMVSqUaJN1CNbVlCoeTaB3QG50gFpaigd1h55zcxUZebc"><input type="hidden" id="SellerSignature" name="SellerSignature" value="d3tAVKyscM+KLLIGgzgK4h+uof4="><input type="hidden" id="CertifiedDate" name="CertifiedDate" value="2014-10-09T00:37:41"><input type="hidden" id="PsdPublickey" name="PsdPublickey" value="0Z1yJSgQTsQYFCLDl73alKunLTXkMHKmDf4mlJI6Oy/8mZ0Ko2dChTAwzrfF/+kE"></div>
+  </body>
+</html>

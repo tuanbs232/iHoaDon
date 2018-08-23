@@ -1,0 +1,96 @@
+<inv:invoice xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:inv="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1">
+	<inv:invoiceData id="data">
+		<inv:sellerAppRecordId>01dc6c85d2ae480e946f</inv:sellerAppRecordId>
+		<inv:invoiceAppRecordId>f6525fd8c4444e8b99ef</inv:invoiceAppRecordId>
+		<inv:invoiceType>01GTKT</inv:invoiceType>
+		<inv:templateCode>01GTKT0/001</inv:templateCode>
+		<inv:invoiceSeries>BK/15E</inv:invoiceSeries>
+		<inv:invoiceNumber>0000001</inv:invoiceNumber>
+		<inv:invoiceName>Hóa đơn giá trị gia tăng</inv:invoiceName>
+		<inv:invoiceIssuedDate>2015-10-10T15:09:31.5929582+07:00</inv:invoiceIssuedDate>
+		<inv:signedDate>2015-10-10T15:09:45.8497736+07:00</inv:signedDate>
+		<inv:submittedDate>2015-10-10T15:09:45.8507737+07:00</inv:submittedDate>
+		<inv:invoiceNote>Hóa đơn Bkav online</inv:invoiceNote>
+		<inv:adjustmentType>1</inv:adjustmentType>
+		<inv:payments>
+			<inv:payment>
+				<inv:paymentMethodName>Tiền mặt</inv:paymentMethodName>
+			</inv:payment>
+		</inv:payments>
+		<inv:delivery />
+		<inv:sellerLegalName>Công ty TNHH Bkav Online</inv:sellerLegalName>
+		<inv:sellerTaxCode>0106538422</inv:sellerTaxCode>
+		<inv:sellerAddressLine>Phòng 401 tầng 4 tòa nhà HH1 khu ĐT Yên Hòa, Phường Yên Hòa, Quận Cầu Giấy, Thành phố Hà Nội, Việt Nam</inv:sellerAddressLine>
+		<inv:sellerPhoneNumber>0936219286</inv:sellerPhoneNumber>
+		<inv:buyerDisplayName>Nguyễn Thanh Tâm</inv:buyerDisplayName>
+		<inv:buyerLegalName>Ngân hàng TMCP Đông Á - Phòng giao dịch 24h số 3</inv:buyerLegalName>
+		<inv:buyerTaxCode>0301442379</inv:buyerTaxCode>
+		<inv:buyerAddressLine>Số 70 Trương Định, Phường 7, Quận 3, Hồ Chí Minh</inv:buyerAddressLine>
+		<inv:buyerPhoneNumber>0907712114</inv:buyerPhoneNumber>
+		<inv:buyerEmail>tamnth@dongabank.com.vn</inv:buyerEmail>
+		<inv:items>
+			<inv:item>
+				<inv:lineNumber>1</inv:lineNumber>
+				<inv:itemCode>LDLE27-18W</inv:itemCode>
+				<inv:itemName>Essential 18W (Bóng Philips 18w)</inv:itemName>
+				<inv:unitCode>Chiec</inv:unitCode>
+				<inv:unitName>Chiec</inv:unitName>
+				<inv:quantity>10</inv:quantity>
+				<inv:itemTotalAmountWithoutVat>390910</inv:itemTotalAmountWithoutVat>
+				<inv:vatPercentage>10</inv:vatPercentage>
+				<inv:unitPrice>39091</inv:unitPrice>
+			</inv:item>
+		</inv:items>
+		<inv:discountAmount>0</inv:discountAmount>
+		<inv:isDiscountAmtPos>false</inv:isDiscountAmtPos>
+		<inv:invoiceTaxBreakdowns>
+			<inv:invoiceTaxBreakdown>
+				<inv:vatPercentage>10</inv:vatPercentage>
+				<inv:vatTaxableAmount>390910</inv:vatTaxableAmount>
+				<inv:vatTaxAmount>39091</inv:vatTaxAmount>
+			</inv:invoiceTaxBreakdown>
+		</inv:invoiceTaxBreakdowns>
+		<inv:totalAmountWithoutVAT>390910</inv:totalAmountWithoutVAT>
+		<inv:totalVATAmount>39091</inv:totalVATAmount>
+		<inv:totalAmountWithVAT>430001</inv:totalAmountWithVAT>
+		<inv:totalAmountWithVATInWords>Bốn trăm ba mươi nghìn, không trăm lẻ một đồng chẵn.</inv:totalAmountWithVATInWords>
+	</inv:invoiceData>
+	<inv:controlData>
+		<inv:systemCode>LHD_BKAV</inv:systemCode>
+		<inv:taxOfficeCode>10113</inv:taxOfficeCode>
+		<inv:qrCodeData>0106538422;0301442379;430001;39091;20151010;O6bVyobwyAgPPw3AK42Ztet+ofY=;;012131000000385;1wN7aHIuPOKDXwow7+EUhfjHHhHe4zjZvjO6WFTkQU/qkkxarlKS32/SznMbgT77</inv:qrCodeData>
+	</inv:controlData>
+	<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="seller">
+		<SignedInfo>
+			<CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+			<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+			<Reference URI="#data">
+				<Transforms>
+					<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+					<Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+				</Transforms>
+				<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+				<DigestValue>O6bVyobwyAgPPw3AK42Ztet+ofY=</DigestValue>
+			</Reference>
+		</SignedInfo>
+		<SignatureValue>EBAiYs5SxQ1YKUae1FcFME2xy5xchQudO7CczPXMHSd+ckal4ye4zBI0zbH4Bdlckmo9C94lKwoTKsLVjzABScwSGCKGZTfy3/KXAvgTGzwuHW/ZkqmtAiIrdb6pnFQg1egqTtXdyi4yOepKNGwS0TWg2DkxlPmh/AzyjvMTCgg=</SignatureValue>
+		<KeyInfo>
+			<X509Data>
+				<X509Certificate>MIIEBDCCAuygAwIBAgIQVAMO7LIBJXPDCW8NI2UpMzANBgkqhkiG9w0BAQUFADBJMQswCQYDVQQGEwJWTjEOMAwGA1UEBxMFSGFub2kxGTAXBgNVBAoTEEJrYXYgQ29ycG9yYXRpb24xDzANBgNVBAMTBkJrYXZDQTAeFw0xNTA2MDgwMjQ0MTdaFw0xODEwMDkwMjQ0MTdaMHwxHjAcBgoJkiaJk/IsZAEBDA5NU1Q6MDEwNjUzODQyMjEiMCAGA1UEAwwZQ8O0bmcgVHkgVE5ISCBCa2F2IE9ubGluZTEVMBMGA1UEBwwMQ+G6p3UgR2nhuqV5MRIwEAYDVQQIDAlIw6AgTuG7mWkxCzAJBgNVBAYTAlZOMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCtDrPN6bZIBrhvNnvHMgJ7vUxIazvS8erpmQZ93XmW+iKHF4rHOBq/iunqw8seEnGAqZMBuqu/7+oGmX4VOT2ckdfPUNwA5kNF0/bt1cMNFTO5XkoFFRD8zcxY9QA4iQrE5iFiWnT+9EkYmf0hDlYDQ5Jte2409M9br4gEIjOj0QIDAQABo4IBNzCCATMwMQYIKwYBBQUHAQEEJTAjMCEGCCsGAQUFBzABhhVodHRwOi8vb2NzcC5ia2F2Y2Eudm4wHQYDVR0OBBYEFPY8yYOjC9nD0W8juXdGFtPi4SnrMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUHrAPSJff0MNnp0aEO1g7iA1TlIYwfwYDVR0fBHgwdjB0oCOgIYYfaHR0cDovL2NybC5ia2F2Y2Eudm4vQmthdkNBLmNybKJNpEswSTEPMA0GA1UEAwwGQmthdkNBMRkwFwYDVQQKDBBCa2F2IENvcnBvcmF0aW9uMQ4wDAYDVQQHDAVIYW5vaTELMAkGA1UEBhMCVk4wDgYDVR0PAQH/BAQDAgeAMB8GA1UdJQQYMBYGCCsGAQUFBwMEBgorBgEEAYI3CgMMMA0GCSqGSIb3DQEBBQUAA4IBAQB2uwQEN5Rk+gGad3WZu1Oi2sFg6wBvqIQhZvt65MStfNRDPDBXuhP2WnIGAqQfgTEXE2FmQ0g8aaI5qnwwUhvj9XJFFuhUFN7+LdbamYRQZrMvXs7GSjlS/OJXJxYeW3Xf/Ypca9g60QkZGCl4ymQjO/Xuk+ifl3s+bQ+akbwDwp3Ie4dBVt2bC5pGtYEXFuV47pJARZadwsn/+iKrCvpg80UVo0GdBwxNoJq1fXCX/Lf1sP6oxOqJQ+iEOU4NhhKLRO8JA3Ve96h9/tALv+gTGvoYVl2Sbk7NtgmXX/MWt8jh0Gna31RM1JWo7U1RZz3lh0pdGc/nJE7YpQocAyBk</X509Certificate>
+			</X509Data>
+		</KeyInfo>
+	</Signature>
+	<inv:certifiedData>
+		<inv:sellerTaxCode>0106538422</inv:sellerTaxCode>
+		<inv:buyerTaxCode>0301442379</inv:buyerTaxCode>
+		<inv:totalAmount>430001</inv:totalAmount>
+		<inv:totalVATAmount>39091</inv:totalVATAmount>
+		<inv:issuedDate>2015-10-10T15:09:31</inv:issuedDate>
+		<inv:sellerSignatureHash>O6bVyobwyAgPPw3AK42Ztet+ofY=</inv:sellerSignatureHash>
+		<inv:originalCertifiedId />
+		<inv:certifiedId>012131000000385</inv:certifiedId>
+		<inv:certifiedDate>2015-10-10T15:10:33</inv:certifiedDate>
+		<inv:signature>1wN7aHIuPOKDXwow7+EUhfjHHhHe4zjZvjO6WFTkQU/qkkxarlKS32/SznMbgT77</inv:signature>
+		<inv:publicKey>1JATDY7zt2CuNtNR99c1owkdxL9jIw4EzVgxOtXVoQdnbhnllw60jxSopZwBY2Vr</inv:publicKey>
+	</inv:certifiedData>
+</inv:invoice>

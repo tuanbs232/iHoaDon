@@ -1,0 +1,12 @@
+﻿.customer-pro-icon{
+    width: 20px;
+}
+
+.field-validation-error {
+    color: #CE5454;
+    font-size: 85%;
+}
+
+.input-validation-error {
+    border-color: #CE5454 !important;
+}

@@ -1,0 +1,109 @@
+﻿@using iHoaDon.Web.Helper;
+@model iHoaDon.Web.Areas.Admin.Models.LogActionSearchModel
+@{
+    ViewBag.Title = "Action Log";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int index = 0;
+}
+<h2 class="title_text">
+    Tra cứu</h2>
+<link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet"
+    type="text/css" />
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/MicrosoftAjax.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/MicrosoftMvcAjax.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.ui.datepicker-vi.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.8.16.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.global.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.glob.vi-VN.js")" type="text/javascript"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.maskedinput-1.3.js")" ></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/hovertable.js")"></script>
+<script type="text/javascript">
+
+    function OnSubmit() {
+        var dropDown = $("#divGridItem select[name='pageSize']");
+        var currentPageSize = $("#currentPageSize");
+        if (dropDown.length != 0) {
+            currentPageSize.val(dropDown.val());
+        } else {
+            if (currentPageSize.val() == '') {
+                currentPageSize.val('25');
+            }
+        }
+    }
+
+    function OnBegin() {
+        $('#divGridItem').block({
+            message: '<img src="/Content/images/ajax-loader.gif" width="32" height="32" /><br /><strong>Đang xử lý...</strong>',
+            css: {
+                width: '100px',
+                height: '50px',
+                padding: '5px 0px 5px 0px'
+            }
+        });
+    }
+
+    function OnSuccess() {
+        $('#divGridItem').unblock();
+    }
+
+    function OnFailure() {
+        alert("Có lỗi xảy ra");
+        $('#divGridItem').unblock();
+    }
+</script>
+<div style="height: 35px;  margin-top: 9px;">
+    <img alt="" src="@Url.Content("~/Content/icons/page_find.png")" />
+    <a href="@Url.Action("Index")">Nhật ký đăng nhập</a> &nbsp;&nbsp;
+    <img alt="" src="@Url.Content("~/Content/icons/page_find.png")" />
+    <a href="#">Nhật ký hành động</a></div>
+@using (Ajax.BeginForm("SearchActionLog", new AjaxOptions { UpdateTargetId = "divGridItem", OnBegin = "OnBegin", OnSuccess = "OnSuccess", OnFailure = "OnFailure", HttpMethod = "Get" }))
+{
+    <fieldset>
+        <legend>Tra cứu nhật ký quản trị</legend>
+        <table class="table_column" id="tblSearch">
+            <tr>
+                <td>
+                    Tài khoản
+                </td>
+                <td>
+                    @Html.TextBoxFor(model=>model.LoginName,new {@style="width:404px;"})
+                </td>
+            </tr>
+            <tr>
+                <td>Nội dung thực hiện
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.ActionContent, new { @style = "width:404px;" })
+                </td>
+            </tr>
+             <tr>
+                <td>@Html.Label("Loại thao tác")
+                </td>
+                <td>
+                      @Html.DropDownListForEnum(model => model.ActionType, typeof(iHoaDon.Entities.LogActionType), "---Tất cả---", new { @style = "width: 322px;" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <input id="currentPageSize" name="pageSize" type="hidden" />
+                </td>
+                <td>
+                    <button type="submit" value="Tìm kiếm" class="button" onclick="OnSubmit();">
+                        <img alt="" src="@Url.Content("~/Content/icons/find.png")" />
+                        Tìm kiếm
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+}
+<div id="divGridItem">
+    @{
+        var logItem = ViewBag.LogItems as IEnumerable<iHoaDon.Entities.ActionLog>;
+        Html.RenderPartial("PartialActionLogItem", logItem);
+    }
+</div>

@@ -1,0 +1,50 @@
+﻿@model iHoaDon.Web.Areas.Admin.Models.LogOnModel
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutLogin.cshtml";
+}
+@using (Html.BeginForm("LogOn", "Account", new { Area = "Admin" }))
+{
+    
+    <div class="loginFrm">
+        <div class="loginBox">
+            <div>
+                <img src="@Url.Content("~/Content/Admin/Images/login_system.png")" width="168" height="19" /><br />
+                <br />
+            </div>
+            <div style="color: red;">
+                @Html.ValidationSummary(true)
+            </div>
+            <table border="0" cellspacing="0" cellpadding="5" class="fl">
+                <tr>
+                    <td>Tên đăng nhập
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.LoginName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mật khẩu
+                    </td>
+                    <td>
+                        @Html.PasswordFor(model => model.PassWord)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="login_btn" id="login_btn" value="login_btn" style="display: none"
+                            onclick="loginForm();" />
+                    </td>
+                    <td>
+                        <a href="javascript:;" onclick="$('#login_btn').click();" tabindex="3">
+                            <img src="@Url.Content("~/Content/Admin/Images/login_btn.png")" width="162" height="43" border="0" /></a>
+                    </td>
+                </tr>
+            </table>
+            <img src="@Url.Content("~/Content/Admin/Images/icon_lock_key.jpg")" alt="" width="137" height="137" class="fr" />
+            <div class="clr">
+            </div>
+        </div>
+    </div>
+}
+<script src="@Url.Content("~/Scripts/ScriptLogOn.js")"></script>

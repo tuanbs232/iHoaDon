@@ -1,0 +1,245 @@
+﻿<error errorId="cc995e1d-92e9-4aa1-a75e-f7f78918e735" application="/" host="DESKTOP-IVBN7P9" type="System.NullReferenceException" message="Object reference not set to an instance of an object." source="App_Web_zieeyryf" detail="System.NullReferenceException: Object reference not set to an instance of an object.&#xD;&#xA;   at ASP._Page_Views_Accounts_Register_cshtml.Execute() in p:\Projects\iHoaDon\iHoaDon.Web\Views\Accounts\Register.cshtml:line 107&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.WebPages.StartPage.RunPage()&#xD;&#xA;   at System.Web.WebPages.StartPage.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)&#xD;&#xA;   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)&#xD;&#xA;   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)&#xD;&#xA;   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.&lt;&gt;c__DisplayClass1c.&lt;InvokeActionResultWithFilters&gt;b__19()&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.&lt;&gt;c__DisplayClass1c.&lt;&gt;c__DisplayClass1e.&lt;InvokeActionResultWithFilters&gt;b__1b()&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeAction(ControllerContext controllerContext, String actionName)&#xD;&#xA;   at System.Web.Mvc.Controller.ExecuteCore()&#xD;&#xA;   at System.Web.Mvc.ControllerBase.Execute(RequestContext requestContext)&#xD;&#xA;   at System.Web.Mvc.ControllerBase.System.Web.Mvc.IController.Execute(RequestContext requestContext)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClass6.&lt;&gt;c__DisplayClassb.&lt;BeginProcessRequest&gt;b__5()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass1.&lt;MakeVoidDelegate&gt;b__0()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass8`1.&lt;BeginSynchronous&gt;b__7(IAsyncResult _)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClasse.&lt;EndProcessRequest&gt;b__d()&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.&lt;GetCallInAppTrustThunk&gt;b__0(Action f)&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.ProcessInApplicationTrust(Action action)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="0123456789" time="2015-11-15T09:54:49.5326165Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:max-age=0&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_CONTENT_LENGTH:2051&#xD;&#xA;HTTP_CONTENT_TYPE:multipart/form-data; boundary=----WebKitFormBoundaryJgmNlrMV78f7WAZV&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:vi&#xD;&#xA;HTTP_COOKIE:CKFinder_Path=Images%3A%2F%3A1; _culture=vi-VN; _pk_id.47.1fff=8a2c6946598d08be.1443027516.12.1446486882.1446485960.; ASP.NET_SessionId=4rabvbrnue3urwqsylczkrtv; .iHoaDonTvan=33054D1FDDBE9B009E61736DB241ADE29C6D44F5F3E0E3D8B1889469076EE3D806FC512D68A46357DC2E7C2E15A8EFE7E0C71B10CF7F728BC6ED6F408DC87C92B7BFF17368EC799E4CBA551BEB7D3EEB6AF32D02F8CC5EA098A8B8309DC75BD5E076CF48CEA44B06D486E502A36F2FD2123470289756FC6DF39F247576FA2C60167DE295FFDE8A322A3A2DB48223A6A39080B967B4BBC8ADF6B41D258BA37C7313633BAECF2982FCF8CBBAC92CDDAF616F8868173C496FCC32EE03007711D2E59D76BA09EADF6A54F4D53279CAFF29A7; checkLogin=0123456789&#xD;&#xA;HTTP_HOST:localhost:18331&#xD;&#xA;HTTP_REFERER:http://localhost:18331/Accounts/Register&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36&#xD;&#xA;HTTP_ORIGIN:http://localhost:18331&#xD;&#xA;HTTP_UPGRADE_INSECURE_REQUESTS:1&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: max-age=0&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Content-Length: 2051&#xD;&#xA;Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryJgmNlrMV78f7WAZV&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate&#xD;&#xA;Accept-Language: vi&#xD;&#xA;Cookie: CKFinder_Path=Images%3A%2F%3A1; _culture=vi-VN; _pk_id.47.1fff=8a2c6946598d08be.1443027516.12.1446486882.1446485960.; ASP.NET_SessionId=4rabvbrnue3urwqsylczkrtv; .iHoaDonTvan=33054D1FDDBE9B009E61736DB241ADE29C6D44F5F3E0E3D8B1889469076EE3D806FC512D68A46357DC2E7C2E15A8EFE7E0C71B10CF7F728BC6ED6F408DC87C92B7BFF17368EC799E4CBA551BEB7D3EEB6AF32D02F8CC5EA098A8B8309DC75BD5E076CF48CEA44B06D486E502A36F2FD2123470289756FC6DF39F247576FA2C60167DE295FFDE8A322A3A2DB48223A6A39080B967B4BBC8ADF6B41D258BA37C7313633BAECF2982FCF8CBBAC92CDDAF616F8868173C496FCC32EE03007711D2E59D76BA09EADF6A54F4D53279CAFF29A7; checkLogin=0123456789&#xD;&#xA;Host: localhost:18331&#xD;&#xA;Referer: http://localhost:18331/Accounts/Register&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36&#xD;&#xA;Origin: http://localhost:18331&#xD;&#xA;Upgrade-Insecure-Requests: 1&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="P:\Projects\iHoaDon\iHoaDon.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="Custom" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="0123456789" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="DESKTOP-IVBN7P9\LP_Admin" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="0123456789" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="2051" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="multipart/form-data; boundary=----WebKitFormBoundaryJgmNlrMV78f7WAZV" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="" />
+    </item>
+    <item name="HTTPS">
+      <value string="" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/Accounts/Register" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="P:\Projects\iHoaDon\iHoaDon.Web\Accounts\Register" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="POST" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/Accounts/Register" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="18331" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="" />
+    </item>
+    <item name="URL">
+      <value string="/Accounts/Register" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="max-age=0" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_CONTENT_LENGTH">
+      <value string="2051" />
+    </item>
+    <item name="HTTP_CONTENT_TYPE">
+      <value string="multipart/form-data; boundary=----WebKitFormBoundaryJgmNlrMV78f7WAZV" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="vi" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="CKFinder_Path=Images%3A%2F%3A1; _culture=vi-VN; _pk_id.47.1fff=8a2c6946598d08be.1443027516.12.1446486882.1446485960.; ASP.NET_SessionId=4rabvbrnue3urwqsylczkrtv; .iHoaDonTvan=33054D1FDDBE9B009E61736DB241ADE29C6D44F5F3E0E3D8B1889469076EE3D806FC512D68A46357DC2E7C2E15A8EFE7E0C71B10CF7F728BC6ED6F408DC87C92B7BFF17368EC799E4CBA551BEB7D3EEB6AF32D02F8CC5EA098A8B8309DC75BD5E076CF48CEA44B06D486E502A36F2FD2123470289756FC6DF39F247576FA2C60167DE295FFDE8A322A3A2DB48223A6A39080B967B4BBC8ADF6B41D258BA37C7313633BAECF2982FCF8CBBAC92CDDAF616F8868173C496FCC32EE03007711D2E59D76BA09EADF6A54F4D53279CAFF29A7; checkLogin=0123456789" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:18331" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:18331/Accounts/Register" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36" />
+    </item>
+    <item name="HTTP_ORIGIN">
+      <value string="http://localhost:18331" />
+    </item>
+    <item name="HTTP_UPGRADE_INSECURE_REQUESTS">
+      <value string="1" />
+    </item>
+  </serverVariables>
+  <form>
+    <item name="CompanyCode">
+      <value string="0987654321" />
+    </item>
+    <item name="CompanyName">
+      <value string="Công ty cổ phần Phương Long" />
+    </item>
+    <item name="Address">
+      <value string="Số 127, Đường Nguyễn Ngọc Nại, P. Khương Mai, Q. Thanh Xuân, Hà Nội" />
+    </item>
+    <item name="ProvinceId">
+      <value string="10300" />
+    </item>
+    <item name="Province">
+      <value string="HPH - BHXH Tỉnh Hải Phòng" />
+    </item>
+    <item name="TaxAgencyCode">
+      <value string="" />
+    </item>
+    <item name="TaxAgencyName">
+      <value string="BHXH Thành phố Hải Phòng" />
+    </item>
+    <item name="BankAccount">
+      <value string="1202122111112288" />
+    </item>
+    <item name="Representative">
+      <value string="Long" />
+    </item>
+    <item name="Phone">
+      <value string="0435658519" />
+    </item>
+    <item name="Email">
+      <value string="thanhlongbg@gmail.com" />
+    </item>
+    <item name="ca">
+      <value string="540343d1f940a82eac3b23353972fddf" />
+    </item>
+    <item name="Subject">
+      <value string="Công Ty TNHH Bkav Online_Test" />
+    </item>
+    <item name="Issuer">
+      <value string="BkavCA" />
+    </item>
+    <item name="Serial">
+      <value string="540343d1f940a82eac3b23353972fddf" />
+    </item>
+    <item name="ValidFrom">
+      <value string="25/07/2015 11:09:39" />
+    </item>
+    <item name="ValidTo">
+      <value string="24/07/2016 11:09:39" />
+    </item>
+  </form>
+  <cookies>
+    <item name="CKFinder_Path">
+      <value string="Images%3A%2F%3A1" />
+    </item>
+    <item name="_culture">
+      <value string="vi-VN" />
+    </item>
+    <item name="_pk_id.47.1fff">
+      <value string="8a2c6946598d08be.1443027516.12.1446486882.1446485960." />
+    </item>
+    <item name="ASP.NET_SessionId">
+      <value string="4rabvbrnue3urwqsylczkrtv" />
+    </item>
+    <item name=".iHoaDonTvan">
+      <value string="33054D1FDDBE9B009E61736DB241ADE29C6D44F5F3E0E3D8B1889469076EE3D806FC512D68A46357DC2E7C2E15A8EFE7E0C71B10CF7F728BC6ED6F408DC87C92B7BFF17368EC799E4CBA551BEB7D3EEB6AF32D02F8CC5EA098A8B8309DC75BD5E076CF48CEA44B06D486E502A36F2FD2123470289756FC6DF39F247576FA2C60167DE295FFDE8A322A3A2DB48223A6A39080B967B4BBC8ADF6B41D258BA37C7313633BAECF2982FCF8CBBAC92CDDAF616F8868173C496FCC32EE03007711D2E59D76BA09EADF6A54F4D53279CAFF29A7" />
+    </item>
+    <item name="checkLogin">
+      <value string="0123456789" />
+    </item>
+  </cookies>
+</error>

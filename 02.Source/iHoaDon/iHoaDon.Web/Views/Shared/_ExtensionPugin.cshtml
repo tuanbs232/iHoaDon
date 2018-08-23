@@ -1,0 +1,391 @@
+﻿<script src="@Url.Content("~/Scripts/json2.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.xml2json.js")"></script>
+
+<script src="@Url.Content("~/Scripts/bkav.tvan.extension.js")"></script>
+<script src="@Url.Content("~/Scripts/bkav-extension-signer-v1.0.0.js?version=1.0.1")"></script>
+<style>
+    #ExtensionPlaceHolder {
+        height: 0px;
+        display: none;
+    }
+
+    #plugin0 {
+        height: 0px;
+        display: none;
+    }
+</style>
+<div id="ExtensionPlaceHolder" clientidmode='Static'></div>
+<object id="plugin0" type="application/x-bkavcaplugin" width="1" height="1">
+    <param name="onload" value="pluginLoaded" />
+</object>
+<div id="div1" style="display: none">
+    <div id="displayinmodal-cty-und">
+        <table border="0" id="t1" style="margin-top: 10px; width: 100%;">
+            <tr>
+                <td style="height: 54px;">
+                    <div>
+                        <label style="line-height: 20px;" id="messenger" name="messenger"></label>
+                    </div>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+                    <div style="text-align: left">
+                        <button class="button" style="float: right; margin-top: 10px" type="button" onclick="showClose()">Đóng</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var flag = true;
+    var iValid = 0;
+    var resultBase64 = '';
+    var timeOut;
+    var json;
+    var checkExPu = false;
+    var serial = '';
+
+    //seria
+    function beginPuginAndExtension(data) {
+        serial = data;
+        checkPuginAndExtension();
+    }
+
+    //kiểm trả cài đăt Pugin Extension
+    function checkPuginAndExtension() {
+        begin();
+
+        if (checkBrowser() == 1) {
+            ExtensionValid();
+        } else {
+            pluginValid();
+        }
+    }
+
+    //kiểm tra cài đặt Extension
+    var flagCheckExValid = 0;
+    document.addEventListener("ExtensionValid", function (data) {
+        resultBase64 = document.getElementById('hrSignedData').value;
+        if (resultBase64 == "1") {
+            CheckInformationToken();
+            flagCheckExValid = 1; // tu goi lai
+        }
+    });
+
+    function ExtensionValid() {
+        if (iValid == 0) {
+            BkavExtensionSigner.ExtensionValid();
+            timeOut = setTimeout(IsExtensionValid, 2000);
+            iValid++;
+        }
+    }
+
+    //kiêm tra cài đặt Pugin
+    function pluginValid() {
+
+        //có cài đặt Pugin
+        if (plugin().valid) {
+            //kiêm tra tiken
+            CheckInformationToken();
+        }
+            //không cài đặt Pugin
+        else {
+            messeng('Trình duyệt của bạn chưa được cài đặt công cụ hỗ trợ ký điện tử. Tải công cụ hỗ trợ ký điện tử <a style="color: #FF5800;text-decoration: none;" href="http://extensions.noptokhai.vn" >tại đây</a>', 0);
+        }
+    }
+
+    //hàm trả ra thông tin kiểm tra cài đặt Extension
+    function IsExtensionValid() {
+        if (flagCheckExValid != 1) {
+            resultBase64 = document.getElementById('hrSignedData').value;
+
+            //có cài đặt Extension
+            if (resultBase64 != "") {
+                document.getElementById('hrSignedData').value = "";
+                resultBase64 = "";
+                clearTimeout(timeOut);
+                //kiểm tra token
+                CheckInformationToken();
+                //iValid = 0;   // iValid = 0: chuyen xuong phia duoi ham CheckInformationToken
+            }
+                //không cài đặt Extension
+            else {
+                document.getElementById('hrSignedData').value = "";
+                resultBase64 = "";
+                clearTimeout(timeOut);
+                //chưa cài đặt Extension
+                messeng('Trình duyệt của bạn chưa được cài đặt công cụ hỗ trợ ký điện tử. Tải công cụ hỗ trợ ký điện tử <a style="color: #FF5800;text-decoration: none;" href="http://extensions.noptokhai.vn" >tại đây</a>', 0);
+                iValid = 0;
+            }
+            flagCheckExValid = 0;
+        }
+    }
+
+    //kiểm tra trạng thái của token
+    function CheckInformationToken() {
+
+        var dllTest = "BkavCAv2S,bkavcaetoken,bkavcsp,BkavCA,beidcsp,beidpkcs11D,nca_v4,viettel-ca,vnptca_p11_v6.dll,vnptca_p11_v6_s.dll,vnpt-ca_csp11,vnpt-ca_v34,vnpt-ca_cl_v1,wdsafe3,CA2_v34,CA2_csp11,wdsafe3,st3csp11.dll,viettel-ca_v1,viettel-ca_v2,viettel-ca_v3,viettel-ca_v4,viettel-ca_v5,viettel-ca_v6,viettel-ca_s,viettel-ca_v2_csp,viettel-ca_v2_csp.EN,viettel-ca_v2_csp.VN,viettel-ca_v2_s,fptca_v3,fptca_v3_s,fpt-ca,fpt-ca-stx,CKCA,safe-ca,Vina-CA,Vina-CAv3,Vina-CA_s,Vina-CAv4,Vina-CAv5,NEWTEL-CA,vdctdcsp11,ShuttleCsp11_3003,ngp11v211,st3csp11,gclib,psapkcs,ostc1_csp11,etpkcs11,U1000AUTO,eToken,ostt1_csp11,ostt2_csp11,ostt3_csp11,ostc2_csp11,nca_eps2k2a,nca_eps2k3a";
+
+        if (checkBrowser() == 1) {
+            BkavExtensionSigner.SetDLLName(dllTest);
+            BkavExtensionSigner.CheckToken(serial);
+        } else {
+
+            plugin().SetDLLName(dllTest);
+            document.getElementById('hrSignedData').value = plugin().CheckToken(serial);
+            var events = document.createEvent('Event');
+            events.initEvent('CheckToken', true, true);
+            document.dispatchEvent(events);
+        }
+    }
+
+    //hàm trả ra kiểm tra trạng thái của token
+    document.addEventListener("CheckToken", function (data) {
+        //lấy thông tin trong token
+        var checkToken = document.getElementById('hrSignedData').value;
+        switch (checkToken) {
+            case "-1":
+                messeng("Có lỗi trong quá trình kiểm tra thông tin chữ ký số.", 0);
+                break;
+            case "3":
+                if (serial == ' ') {
+                    //gọi hàm lấy thông tin cerial
+                    GetAllCert();
+                } else {
+                    messeng('Không tìm thấy thông tin chữ ký số đã đăng ký.', 0);
+                }
+
+                break;
+            case "4":
+                messeng("Vui lòng cắm chữ ký số để thực hiện.", 0);
+                break;
+            default:
+                {
+                    $("#btnSaveSign").css('display', 'block');
+                    //gọi hàm lấy thông tin cerial
+                    GetAllCert();
+                }
+                break;
+        }
+        iValid = 0;
+    });
+
+    //Lấy thông tin chữ ký số của khách hàng
+    function GetAllCert() {
+        var filter = "SerialNumber";
+        var value = "";
+        try {
+            if (checkBrowser() == 1) {
+                BkavExtensionSigner.GetAllCert(filter, "1");
+            } else {
+                var rsPlugin = plugin().GetAllSerial(filter, value);
+                document.getElementById('hrSignedData').value = rsPlugin;
+                var event = document.createEvent('Event');
+                event.initEvent('GetAllCert', true, true);
+                document.dispatchEvent(event);
+            }
+        } catch (e) {
+            if (!checkIeBrowser()) {
+                console.log(e);
+            }
+        }
+    }
+
+    //hàm trả ta thông tin cerial lấy được
+    document.addEventListener("GetAllCert", function (data) {
+        //lấy thông tin trong token
+        var getAllCert = document.getElementById('hrSignedData').value;
+        bindingForm(getAllCert);
+    });
+
+
+    //đổ thông tin chữa ký sô lên from
+    function bindingForm(content) {
+
+        //xóa dữ liệu cũ
+        flag = true;
+        $("#CertificateIssuer").val('');
+        $("#Subject").val('');
+        $("#Serial").val('');
+        $("#ValidFrom").val('');
+        $("#ValidTo").val('');
+        $('#ca').find('option').remove();
+
+        var bkavca = "BkavCA";
+        var base64Matcher = new RegExp("^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$");
+        var xmlContent;
+        if (base64Matcher.test(content)) {
+            xmlContent = Base64.decode(content);
+        } else {
+            xmlContent = content;
+        }
+        if (xmlContent != null && xmlContent != '') {
+            json = $.xml2json(xmlContent);
+            if (json.cert[0] == undefined) {
+                if (flag) {
+                    $('#ca').append('<option value="' + json.cert.serial + '">' + json.cert.subject + " - " + json.cert.validTo + '</option>');
+                    $('#Subject').attr("readonly", true);
+                    $('#Serial').attr("readonly", true);
+                    $('#Issuer').attr("readonly", true);
+                    $('#ValidTo').attr("readonly", true);
+                    $('#ValidFrom').attr("readonly", true);
+                    $("#Issuer").val(json.cert.issuer);
+                    $("#Subject").val(json.cert.subject);
+                    $("#Serial").val(json.cert.serial);
+                    $("#ValidTo").val(json.cert.validTo);
+                    $("#ValidFrom").val(json.cert.validFrom);
+                    flag = false;
+
+                }
+            } else {
+                var selected = json.cert[0];
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1;
+                var yyyy = today.getFullYear();
+                var initlaDate = new Date(mm + "/" + dd + "/" + yyyy);
+
+                if (flag) {
+                    flag = false;
+                    for (var i = 0; i < json.cert.length; i++) {
+                        $('#ca').append('<option value="' + json.cert[i].serial + '">' + json.cert[i].subject + " - " + json.cert[i].validTo + '</option>');
+
+                        var to = json.cert[i].validTo.split(" ")[0].split("/");
+                        var compareDate = new Date(to[2], to[1] - 1, to[0]);
+                        if ((json.cert[i].serial == serial) || json.cert[i].issuer === bkavca && (initlaDate < compareDate && json.cert[i].issuer === bkavca)) {
+                            initlaDate = compareDate;
+                            selected = json.cert[i];
+                        }
+                    }
+                }
+
+                $('#ca').val(selected.serial);
+                $('#Subject').attr("readonly", true);
+                $('#Serial').attr("readonly", true);
+                $('#Issuer').attr("readonly", true);
+                $('#ValidTo').attr("readonly", true);
+                $('#ValidFrom').attr("readonly", true);
+                $("#Issuer").val(selected.issuer);
+                $("#Subject").val(selected.subject);
+                $("#Serial").val(selected.serial);
+                $("#ValidTo").val(selected.validTo);
+                $("#ValidFrom").val(selected.validFrom);
+
+                $('#ca').change(function () {
+
+                    if ($(this).val().toString() != '') {
+
+                        if (json.cert.length > 0) {
+                            $('#Subject').attr("readonly", true);
+                            $('#Serial').attr("readonly", true);
+                            $('#Issuer').attr("readonly", true);
+                            $('#ValidTo').attr("readonly", true);
+                            $('#ValidFrom').attr("readonly", true);
+                            for (var j = 0; j < json.cert.length; j++) {
+
+                                if ($(this).val().toString() == json.cert[j].serial) {
+                                    $("#Issuer").val(json.cert[j].issuer);
+                                    $("#Subject").val(json.cert[j].subject);
+                                    $("#Serial").val(json.cert[j].serial);
+                                    $("#ValidTo").val(json.cert[j].validTo);
+                                    $("#ValidFrom").val(json.cert[j].validFrom);
+                                    break;
+                                }
+                            }
+                        }
+                    } else {
+                        $('#Subject').attr("readonly", false);
+                        $('#Serial').attr("readonly", false);
+                        $('#Issuer').attr("readonly", false);
+                        $('#ValidTo').attr("readonly", false);
+                        $('#ValidFrom').attr("readonly", false);
+                        $("#Issuer").val('');
+                        $("#Subject").val('');
+                        $("#Serial").val('');
+                        $("#ValidFrom").val('');
+                        $("#ValidTo").val('');
+                    }
+                });
+
+            }
+
+        }
+        $("#Serial").blur(function () {
+            var serial = $("#Serial").val();
+            while (serial.indexOf(" ") != -1) {
+                serial = serial.replace(" ", "");
+            }
+            $("#Serial").val(serial);
+        });
+
+        //gọi hàm các hàm xử lý tiếp 
+        //gọi hàm ký 
+
+        callProcessor();
+
+    }
+
+    //---------------các hàm xử lý sau khi hoàn thành--------------------
+    function messeng(data, status) {
+        success_finish();
+        if (status == 1) {
+            var obj = JSON.parse(data);
+            if (obj.id == 1) {
+                $("#btnSaveSign").css('display', 'none');
+                $("#btnSave").css('display', 'none');
+
+            }
+            var st = obj.label.toString();
+            statustax(st);
+            $('#messenger').html(obj.label);
+        } else {
+            $('#messenger').html(data);
+        }
+
+        $("#displayinmodal-cty-und").dialog({
+            autoOpen: true,
+            title: "Thông báo",
+            modal: true,
+            height: 180,
+            width: 450
+        });
+    }
+
+    function begin() {
+        //$('#divloading').block(
+        //      {
+        //      message: '<img src="/Content/images/ajax-loader.gif" width="32" height="32" /><br /><strong>Đang xử lý...</strong>',
+        //      css: {
+        //          width: '100px',
+        //          height: '50px',
+        //          padding: '5px 0px 5px 0px'
+        //      }
+        //  });
+    }
+
+    function success_finish() {
+        // $('#divloading').unblock();
+    }
+
+    function failure() {
+        messeng('Có lỗi xảy ra', 0);
+        // $('#divloading').unblock();
+
+    }
+
+
+    function showClose() {
+        $("#displayinmodal-cty-und").dialog('close');
+    }
+
+    function statustax(data) {
+        $('#stTaxTransaction').html(data);
+    }
+</script>
+
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:inv="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1"
+	targetNamespace="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1" elementFormDefault="qualified">
+
+	<xs:element name="taxPayerCertificate">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="serialNumber" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="subject" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="issuer" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="validFrom" type="xs:date" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="validTo" type="xs:date" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="certificateContent" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="certificateVersion" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="active" type="xs:boolean" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="companyId" type="xs:string" maxOccurs="1" minOccurs="1"/>
+			</xs:all>
+			<xs:attribute name="id" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

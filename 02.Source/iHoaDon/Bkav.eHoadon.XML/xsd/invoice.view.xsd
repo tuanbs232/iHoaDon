@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:inv="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1"
+	targetNamespace="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1"
+	elementFormDefault="qualified">
+	<xs:include schemaLocation="commons.xsd">
+		<xs:annotation>
+			<xs:documentation>Import of commons.</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:element name="invoice">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="invoiceData" type="inv:invoiceData" minOccurs="1"/>
+				<xs:element name="viewData" type="inv:viewData" minOccurs="0"/>
+				<xs:element name="controlData" type="inv:controlData" minOccurs="1"/>      
+				<xs:element name="certifiedData" type="inv:certifiedData" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>   

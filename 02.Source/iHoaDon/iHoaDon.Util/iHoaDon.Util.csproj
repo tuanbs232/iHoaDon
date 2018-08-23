@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{98EC19D4-86B8-44E0-BD10-FD9117EE691B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>iHoaDon.Util</RootNamespace>
+    <AssemblyName>iHoaDon.Util</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\iHoaDon.Util.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Release\iHoaDon.Util.xml</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fasterflect">
+      <HintPath>..\packages\fasterflect.2.0.1\lib\net40\Fasterflect.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.1.1.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\iTextSharp.5.1.1\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.3.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.2.1\lib\.NetFramework 4.0\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Sharpy">
+      <HintPath>..\lib\Sharpy.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\RazorEngine.2.1\lib\.NetFramework 4.0\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ByteArrayExtension.cs" />
+    <Compile Include="DataStructure\Collection.cs" />
+    <Compile Include="ConversionUtils.cs" />
+    <Compile Include="DataStructure\JsonBasedDictionary.cs" />
+    <Compile Include="DataStructure\StringBasedDictionary.cs" />
+    <Compile Include="DataStructure\StringBasedSet.cs" />
+    <Compile Include="DateTimeUtil.cs" />
+    <Compile Include="DelegateUtil.cs" />
+    <Compile Include="Dropdownlist.cs" />
+    <Compile Include="FileSystem\DirectoryUtil.cs" />
+    <Compile Include="ProvinceTaxAgency.cs" />
+    <Compile Include="Xml\DocumentExtensions.cs" />
+    <Compile Include="Initialization\ConfigFieldAttribute.cs" />
+    <Compile Include="Initialization\InitializationHelper.cs" />
+    <Compile Include="Initialization\InitiateFromClassNameAttribute.cs" />
+    <Compile Include="Initialization\PostProcessors\DeserializeJsonAttribute.cs" />
+    <Compile Include="Initialization\PostProcessors\SplitStringAttribute.cs" />
+    <Compile Include="Initialization\PostRetrievalProcessingAttribute.cs" />
+    <Compile Include="Initialization\PreProcessors\CreateDirectoryAttribute.cs" />
+    <Compile Include="Initialization\PreProcessors\ResolveAbsolutePathAttribute.cs" />
+    <Compile Include="Initialization\PreRetrievalProcessingAttribute.cs" />
+    <Compile Include="Initialization\Validation\DirectoryExistAttribute.cs" />
+    <Compile Include="Initialization\Validation\FileExistAttribute.cs" />
+    <Compile Include="Json2.cs" />
+    <Compile Include="ObjectHydration\FieldAttribute.cs" />
+    <Compile Include="ObjectHydration\HydrationUtils.cs" />
+    <Compile Include="ObjectHydration\SchemaAttribute.cs" />
+    <Compile Include="ObjectHydration\TableAttribute.cs" />
+    <Compile Include="FileSystem\PathUtil.cs" />
+    <Compile Include="PdfHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sharpy\TemplateService.cs" />
+    <Compile Include="StreamExtension.cs" />
+    <Compile Include="StringExtension.cs" />
+    <Compile Include="TopologicalSorter.cs" />
+    <Compile Include="TypeRegistra.cs" />
+    <Compile Include="Xml\XmlHelper.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

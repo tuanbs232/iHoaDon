@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4F17CF17-727A-4684-BBF0-3ABDEF0211B3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>iHoaDon.Entities</RootNamespace>
+    <AssemblyName>iHoaDon.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\BkavCA\BkavCA\Bkav.BkavCA.Web\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\iHoaDonGetString.cs" />
+    <Compile Include="Augmentation\LocalizedDisplayNameAttribute.cs" />
+    <Compile Include="Augmentation\PartSelection.cs" />
+    <Compile Include="Entities\Account.ext.cs" />
+    <Compile Include="Entities\AccountLogin.cs" />
+    <Compile Include="Config\CollectionEntry.cs" />
+    <Compile Include="Config\CollectionEntryType.cs" />
+    <Compile Include="Email.cs" />
+    <Compile Include="Entities\Account.cs" />
+    <Compile Include="Entities\ActionLog.cs" />
+    <Compile Include="Entities\Banks.cs" />
+    <Compile Include="Entities\CustomerInvoice.cs" />
+    <Compile Include="Entities\Currency.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\Invoice.cs" />
+    <Compile Include="Entities\InvoiceDetail.cs" />
+    <Compile Include="Entities\InvoiceNumber.cs" />
+    <Compile Include="Entities\ListReleaseInvoice.cs" />
+    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\Profile.cs" />
+    <Compile Include="Entities\TaxRate.cs" />
+    <Compile Include="Entities\TemplateInvoice.cs" />
+    <Compile Include="Entities\Transaction.cs" />
+    <Compile Include="Entities\Unit.cs" />
+    <Compile Include="Enum\LogActionType.cs" />
+    <Compile Include="Enum\OperationType.cs" />
+    <Compile Include="Enum\PaymentsType.cs" />
+    <Compile Include="Enum\Permissions.cs" />
+    <Compile Include="Enum\PlanType.cs" />
+    <Compile Include="Enum\Roles.cs" />
+    <Compile Include="Enum\StatusCommon.cs" />
+    <Compile Include="Enum\TargetType.cs" />
+    <Compile Include="Ext\StreamExtension.cs" />
+    <Compile Include="Ext\StringExtension.cs" />
+    <Compile Include="Identity\iHoaDonIdentity.cs" />
+    <Compile Include="Identity\iHoaDonPrincipal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

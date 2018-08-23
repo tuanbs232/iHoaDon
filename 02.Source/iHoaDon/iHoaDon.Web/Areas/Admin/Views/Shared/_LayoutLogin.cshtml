@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>iHoaDon | Administrator System</title>
+    <script language="javascript" type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/Admin/StyleSheet/screen.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Scripts/Admin/vTabs/vhTabs.css")" rel="stylesheet" media="all" type="text/css" />
+    <script type="text/javascript" language="javascript" src="@Url.Content("~/Scripts/Admin/vTabs/vhTabs.js")"></script>
+    <script language="javascript" type="text/javascript" src="@Url.Content("~/Scripts/Admin/screen.js")"></script>
+</head>
+<body>
+    <div class="hdrBar">
+    </div>
+    <div class="hdr">
+        <div class="hdr_top">
+            <a href="@Url.Content("~/")" title="Trang chủ" class="fl">
+                <img src="@Url.Content("~/Content/Admin/Images/administrator-system.png")" width="223" height="12" /></a>
+        </div>
+    </div>
+    @RenderBody()
+</body>
+</html>

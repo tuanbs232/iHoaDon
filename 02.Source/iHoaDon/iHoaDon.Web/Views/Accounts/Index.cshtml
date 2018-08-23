@@ -1,0 +1,256 @@
+﻿@using iHoaDon.Entities
+@{
+    ViewBag.Title = "Index";
+    ViewBag.PageTitle = "Thông tin tài khoản";
+    Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
+    Account account = ViewBag.Account;
+    Profile profile = ViewBag.Profile;
+}
+<link href="/Content/css/accounts.css" rel="stylesheet" />
+
+<div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+    <div class="profile_img">
+        <div id="crop-avatar">
+            <!-- Current avatar -->
+            <img class="img-responsive avatar-view" src="/Content/Images/default_avatar.jpg" alt="Avatar">
+        </div>
+    </div>
+    <h3>@account.CompanyName</h3>
+    <ul class="list-unstyled user_data">
+        <li>
+            <i class="fa fa-map-marker user-profile-icon"></i> @account.Address
+        </li>
+        <li>
+            <i class="fa fa-phone-square user-profile-icon"></i> @account.Phone
+        </li>
+    </ul>
+    <a class="btn btn-success" href="@Url.Action("EditAccounts","Accounts", new { id=account.Id })">
+        <i class="fa fa-edit m-right-xs"></i> Cập nhật thông tin
+    </a>
+</div>
+<div class="col-md-9 col-sm-9 col-xs-12">
+    <!-- end of user-activity-graph -->
+    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Thông tin</a>
+            </li>
+            <li role="presentation" class="">
+                <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Chữ ký số</a>
+            </li>
+            <li role="presentation" class="">
+                <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Đổi mật khẩu</a>
+            </li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+
+                <table class="table table-responsive customer-info-table">
+                    <tr>
+                        <td style="width: 170px">
+                            Mã số thuế
+                        </td>
+                        <td>
+                            <b>@account.CompanyCode</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Tên công ty
+                        </td>
+                        <td>
+                            <b> @account.CompanyName</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Địa chỉ
+                        </td>
+                        <td>
+                            @account.Address
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Tỉnh thành
+                        </td>
+                        <td>
+                            @profile.Province.ToString()
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Quận/Huyện
+                        </td>
+                        <td>
+                            @profile.TaxAgencyName
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Số tài khoản
+                        </td>
+                        <td>
+                            @account.BankAccount
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Người đại diện pháp luật
+                        </td>
+                        <td>
+                            @account.Representative
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Điện thoại
+                        </td>
+                        <td>
+                            @profile.Phone
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email
+                        </td>
+                        <td>
+                            @profile.Email
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                <a id="change-certificate" class="btn btn-outline btn-primary"><i class="fa fa-refresh"></i> Thay đổi chữ ký số</a>
+                <!-- start user projects -->
+                <table class="table table-responsive customer-info-table">
+                    <tr>
+                        <td>Chủ sở hữu</td>
+                        <td><b>@profile.Subject</b></td>
+                    </tr>
+                    <tr>
+                        <td>Đơn vị cung cấp (CA)</td>
+                        <td><b>@profile.Issuer</b></td>
+                    </tr>
+                    <tr>
+                        <td>Số Serial</td>
+                        <td><b>@profile.Serial</b></td>
+                    </tr>
+                    <tr>
+                        <td>Ngày bắt đầu hiệu lực</td>
+                        @{
+                            var validFrom = "";
+                            var fromClass = "";
+                            var fromErrText = "";
+                            if (profile.ValidFrom != null)
+                            {
+                                validFrom = Convert.ToDateTime(profile.ValidFrom).ToString("dd/MM/yyyy");
+                                if (DateTime.Now.CompareTo(profile.ValidFrom) < 0)
+                                {
+                                    fromClass = "field-validation-error";
+                                    fromErrText = "(Chưa tới hạn sử dụng)";
+                                }
+                            }
+                        }
+                        <td><b class="@fromClass">@validFrom @fromErrText</b></td>
+                    </tr>
+                    <tr>
+                        <td>Ngày hết hiệu lực</td>
+
+                        @{
+                            var validTo = "";
+                            var toClass = "";
+                            var toErrText = "";
+                            if (profile.ValidFrom != null)
+                            {
+                                validTo = Convert.ToDateTime(profile.ValidTo).ToString("dd/MM/yyyy");
+                                if (DateTime.Now.CompareTo(profile.ValidTo) > 0)
+                                {
+                                    toClass = "field-validation-error";
+                                    toErrText = "(Đã hết hạn)";
+                                }
+                            }
+                        }
+                        <td><b class="@toClass">@validTo @toErrText</b></td>
+                    </tr>
+                </table>
+                <!-- end user projects -->
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                <!-- start user projects -->
+                <!-- Nội dung thay đổi mật khẩu -->
+                <!-- end user projects -->
+            </div>
+        </div>
+    </div>
+</div>
+@section ContentScript{
+    <script src="/Content/signature-plugin/base64.js"></script>
+    <script src="/Content/signature-plugin/signature-plugin.js"></script>
+    <script src="/Content/js/accounts.js"></script>
+}
+<div id="cert-modal" class="modal fade bs-example-modal-md modal-primary" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Thay đổi chữ ký số</h4>
+            </div>
+            <form action="/Accounts/ChangeCertificate" method="post" class="issue-form form-horizontal form-label-left">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12" for="">
+                            Chủ sở hữu <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="cert-subject" name="Subject" class="form-control" readonly="readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12" for="">
+                            Nhà cung cấp (CA) <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="cert-issuer" name="Issuer" class="form-control" readonly="readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12" for="">
+                            Số serial <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="cert-serial" name="Serial" class="form-control" readonly="readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12" for="">
+                            Ngày bắt đầu hiệu lực <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="cert-valid-from" name="ValidFrom" class="form-control" readonly="readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4 col-sm-3 col-xs-12" for="">
+                            Ngày hết hiệu lực <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="cert-valid-to" name="ValidTo" class="form-control" readonly="readonly" />
+                        </div>
+                    </div>
+                    <input id="cert-base64" type="hidden" name="CertBase64" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

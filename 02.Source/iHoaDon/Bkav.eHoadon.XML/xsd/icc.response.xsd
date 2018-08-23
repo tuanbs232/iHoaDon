@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:icc="http://icc.neopost.com" targetNamespace="http://icc.neopost.com"
+	elementFormDefault="qualified">
+
+	<xs:element name="invoice">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="sellerTaxCode" type="xs:string"/>
+				<xs:element name="buyerTaxCode" type="xs:string" minOccurs="0"/>
+				<xs:element name="issueDate" type="xs:dateTime"/>
+				<xs:element name="originalCertifiedId" type="string" minOccurs="0"/>
+				<xs:element name="totalAmount" type="decimal" default="0"/>
+				<xs:element name="totalVATAmount" type="decimal" default="0"/>
+				<xs:element name="sellerSignatureHash" type="string"/>
+				<xs:element name="certifiedId" type="xs:string"/>
+				<xs:element name="certificationDate" type="dateTime"/>
+				<xs:element name="signature" type="string"/>
+				<xs:element name="publicKey" type="xs:string"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

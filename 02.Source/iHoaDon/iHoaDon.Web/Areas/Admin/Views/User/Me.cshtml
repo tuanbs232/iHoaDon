@@ -1,0 +1,59 @@
+﻿@model iHoaDon.Web.Areas.Admin.Models.AccountModel
+@{
+    ViewBag.Title = "iHoaDon - Thông tin tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+<div class="adminheading">
+    <div class="fl">
+        Thông tin tài khoản
+    </div>
+</div>
+<div class="clr">
+</div>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+<div class="">
+
+    <table border="0px" class="adminlist" cellpadding="5px" cellspacing="1px">
+        <tr>
+            <th colspan="2" align="left">Thông tin Menu
+            </th>
+        </tr>
+        <tr>
+            <td width="20%" align="right">
+                <strong>@Html.LabelFor(model => model.FullName)</strong>
+            </td>
+            <td>
+                @Html.DisplayFor(u => u.FullName)
+            </td>
+        </tr>
+
+        <tr>
+            <td width="20%" align="right">
+                <strong>@Html.LabelFor(model => model.LoginName)</strong>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.LoginName)
+            </td>
+        </tr>
+        <tr>
+            <td width="20%" align="right">
+                <strong>@Html.LabelFor(model => model.Email)</strong>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Email)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="1">
+                <div class="ToolBarBtn">
+                    <a href="@Url.Action("Edit", "User", new { area = "Admin" }, null)"><span class="icon ico3"></span>Sửa thông tin</a>
+                </div>
+                <div class="clr">
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>

@@ -1,0 +1,186 @@
+﻿<error errorId="8ff7ca24-c454-4ea9-ab88-0edb06609cbd" application="/" host="DESKTOP-IVBN7P9" type="System.InvalidOperationException" message="The InversePropertyAttribute on property 'Product' on type 'iHoaDon.Entities.Unit' is not valid. The property 'Product' is not a valid navigation property on the related type 'iHoaDon.Entities.Product'. Ensure that the property exists and is a valid reference or collection navigation property." source="EntityFramework" detail="System.InvalidOperationException: An error occurred when trying to create a controller of type 'iHoaDon.Web.Controllers.ProductController'. Make sure that the controller has a parameterless public constructor. ---&gt; System.InvalidOperationException: The InversePropertyAttribute on property 'Product' on type 'iHoaDon.Entities.Unit' is not valid. The property 'Product' is not a valid navigation property on the related type 'iHoaDon.Entities.Product'. Ensure that the property exists and is a valid reference or collection navigation property.&#xD;&#xA;   at System.Data.Entity.ModelConfiguration.Conventions.InversePropertyAttributeConvention.InversePropertyAttributeConventionImpl.Apply(PropertyInfo propertyInfo, ModelConfiguration modelConfiguration, InversePropertyAttribute inversePropertyAttribute)&#xD;&#xA;   at System.Data.Entity.ModelConfiguration.Conventions.AttributeConfigurationConvention`3.System.Data.Entity.ModelConfiguration.Conventions.IConfigurationConvention&lt;TMemberInfo,TConfiguration&gt;.Apply(TMemberInfo memberInfo, Func`1 configuration)&#xD;&#xA;   at System.Data.Entity.ModelConfiguration.Conventions.InversePropertyAttributeConvention.System.Data.Entity.ModelConfiguration.Conventions.IConfigurationConvention&lt;System.Reflection.PropertyInfo,System.Data.Entity.ModelConfiguration.Configuration.ModelConfiguration&gt;.Apply(PropertyInfo memberInfo, Func`1 configuration)&#xD;&#xA;   at System.Data.Entity.ModelConfiguration.Configuration.ConventionsConfiguration.ApplyPropertyConfiguration(PropertyInfo propertyInfo, ModelConfiguration modelConfiguration)&#xD;&#xA;   at System.Data.Entity.ModelConfiguration.Mappers.TypeMapper.MapStructuralElements[TStructuralTypeConfiguration](Type type, ICollection`1 annotations, Action`2 propertyMappingAction, Boolean mapDeclaredPropertiesOnly, Func`1 structuralTypeConfiguration)&#xD;&#xA;   at System.Data.Entity.ModelConfiguration.Mappers.TypeMapper.MapEntityType(Type type)&#xD;&#xA;   at System.Data.Entity.ModelConfiguration.Mappers.NavigationPropertyMapper.Map(PropertyInfo propertyInfo, EdmEntityType entityType, Func`1 entityTypeConfiguration, Type sourceType)&#xD;&#xA;   at System.Data.Entity.ModelConfiguration.Mappers.PropertyMapper.Map(PropertyInfo propertyInfo, EdmEntityType entityType, Func`1 entityTypeConfiguration, Type sourceType)&#xD;&#xA;   at System.Data.Entity.ModelConfiguration.Mappers.TypeMapper.&lt;&gt;c__DisplayClass12.&lt;MapEntityType&gt;b__e(PropertyMapper m, PropertyInfo p)&#xD;&#xA;   at System.Data.Entity.ModelConfiguration.Mappers.TypeMapper.MapStructuralElements[TStructuralTypeConfiguration](Type type, ICollection`1 annotations, Action`2 propertyMappingAction, Boolean mapDeclaredPropertiesOnly, Func`1 structuralTypeConfiguration)&#xD;&#xA;   at System.Data.Entity.ModelConfiguration.Mappers.TypeMapper.MapEntityType(Type type)&#xD;&#xA;   at System.Data.Entity.DbModelBuilder.&lt;&gt;c__DisplayClass6.&lt;MapTypes&gt;b__0(Type type)&#xD;&#xA;   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()&#xD;&#xA;   at System.Data.Entity.ModelConfiguration.Utilities.IEnumerableExtensions.Each[T](IEnumerable`1 ts, Action`1 action)&#xD;&#xA;   at System.Data.Entity.DbModelBuilder.MapTypes(EdmModel model)&#xD;&#xA;   at System.Data.Entity.DbModelBuilder.Build(DbProviderManifest providerManifest, DbProviderInfo providerInfo)&#xD;&#xA;   at System.Data.Entity.DbModelBuilder.Build(DbConnection providerConnection)&#xD;&#xA;   at System.Data.Entity.Internal.LazyInternalContext.CreateModel(LazyInternalContext internalContext)&#xD;&#xA;   at System.Data.Entity.Internal.RetryLazy`2.GetValue(TInput input)&#xD;&#xA;   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()&#xD;&#xA;   at System.Data.Entity.Internal.LazyInternalContext.get_ObjectContext()&#xD;&#xA;   at System.Data.Entity.DbContext.System.Data.Entity.Infrastructure.IObjectContextAdapter.get_ObjectContext()&#xD;&#xA;   at iHoaDon.DataAccess.EWhiteHatContext..ctor(String connectionString) in p:\Projects\iHoaDon\iHoaDon.DataAccess\EF\EiHoaDonContext.cs:line 25&#xD;&#xA;   at DynamicInjectorfadeb4f6aa3e40b5abc26217858ed548(Object[] )&#xD;&#xA;   at Ninject.Activation.Providers.StandardProvider.Create(IContext context)&#xD;&#xA;   at Ninject.Activation.Context.Resolve()&#xD;&#xA;   at Ninject.KernelBase.&lt;Resolve&gt;b__7(IContext context)&#xD;&#xA;   at System.Linq.Enumerable.&lt;&gt;c__DisplayClass2`3.&lt;CombineSelectors&gt;b__3(TSource x)&#xD;&#xA;   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()&#xD;&#xA;   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)&#xD;&#xA;   at Ninject.Planning.Targets.Target`1.GetValue(Type service, IContext parent)&#xD;&#xA;   at Ninject.Planning.Targets.Target`1.ResolveWithin(IContext parent)&#xD;&#xA;   at Ninject.Activation.Providers.StandardProvider.GetValue(IContext context, ITarget target)&#xD;&#xA;   at Ninject.Activation.Providers.StandardProvider.&lt;&gt;c__DisplayClass2.&lt;Create&gt;b__1(ITarget target)&#xD;&#xA;   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()&#xD;&#xA;   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)&#xD;&#xA;   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)&#xD;&#xA;   at Ninject.Activation.Providers.StandardProvider.Create(IContext context)&#xD;&#xA;   at Ninject.Activation.Context.Resolve()&#xD;&#xA;   at Ninject.KernelBase.&lt;Resolve&gt;b__7(IContext context)&#xD;&#xA;   at System.Linq.Enumerable.&lt;&gt;c__DisplayClass2`3.&lt;CombineSelectors&gt;b__3(TSource x)&#xD;&#xA;   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()&#xD;&#xA;   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)&#xD;&#xA;   at Ninject.Planning.Targets.Target`1.GetValue(Type service, IContext parent)&#xD;&#xA;   at Ninject.Planning.Targets.Target`1.ResolveWithin(IContext parent)&#xD;&#xA;   at Ninject.Activation.Providers.StandardProvider.GetValue(IContext context, ITarget target)&#xD;&#xA;   at Ninject.Activation.Providers.StandardProvider.&lt;&gt;c__DisplayClass2.&lt;Create&gt;b__1(ITarget target)&#xD;&#xA;   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()&#xD;&#xA;   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)&#xD;&#xA;   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)&#xD;&#xA;   at Ninject.Activation.Providers.StandardProvider.Create(IContext context)&#xD;&#xA;   at Ninject.Activation.Context.Resolve()&#xD;&#xA;   at Ninject.KernelBase.&lt;Resolve&gt;b__7(IContext context)&#xD;&#xA;   at System.Linq.Enumerable.&lt;&gt;c__DisplayClass2`3.&lt;CombineSelectors&gt;b__3(TSource x)&#xD;&#xA;   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()&#xD;&#xA;   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)&#xD;&#xA;   at Ninject.Web.Mvc.NinjectDependencyResolver.GetService(Type serviceType)&#xD;&#xA;   at System.Web.Mvc.DefaultControllerFactory.DefaultControllerActivator.Create(RequestContext requestContext, Type controllerType)&#xD;&#xA;   --- End of inner exception stack trace ---&#xD;&#xA;   at System.Web.Mvc.DefaultControllerFactory.DefaultControllerActivator.Create(RequestContext requestContext, Type controllerType)&#xD;&#xA;   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)&#xD;&#xA;   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController&amp; controller, IControllerFactory&amp; factory)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClass6.&lt;BeginProcessRequest&gt;b__2()&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.&lt;&gt;c__DisplayClassb`1.&lt;ProcessInApplicationTrust&gt;b__a()&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.&lt;GetCallInAppTrustThunk&gt;b__0(Action f)&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.ProcessInApplicationTrust(Action action)&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.ProcessInApplicationTrust[TResult](Func`1 func)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="09876599999" time="2015-11-15T11:31:00.0223798Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:no-cache&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_PRAGMA:no-cache&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, sdch&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:vi&#xD;&#xA;HTTP_COOKIE:CKFinder_Path=Images%3A%2F%3A1; _culture=vi-VN; _pk_id.47.1fff=8a2c6946598d08be.1443027516.12.1446486882.1446485960.; ASP.NET_SessionId=4rabvbrnue3urwqsylczkrtv; .iHoaDonTvan=5ABE53DB1FCB1E9ABAD4094D8E6EAE282391208299E3992C4121C3BDCF9AA79988191E12E97F2709607ECBBEDA573BFF42B7685E2890BF5F7A1048BE610CD1BF8F090DB2C4F8B62DE4FC0A1FEF63DA3D8B5C7783F80E4A5597E400111C215FA2392275962243C225DD20EA91497442674D1FC2BA76DDD27DC544FE3979276EA7278B7AF7309853DD745B390326A0B772E9B509688E44CADB48EE8D57B7A76ECE6BF9C3D876CE2A8D06640CCDF1751D5D386B055C9BF446CCCDBCFB0ACF01F866B5AA28F4D08DA9283B00C857270A62AC; checkLogin=09876599999&#xD;&#xA;HTTP_HOST:localhost:18331&#xD;&#xA;HTTP_REFERER:http://localhost:18331/Product/Add/0&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36&#xD;&#xA;HTTP_UPGRADE_INSECURE_REQUESTS:1&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: no-cache&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Pragma: no-cache&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate, sdch&#xD;&#xA;Accept-Language: vi&#xD;&#xA;Cookie: CKFinder_Path=Images%3A%2F%3A1; _culture=vi-VN; _pk_id.47.1fff=8a2c6946598d08be.1443027516.12.1446486882.1446485960.; ASP.NET_SessionId=4rabvbrnue3urwqsylczkrtv; .iHoaDonTvan=5ABE53DB1FCB1E9ABAD4094D8E6EAE282391208299E3992C4121C3BDCF9AA79988191E12E97F2709607ECBBEDA573BFF42B7685E2890BF5F7A1048BE610CD1BF8F090DB2C4F8B62DE4FC0A1FEF63DA3D8B5C7783F80E4A5597E400111C215FA2392275962243C225DD20EA91497442674D1FC2BA76DDD27DC544FE3979276EA7278B7AF7309853DD745B390326A0B772E9B509688E44CADB48EE8D57B7A76ECE6BF9C3D876CE2A8D06640CCDF1751D5D386B055C9BF446CCCDBCFB0ACF01F866B5AA28F4D08DA9283B00C857270A62AC; checkLogin=09876599999&#xD;&#xA;Host: localhost:18331&#xD;&#xA;Referer: http://localhost:18331/Product/Add/0&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36&#xD;&#xA;Upgrade-Insecure-Requests: 1&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="P:\Projects\iHoaDon\iHoaDon.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="Custom" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="09876599999" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="DESKTOP-IVBN7P9\LP_Admin" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="09876599999" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="" />
+    </item>
+    <item name="HTTPS">
+      <value string="" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/Product" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="P:\Projects\iHoaDon\iHoaDon.Web\Product" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/Product" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="18331" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="" />
+    </item>
+    <item name="URL">
+      <value string="/Product" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="no-cache" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_PRAGMA">
+      <value string="no-cache" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, sdch" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="vi" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="CKFinder_Path=Images%3A%2F%3A1; _culture=vi-VN; _pk_id.47.1fff=8a2c6946598d08be.1443027516.12.1446486882.1446485960.; ASP.NET_SessionId=4rabvbrnue3urwqsylczkrtv; .iHoaDonTvan=5ABE53DB1FCB1E9ABAD4094D8E6EAE282391208299E3992C4121C3BDCF9AA79988191E12E97F2709607ECBBEDA573BFF42B7685E2890BF5F7A1048BE610CD1BF8F090DB2C4F8B62DE4FC0A1FEF63DA3D8B5C7783F80E4A5597E400111C215FA2392275962243C225DD20EA91497442674D1FC2BA76DDD27DC544FE3979276EA7278B7AF7309853DD745B390326A0B772E9B509688E44CADB48EE8D57B7A76ECE6BF9C3D876CE2A8D06640CCDF1751D5D386B055C9BF446CCCDBCFB0ACF01F866B5AA28F4D08DA9283B00C857270A62AC; checkLogin=09876599999" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:18331" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:18331/Product/Add/0" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36" />
+    </item>
+    <item name="HTTP_UPGRADE_INSECURE_REQUESTS">
+      <value string="1" />
+    </item>
+  </serverVariables>
+  <cookies>
+    <item name="CKFinder_Path">
+      <value string="Images%3A%2F%3A1" />
+    </item>
+    <item name="_culture">
+      <value string="vi-VN" />
+    </item>
+    <item name="_pk_id.47.1fff">
+      <value string="8a2c6946598d08be.1443027516.12.1446486882.1446485960." />
+    </item>
+    <item name="ASP.NET_SessionId">
+      <value string="4rabvbrnue3urwqsylczkrtv" />
+    </item>
+    <item name=".iHoaDonTvan">
+      <value string="5ABE53DB1FCB1E9ABAD4094D8E6EAE282391208299E3992C4121C3BDCF9AA79988191E12E97F2709607ECBBEDA573BFF42B7685E2890BF5F7A1048BE610CD1BF8F090DB2C4F8B62DE4FC0A1FEF63DA3D8B5C7783F80E4A5597E400111C215FA2392275962243C225DD20EA91497442674D1FC2BA76DDD27DC544FE3979276EA7278B7AF7309853DD745B390326A0B772E9B509688E44CADB48EE8D57B7A76ECE6BF9C3D876CE2A8D06640CCDF1751D5D386B055C9BF446CCCDBCFB0ACF01F866B5AA28F4D08DA9283B00C857270A62AC" />
+    </item>
+    <item name="checkLogin">
+      <value string="09876599999" />
+    </item>
+  </cookies>
+</error>

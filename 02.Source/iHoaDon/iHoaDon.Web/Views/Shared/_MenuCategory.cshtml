@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "_MenuCategory";
+}
+<div style="padding-bottom: 15px;">
+    <span style="padding-right: 15px;">
+        <img alt="" src="@Url.Content("~/Content/icons/report_user.png")" />
+        @Html.ActionLink("Danh mục khách hàng", "Index", "Customer")</span>
+
+    <span style="padding-right: 15px;">
+        <img alt="" src="@Url.Content("~/Content/icons/package_green.png")" />
+        @Html.ActionLink("Danh mục hàng hóa", "Index", "Product")</span>
+
+    <span style="padding-right: 15px;">
+        <img alt="" src="@Url.Content("~/Content/icons/money_dollar.png")" />
+        @Html.ActionLink("Danh mục đơn vị tính", "Index", "Unit")</span>
+
+    <span style="padding-right: 15px;">
+        <img alt="" src="@Url.Content("~/Content/icons/coins.png")" />
+        @Html.ActionLink("Danh mục tỷ giá", "Index", "Home")</span>
+
+</div>
+

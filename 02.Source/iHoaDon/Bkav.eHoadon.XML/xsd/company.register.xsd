@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:inv="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1"
+	targetNamespace="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1" elementFormDefault="qualified">
+
+	<xs:include schemaLocation="commons.xsd">
+		<xs:annotation>
+			<xs:documentation>Import of commons.</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:element name="company">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="taxpayerType" type="xs:boolean" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="taxCode" type="inv:taxCode" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="legalName" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="addressLine" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="cityCode" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="cityName" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="districtCode" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="districtName" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="wardCode" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="wardName" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="lawRepresentative" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="email" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="phoneNumber" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="faxNumber" type="xs:string" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="certifiedModel" type="xs:unsignedInt" maxOccurs="1" minOccurs="1"/>
+				<xs:element name="taxOfficeCode" type="xs:string" maxOccurs="1" minOccurs="0"/>
+				<xs:element name="taxOfficeName" type="xs:string" maxOccurs="1" minOccurs="0"/>
+				<xs:element name="taxOfficeEmail" type="xs:string" maxOccurs="1" minOccurs="0"/>
+				<xs:element name="certificateContent" type="xs:string" maxOccurs="1" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

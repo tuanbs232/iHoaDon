@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    targetNamespace="http://www.w3.org/2000/09/xmldsig#" version="0.1"
+    elementFormDefault="qualified">
+
+    <!-- 
+    <complexType name="Signature">
+        <sequence>
+            <element name="SignedInfo" type="ds:SignedInfo"></element>
+            <element name="SignatureValue" type="string"></element>
+            <element name="KeyInfo" type="ds:KeyInfo"></element>
+        </sequence>
+        <attribute name="Id" type="string" use="required"></attribute>
+    </complexType>
+     -->
+
+    <element name="Signature">
+        <complexType>
+            <all>
+                <element name="SignedInfo" type="ds:SignedInfo"/>
+                <element name="SignatureValue" type="string"/>
+                <element name="KeyInfo" type="ds:KeyInfo"/>
+            </all>
+            <attribute name="Id" type="string" use="optional"/>
+        </complexType>
+    </element>
+
+    <complexType name="SignedInfo">
+        <all>
+            <element name="CanonicalizationMethod">
+                <complexType>
+                    <attribute name="Algorithm" type="string" use="required"> </attribute>
+                </complexType>
+            </element>
+            <element name="SignatureMethod">
+                <complexType>
+                    <attribute name="Algorithm" type="string" use="required"> </attribute>
+                </complexType>
+            </element>
+            <element name="Reference" type="ds:Reference"/>
+        </all>
+    </complexType>
+
+    <complexType name="KeyInfo">
+        <all>
+            <element name="X509Data" type="ds:X509Data"/>
+        </all>
+    </complexType>
+
+    <complexType name="Reference">
+        <all>
+            <element name="Transforms">
+                <complexType>
+                    <sequence>
+                        <element name="Transform" minOccurs="1" maxOccurs="unbounded"
+                            type="ds:Transform"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="DigestMethod" type="ds:DigestMethod"/>
+            <element name="DigestValue" type="string"/>
+        </all>
+        <attribute name="URI" type="string"/>
+    </complexType>
+
+    <complexType name="Transform">
+        <attribute name="Algorithm" type="string" use="required"/>
+    </complexType>
+
+    <complexType name="DigestMethod">
+        <attribute name="Algorithm" type="string" use="required"/>
+    </complexType>
+
+    <complexType name="X509Data">
+        <all>
+            <element name="X509SubjectName" type="string" minOccurs="0"/>
+            <element name="X509Certificate" type="string"/>
+        </all>
+    </complexType>
+
+</schema>

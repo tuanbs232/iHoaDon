@@ -1,0 +1,250 @@
+﻿@using System.Web.Mvc.Html
+@model iHoaDon.Web.RegisterModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="@Url.Content("~/Scripts/jquery-ui-1.8.16.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.ui.datepicker-vi.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/themes/redmond/jquery-ui-1.8.16.custom.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/xml2array.js?v=1")" type="text/javascript"></script>
+
+@section head
+{
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+}
+<script>
+    var disId = '@ViewBag.District';
+    $(document).ready(function () {
+        var e = document.getElementById("ProvinceId");
+        var stateId = e.options[e.selectedIndex].value;
+        document.getElementById("Province").value = e.options[e.selectedIndex].text;
+
+        LoadData(stateId, disId);
+
+    });
+    function FillData() {
+        var stateId = $('#ProvinceId').val();
+        var e = document.getElementById("ProvinceId");
+        document.getElementById("Province").value = e.options[e.selectedIndex].text;
+
+        LoadData(stateId, disId);
+    }
+    function FillText() {
+        var e = document.getElementById("TaxAgencyCode");
+        document.getElementById("TaxAgencyName").value = e.options[e.selectedIndex].text;
+    }
+
+    function LoadData(data, id) {
+
+        $.ajax({
+            url: '/Accounts/ListProvince',
+            type: "GET",
+            dataType: "JSON",
+            data: { newsId: data },
+            success: function (lstItem) {
+                $("#TaxAgencyCode").html(""); // clear before appending new list 
+                $.each(lstItem, function (i, ls) {
+                    if (id != '' && id == ls.Value) {
+                        $("#TaxAgencyCode").append($('<option selected="selected"></option>').val(ls.Value).html(ls.Text));
+                    } else {
+                        $("#TaxAgencyCode").append($('<option></option>').val(ls.Value).html(ls.Text));
+                    }
+
+                });
+            }
+        });
+    }
+</script>
+<div id="content-title">
+    <span>Đăng ký dịch vụ Hóa đơn điện tử</span>
+</div>
+<div id="divloading">
+    @using (Html.BeginForm("Register", "Accounts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <fieldset style="padding-top: 5px;">
+            <table class="table_column" id="tblProfile" width="100%">
+                <div>
+                    @Html.ValidationSummary(true)
+                </div>
+                <tr>
+                    <td colspan="4" style="font-weight: bold">Thông tài khoản
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.CompanyCode)
+                    </td>
+                    <td colspan="3">
+                        @Html.TextBoxFor(model => model.CompanyCode)
+                        @Html.ValidationMessageFor(model => model.CompanyCode)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.NewPassword)
+                    </td>
+                    <td>
+                        @Html.PasswordFor(m => m.NewPassword)
+                        @Html.ValidationMessageFor(m => m.NewPassword)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.ConfirmPassword)
+                    </td>
+                    <td>
+                        @Html.PasswordFor(m => m.ConfirmPassword)
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="font-weight: bold">Thông tin đơn vị
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.CompanyName)
+                    </td>
+                    <td colspan="3">
+                        @Html.TextBoxFor(model => model.CompanyName)
+                        @Html.ValidationMessageFor(model => model.CompanyName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Address)
+                    </td>
+                    <td colspan="3">
+                        @Html.TextBoxFor(model => model.Address)
+                        @Html.ValidationMessageFor(model => model.Address)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.ProvinceId)
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.ProvinceId, Model.ListProvince, new { @onchange = "FillData()" })
+                        @Html.ValidationMessageFor(model => model.ProvinceId)
+                        @Html.TextBoxFor(model => model.Province, new { @style = "display: none" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.TaxAgencyCode)
+                    </td>
+                    <td>
+                        <select id="TaxAgencyCode" name="TaxAgencyCode" onchange="FillText()"></select>
+                        @Html.ValidationMessageFor(model => model.TaxAgencyCode)
+                        @Html.TextBoxFor(model => model.TaxAgencyName, new { @style = "display: none" })
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.BankAccount)
+                    </td>
+                    <td colspan="3">
+                        @Html.TextBoxFor(model => model.BankAccount)
+                        @Html.ValidationMessageFor(model => model.BankAccount)
+                        <br />
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Representative)
+                    </td>
+                    <td colspan="3">
+                        @Html.TextBoxFor(model => model.Representative)
+                        @Html.ValidationMessageFor(model => model.Representative)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Phone)
+                    </td>
+                    <td colspan="3">
+                        @Html.TextBoxFor(model => model.Phone)
+                        @Html.ValidationMessageFor(model => model.Phone)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Email)
+                    </td>
+                    <td colspan="3">
+                        @Html.TextBoxFor(model => model.Email)
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4"><b>Thông tin chữ ký số</b>
+                        <span>(bạn cần có USB chứa Chữ ký số, nếu chưa có thì đăng ký <a target="_blank" href="#" title="Đăng ký mua chữ ký số">tại đây</a>)
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Subject)</td>
+                    <td colspan="3">
+                        <select id="ca" name="ca" title="Chữa ký số" style="width: 256px;">
+                        </select>
+                        <button class="button" type="button" onclick=" loadToken()">
+                            <img alt="" src="@Url.Content("~/Content/icons/arrow_refresh_small.png")" />
+                            Lấy thông tin CKS
+                        </button>
+                        @Html.ValidationMessageFor(model => model.ca)
+                        <input style="display: none" readonly data-bind="value: Subject" type="text" id="Subject" name="Subject" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 17%">
+                        @Html.LabelFor(model => model.Issuer)
+                    </td>
+                    <td style="width: 25%">
+                        <input style="background: #F9F9F9;" readonly data-bind="value:Issuer" type="text" id="Issuer" name="Issuer" />
+                    </td>
+                    <td style="width: 8%">
+                        @Html.LabelFor(model => model.Serial)
+                    </td>
+                    <td>
+                        <input style="background: #F9F9F9;" readonly data-bind="value: Serial" type="text" id="Serial" name="Serial" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>@Html.LabelFor(model => model.ValidFrom)</td>
+                    <td>
+                        <input style="background: #F9F9F9;" readonly data-bind="value:ValidFrom" type="text" id="ValidFrom" name="ValidFrom" />
+                    </td>
+                    <td>@Html.LabelFor(model => model.ValidTo)</td>
+                    <td>
+                        <input style="background: #F9F9F9;" readonly data-bind="value:ValidTo" type="text" id="ValidTo" name="ValidTo" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="3">
+                        <button id="btnCommit" type="submit" class="button">
+                            <img alt="" src="@Url.Content("~/Content/icons/accept.png")" />
+                            Đăng ký</button>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    }
+</div>
+@Html.Partial("_ExtensionPugin")
+<script type="text/javascript">
+    {
+        var serial = ' '; //serial mặc định
+        function loadToken() {
+            beginPuginAndExtension(serial);
+        }
+
+        function callProcessor() { }
+    }
+</script>

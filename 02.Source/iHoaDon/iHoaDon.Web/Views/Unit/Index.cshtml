@@ -1,0 +1,26 @@
+﻿@model iHoaDon.Web.SearchUnitModel
+@{
+    ViewBag.Title = "iHoaDon | Danh mục hàng hóa";
+
+    ViewBag.PageTitle = "Danh mục đơn vị tính";
+    ViewBag.EnabledSearch = true;
+    ViewBag.SearchAction = "/Unit/SearchUnit";
+    ViewBag.SearchPlaceholder = "Từ khóa ...";
+    Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
+}
+
+@{
+    var unit = ViewBag.Unit as IEnumerable<iHoaDon.Entities.Unit>;
+    Html.RenderPartial("Partial", unit);
+}
+
+
+@section ContentScript{
+    <script>
+        $(document).ready(function () {
+            $('.nav-unit').addClass('current-page');
+            $('.nav-unit').closest('ul').css('display', 'block');
+            $('.nav-unit').closest('li.nav-danhmuc').addClass('active');
+        })
+    </script>
+}

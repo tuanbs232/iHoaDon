@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1" targetNamespace="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1"
+    elementFormDefault="qualified" xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+
+    <xs:import schemaLocation="signature.xsd" namespace="http://www.w3.org/2000/09/xmldsig#"></xs:import>
+    <xs:include schemaLocation="commons.xsd">
+        <xs:annotation>
+            <xs:documentation>Import of commons.</xs:documentation>
+        </xs:annotation>
+    </xs:include>    
+
+    <xs:element name="transaction">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="invoices" type="tns:invoices"> </xs:element>
+                <xs:element ref="ds:Signature" minOccurs="0"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="invoices">
+        <xs:sequence>
+            <xs:element name="invoice" type="tns:invoice" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="invoice">
+        <xs:sequence>
+            <xs:element name="invoiceData" type="tns:invoiceData" minOccurs="1"/>
+            <xs:element ref="ds:Signature" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="error" type="tns:error" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="invoiceData">
+        <xs:sequence>
+            <xs:element name="sellerAppRecordId" type="xs:string" minOccurs="0" />
+            <xs:element name="invoiceAppRecordId" type="xs:string" />
+            <xs:element name="invoiceType" type="xs:string" />
+            <xs:element name="templateCode" type="xs:string" />
+            <xs:element name="invoiceSeries" type="xs:string" />
+            <xs:element name="invoiceNumber" type="xs:string" />
+            <xs:element name="invoiceName" type="xs:string" />
+            <xs:element name="invoiceIssuedDate" type="xs:dateTime" />
+            <xs:element name="signedDate" type="xs:dateTime" />
+            <xs:element name="submittedDate" type="xs:dateTime" />
+            <xs:element name="contractNumber" type="xs:string" minOccurs="0" />
+            <xs:element name="contractDate" type="xs:date" minOccurs="0" />
+            <xs:element name="currencyCode" type="xs:string" default="VND" />
+            <xs:element name="exchangeRate" type="xs:decimal" minOccurs="0" />
+            <xs:element name="invoiceNote" type="xs:string" minOccurs="0" />
+            <xs:element name="isAdjusted" type="xs:unsignedInt"/>
+            <xs:element name="originalInvoiceId" type="xs:string" minOccurs="0"/>
+            <xs:element name="additionalReferenceDesc" type="xs:string" minOccurs="0" />
+            <xs:element name="additionalReferenceDate" type="xs:date" minOccurs="0" />
+            <xs:element name="payments">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="payment" minOccurs="1" maxOccurs="unbounded" type="tns:paymentInfo" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="delivery" minOccurs="0" type="tns:deliveryInfo">
+            </xs:element>
+            <xs:element name="sellerLegalName" type="xs:string" />
+            <xs:element name="sellerTaxCode" type="xs:string" />
+            <xs:element name="sellerAddressLine" type="xs:string" />
+            <xs:element name="sellerPostalCode" type="xs:string" minOccurs="0" />
+            <xs:element name="sellerDistrictName" type="xs:string" minOccurs="0" />
+            <xs:element name="sellerCityName" type="xs:string" minOccurs="0" />
+            <xs:element name="sellerCountryCode" type="xs:string" minOccurs="0" />
+            <xs:element name="sellerPhoneNumber" type="xs:string" minOccurs="0" />
+            <xs:element name="sellerFaxNumber" type="xs:string" minOccurs="0" />
+            <xs:element name="sellerEmail" type="xs:string" minOccurs="0" />
+            <xs:element name="sellerBankName" type="xs:string" minOccurs="0" />
+            <xs:element name="sellerBankAccount" type="xs:string" minOccurs="0" />
+            <xs:element name="sellerContactPersonName" type="xs:string" minOccurs="0"/>
+            <xs:element name="sellerSignedPersonName" type="xs:string" minOccurs="0"/>
+            <xs:element name="sellerSubmittedPersonName" type="xs:string" minOccurs="0"/>
+            <xs:element name="sellerTaxofficeCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="buyerDisplayName" type="xs:string" minOccurs="0" />
+            <xs:element name="buyerLegalName" type="xs:string" minOccurs="0" />
+            <xs:element name="buyerTaxCode" type="xs:string" minOccurs="0" />
+            <xs:element name="buyerAddressLine" type="xs:string" minOccurs="0" />
+            <xs:element name="buyerPostalCode" type="xs:string" minOccurs="0" />
+            <xs:element name="buyerDistrictName" type="xs:string" minOccurs="0" />
+            <xs:element name="buyerCityName" type="xs:string" minOccurs="0" />
+            <xs:element name="buyerCountryCode" type="xs:string" minOccurs="0" />
+            <xs:element name="buyerPhoneNumber" type="xs:string" minOccurs="0" />
+            <xs:element name="buyerFaxNumber" type="xs:string" minOccurs="0" />
+            <xs:element name="buyerEmail" type="xs:string" minOccurs="0" />
+            <xs:element name="buyerBankName" type="xs:string" minOccurs="0" />
+            <xs:element name="buyerBankAccount" type="xs:string" minOccurs="0" />
+            <xs:element name="items">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="item" minOccurs="1" maxOccurs="unbounded" type="tns:invoiceItem"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="invoiceTaxBreakdowns">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="invoiceTaxBreakdown" minOccurs="1" maxOccurs="unbounded" type="tns:invoiceTaxBreakdownInfo"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="sumOfTotalLineAmountWithoutVAT" type="xs:decimal" minOccurs="0" />
+            <xs:element name="totalAmountWithoutVAT" type="xs:decimal" default="0" />
+            <xs:element name="totalVATAmount" type="xs:decimal" default="0" />
+            <xs:element name="totalAmountWithVAT" type="xs:decimal" default="0" />
+            <xs:element name="totalAmountWithVATInWords" type="xs:string" />
+            <xs:element name="isTotalAmountPos" type="xs:boolean" minOccurs="0" />
+            <xs:element name="isTotalAmtWithoutVatPos" type="xs:boolean" minOccurs="0" />
+            <xs:element name="isTotalVATAmountPos" type="xs:boolean" minOccurs="0" />
+            <xs:element name="userDefines" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="custom" type="tns:customInfo"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string"></xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="paymentInfo">
+        <xs:sequence>
+            <xs:element name="paymentDueDate" type="xs:date" minOccurs="0" />
+            <xs:element name="paymentTerm" type="xs:string" minOccurs="0" />
+            <xs:element name="paymentMethodName" type="xs:string" />
+            <xs:element name="paymentNote" type="xs:string" minOccurs="0" />
+            <xs:element name="paymentAmount" type="xs:long" minOccurs="0" />
+            <xs:element name="bankName" type="xs:string" minOccurs="0" />
+            <xs:element name="bankBranchName" type="xs:string" minOccurs="0" />
+            <xs:element name="bankAccountNumber" type="xs:string" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="deliveryInfo">
+        <xs:sequence>
+            <xs:element name="deliveryOrderNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="deliveryOrderDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="deliveryOrderBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="deliveryBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="fromWarehouseName" type="xs:string" minOccurs="0"/>
+            <xs:element name="toWarehouseName" type="xs:string" minOccurs="0"/>
+            <xs:element name="transportationMethod" type="xs:string" minOccurs="0"/>
+            <xs:element name="containerNumber" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="invoiceItem">
+        <xs:sequence>
+            <xs:element name="lineNumber" type="xs:unsignedInt" />
+            <xs:element name="itemCode" type="xs:string" minOccurs="0" />
+            <xs:element name="itemName" type="xs:string" />
+            <xs:element name="unitCode" type="xs:string" />
+            <xs:element name="unitName" type="xs:string" minOccurs="0"/>
+            <xs:element name="quantity" type="xs:float" default="0" />
+            <xs:element name="itemTotalAmountWithoutVat" type="xs:decimal" default="0" />
+            <xs:element name="vatPercentage" type="xs:int" default="0" />
+            <xs:element name="vatDescription" type="xs:string" minOccurs="0" />
+            <xs:element name="vatAmount" type="xs:decimal" minOccurs="0" />
+            <xs:element name="lineNote" type="xs:string" minOccurs="0" />
+            <xs:element name="unitPrice" type="xs:decimal" default="0" />
+            <xs:element name="adjustmentVatAmount" type="xs:decimal" default="0" />
+            <xs:element name="isIncreaseItem" type="xs:boolean" minOccurs="0" />
+            <xs:element name="promotion" type="xs:int" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="invoiceTaxBreakdownInfo">
+        <xs:sequence>
+            <xs:element name="vatPercentage" type="xs:decimal" minOccurs="0" />
+            <xs:element name="vatTaxableAmount" type="xs:decimal" minOccurs="0"/>
+            <xs:element name="vatExemptionReason" type="xs:string" minOccurs="0"/>
+            <xs:element name="vatTaxAmount" type="xs:decimal" default="0"/>
+            <xs:element name="isVatTaxableAmountPos" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="isVatTaxAmountPos" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="customInfo">
+        <xs:sequence>
+            <xs:element name="key" type="xs:string" minOccurs="0"/>
+            <xs:element name="value" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

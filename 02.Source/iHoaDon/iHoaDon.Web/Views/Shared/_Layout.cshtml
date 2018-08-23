@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="iHoaDon" lang="vi-VN" />
+    <meta name="keywords" content="iHoaDon" lang="vi-VN" />
+    <link rel="Shortcut Icon" href="@Url.Content("~/Content/icons/favicon.ico")" />
+
+    <link href="@Url.Content("~/Content/StyleSheet.css?v=5")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Site.css?v=5")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+
+    @RenderSection("head", false)
+    @RenderSection("Javascripts", false)
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <div id="wrapper">
+        <!-- header-->
+        @Html.Partial("PageHeader")
+        <!-- end header -->
+        <!-- body -->
+        <div id="container">
+            <div id="container-l">
+                <div style="padding: 20px">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <!-- end body -->
+        <!-- footer -->
+        @Html.Partial("PageFooter")
+        <!-- end footer -->
+    </div>
+</body>
+</html>

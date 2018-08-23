@@ -1,0 +1,158 @@
+﻿@model IEnumerable<iHoaDon.Entities.Account>
+@using iHoaDon.Web
+@using iHoaDon.Web.Areas.Admin.Models
+@using iHoaDon.Web.Helper;
+@{
+    var sortAndPage = ViewBag.SortAndPage as iHoaDon.Web.Models.SortAndPageModel;
+    var search = ViewBag.ModelSearch as AccountSearchModel;
+}
+<table id="tbliHoaDon" class="table_main">
+    <thead>
+        <tr>
+            <th style="width: 40px;">STT
+            </th>
+            <th style="padding-left: 10px;">
+                @Ajax.SortLink("FullName",
+                                "Họ và tên",
+                                sortAndPage.SortBy,
+                                sortAndPage.SortDescending,
+                                "SortingAndPagingAccounts",
+                                new
+                                {
+                                    loginName = search.LoginName
+                                },
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "divGridAccount",
+                                    OnBegin = "OnBegin",
+                                    OnSuccess = "OnSuccess",
+                                    OnFailure = "OnFailure"
+                                },
+                                "sort asc",
+                                "sort desc")
+            </th>
+            <th style="width: 120px;">
+                @Ajax.SortLink("LoginName",
+                                "Tên đăng nhập",
+                                sortAndPage.SortBy,
+                                sortAndPage.SortDescending,
+                                "SortingAndPagingAccounts",
+                                new
+                                {
+                                    loginName = search.LoginName
+                                },
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "divGridAccount",
+                                    OnBegin = "OnBegin",
+                                    OnSuccess = "OnSuccess",
+                                    OnFailure = "OnFailure"
+                                },
+                                "sort asc",
+                                "sort desc")
+            </th>
+            
+            <th style="width: 120px;">
+                @Ajax.SortLink("Email",
+                                "Email",
+                                sortAndPage.SortBy,
+                                sortAndPage.SortDescending,
+                                "SortingAndPagingAccounts",
+                                new
+                                {
+                                    loginName = search.LoginName
+                                },
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "divGridAccount",
+                                    OnBegin = "OnBegin",
+                                    OnSuccess = "OnSuccess",
+                                    OnFailure = "OnFailure"
+                                },
+                                "sort asc",
+                                "sort desc")
+            </th>
+            <th style="width: 150px">Cập nhật
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var index = (sortAndPage.CurrentPageIndex - 1) * sortAndPage.PageSize;
+        }
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+            <tr id="row-@index" @(index % 2 == 1 ? "class=even-row" : "")>
+                <td align="center">
+                    @(index + 1)
+                </td>
+                <td style="padding-left:10px;">
+                    @item.Representative
+                </td>
+                <td style="padding-left: 10px">
+                    @Html.Raw(item.CompanyCode)
+                </td>
+                
+                <td style="padding-left:10px;">
+                    @(item.Representative)
+                </td>
+                <td align="center">
+                    <table class="table_column">
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("Edit", "User", new { id = item.Id })" class="button">
+                                    <img alt="" src="@Url.Content("~/Content/icons/user_edit.png")" />
+                                    Sửa</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)" class="DeleteAccountLink button" data-id="@item.Id">
+                                    <img alt="" src="@Url.Content("~/Content/icons/user_delete.png")" />
+                                    Xóa</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+                index++;
+            }
+        }
+        @if (Model == null || Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="5">Không có bản ghi nào!
+                </td>
+            </tr>
+        }
+    </tbody>
+    @if (Model != null && Model.Count() > 0)
+    {
+        <tfoot>
+            <tr>
+                <td colspan="5">
+                    @Ajax.Pager(sortAndPage.PageSize,
+                                sortAndPage.CurrentPageIndex,
+                                sortAndPage.TotalRecordCount,
+                         "SortingAndPagingAccounts",
+                                new
+                                {
+                                    loginName = search.LoginName,
+                                    sortBy = sortAndPage.SortBy,
+                                    sortDesc = sortAndPage.SortDescending
+                                },
+                                 new AjaxOptions
+                                 {
+                                     UpdateTargetId = "divGridAccount",
+                                     OnBegin = "OnBegin",
+                                     OnSuccess = "OnSuccess",
+                                     OnFailure = "OnFailure"
+                                 },
+                                "pagerButton",
+                                "pagerButtonDisabled",
+                                "pagerButtonCurrentPage")
+                </td>
+            </tr>
+        </tfoot>
+    }
+</table>

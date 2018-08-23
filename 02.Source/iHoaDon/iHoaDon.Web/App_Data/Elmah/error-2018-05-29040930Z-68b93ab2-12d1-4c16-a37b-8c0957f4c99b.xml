@@ -1,0 +1,180 @@
+﻿<error errorId="68b93ab2-12d1-4c16-a37b-8c0957f4c99b" application="/LM/W3SVC/2/ROOT" host="DESKTOP-1KA6C4R" type="System.ArgumentException" message="The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult InvoiceNumber(Int32)' in 'iHoaDon.Web.Controllers.InvoiceController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.&#xD;&#xA;Parameter name: parameters" source="System.Web.Mvc" detail="System.ArgumentException: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult InvoiceNumber(Int32)' in 'iHoaDon.Web.Controllers.InvoiceController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.&#xD;&#xA;Parameter name: parameters&#xD;&#xA;   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)&#xD;&#xA;   at System.Web.Mvc.ReflectedActionDescriptor.&lt;&gt;c__DisplayClass1.&lt;Execute&gt;b__0(ParameterInfo parameterInfo)&#xD;&#xA;   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()&#xD;&#xA;   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)&#xD;&#xA;   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)&#xD;&#xA;   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.&lt;&gt;c__DisplayClass15.&lt;InvokeActionMethodWithFilters&gt;b__12()&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethodFilter(IActionFilter filter, ActionExecutingContext preContext, Func`1 continuation)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.&lt;&gt;c__DisplayClass15.&lt;&gt;c__DisplayClass17.&lt;InvokeActionMethodWithFilters&gt;b__14()&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeAction(ControllerContext controllerContext, String actionName)&#xD;&#xA;   at System.Web.Mvc.Controller.ExecuteCore()&#xD;&#xA;   at System.Web.Mvc.ControllerBase.Execute(RequestContext requestContext)&#xD;&#xA;   at System.Web.Mvc.ControllerBase.System.Web.Mvc.IController.Execute(RequestContext requestContext)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClass6.&lt;&gt;c__DisplayClassb.&lt;BeginProcessRequest&gt;b__5()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass1.&lt;MakeVoidDelegate&gt;b__0()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass8`1.&lt;BeginSynchronous&gt;b__7(IAsyncResult _)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClasse.&lt;EndProcessRequest&gt;b__d()&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.&lt;GetCallInAppTrustThunk&gt;b__0(Action f)&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.ProcessInApplicationTrust(Action action)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="0123456789" time="2018-05-29T04:09:30.4602442Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_CONTENT_LENGTH:13&#xD;&#xA;HTTP_CONTENT_TYPE:application/json; charset=UTF-8&#xD;&#xA;HTTP_ACCEPT:application/json, text/javascript, */*; q=0.01&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, br&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5&#xD;&#xA;HTTP_COOKIE:ASP.NET_SessionId=13i424aq1qw4a101zjkkzusm; .iHoaDonTvan=B28C9EA71717D65457BC2B83B4607FEAD801AAC4AB7026C90B47676CD048F14FFF1B2869EF09ADA04050D0C149C4BACC00337A4521D2D62B009C13CADE067ECA30C5209E9ED3CFADBC99A733063FBD4BF4AB14852295C1A4328E862C2D2E894B404C98F3906173B68DE4EAFA34940C49496F0A342A4A0EE1948BC086C97C3B407BE83FC7E77CEF62475B05A7039A41CC52BDEA3DB9CC2D29AD316B9B8B72A2189C2909D82AF65F3ECF83C13C2941D4D18FB183C0822111640858D5F993A305A439A9D5D5E5B623B8336A42BFE9B5690C; checkLogin=0123456789&#xD;&#xA;HTTP_HOST:localhost:18331&#xD;&#xA;HTTP_REFERER:http://localhost:18331/Invoice&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36&#xD;&#xA;HTTP_ORIGIN:http://localhost:18331&#xD;&#xA;HTTP_X_REQUESTED_WITH:XMLHttpRequest&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Connection: keep-alive&#xD;&#xA;Content-Length: 13&#xD;&#xA;Content-Type: application/json; charset=UTF-8&#xD;&#xA;Accept: application/json, text/javascript, */*; q=0.01&#xD;&#xA;Accept-Encoding: gzip, deflate, br&#xD;&#xA;Accept-Language: vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5&#xD;&#xA;Cookie: ASP.NET_SessionId=13i424aq1qw4a101zjkkzusm; .iHoaDonTvan=B28C9EA71717D65457BC2B83B4607FEAD801AAC4AB7026C90B47676CD048F14FFF1B2869EF09ADA04050D0C149C4BACC00337A4521D2D62B009C13CADE067ECA30C5209E9ED3CFADBC99A733063FBD4BF4AB14852295C1A4328E862C2D2E894B404C98F3906173B68DE4EAFA34940C49496F0A342A4A0EE1948BC086C97C3B407BE83FC7E77CEF62475B05A7039A41CC52BDEA3DB9CC2D29AD316B9B8B72A2189C2909D82AF65F3ECF83C13C2941D4D18FB183C0822111640858D5F993A305A439A9D5D5E5B623B8336A42BFE9B5690C; checkLogin=0123456789&#xD;&#xA;Host: localhost:18331&#xD;&#xA;Referer: http://localhost:18331/Invoice&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36&#xD;&#xA;Origin: http://localhost:18331&#xD;&#xA;X-Requested-With: XMLHttpRequest&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/2/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\iHoaDon.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="Custom" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="0123456789" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="0123456789" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="0123456789" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="13" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="application/json; charset=UTF-8" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="2" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/2" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/Invoice/InvoiceNumber" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\iHoaDon.Web\Invoice\InvoiceNumber" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="51447" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="POST" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/Invoice/InvoiceNumber" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="18331" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/10.0" />
+    </item>
+    <item name="URL">
+      <value string="/Invoice/InvoiceNumber" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_CONTENT_LENGTH">
+      <value string="13" />
+    </item>
+    <item name="HTTP_CONTENT_TYPE">
+      <value string="application/json; charset=UTF-8" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="application/json, text/javascript, */*; q=0.01" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, br" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="ASP.NET_SessionId=13i424aq1qw4a101zjkkzusm; .iHoaDonTvan=B28C9EA71717D65457BC2B83B4607FEAD801AAC4AB7026C90B47676CD048F14FFF1B2869EF09ADA04050D0C149C4BACC00337A4521D2D62B009C13CADE067ECA30C5209E9ED3CFADBC99A733063FBD4BF4AB14852295C1A4328E862C2D2E894B404C98F3906173B68DE4EAFA34940C49496F0A342A4A0EE1948BC086C97C3B407BE83FC7E77CEF62475B05A7039A41CC52BDEA3DB9CC2D29AD316B9B8B72A2189C2909D82AF65F3ECF83C13C2941D4D18FB183C0822111640858D5F993A305A439A9D5D5E5B623B8336A42BFE9B5690C; checkLogin=0123456789" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:18331" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:18331/Invoice" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36" />
+    </item>
+    <item name="HTTP_ORIGIN">
+      <value string="http://localhost:18331" />
+    </item>
+    <item name="HTTP_X_REQUESTED_WITH">
+      <value string="XMLHttpRequest" />
+    </item>
+  </serverVariables>
+  <cookies>
+    <item name="ASP.NET_SessionId">
+      <value string="13i424aq1qw4a101zjkkzusm" />
+    </item>
+    <item name=".iHoaDonTvan">
+      <value string="B28C9EA71717D65457BC2B83B4607FEAD801AAC4AB7026C90B47676CD048F14FFF1B2869EF09ADA04050D0C149C4BACC00337A4521D2D62B009C13CADE067ECA30C5209E9ED3CFADBC99A733063FBD4BF4AB14852295C1A4328E862C2D2E894B404C98F3906173B68DE4EAFA34940C49496F0A342A4A0EE1948BC086C97C3B407BE83FC7E77CEF62475B05A7039A41CC52BDEA3DB9CC2D29AD316B9B8B72A2189C2909D82AF65F3ECF83C13C2941D4D18FB183C0822111640858D5F993A305A439A9D5D5E5B623B8336A42BFE9B5690C" />
+    </item>
+    <item name="checkLogin">
+      <value string="0123456789" />
+    </item>
+  </cookies>
+</error>

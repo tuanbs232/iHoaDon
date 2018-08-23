@@ -1,0 +1,97 @@
+﻿@using iHoaDon.Web
+@model IEnumerable<iHoaDon.Entities.Customer>
+    @{
+        var sortAndPage = ViewBag.SortAndPage as iHoaDon.Web.Models.SortAndPageModel;
+        var search = ViewBag.ModelSearch as SearchListReleaseInvoiceModel;
+    }
+    <link href="/Content/css/customer.css" rel="stylesheet" />
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <a href="/Customer/Add?id=0" class="btn btn-success"><i class="fa fa-user-plus"></i> Thêm khách hàng</a>
+            <br /><br />
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var cus in Model)
+        {
+
+
+
+            <!-- Customer view -->
+            <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                <div class="well profile_view">
+                    <div class="col-sm-12">
+                        <div class="col-xs-12">
+                            <h4 class="">@cus.CompanyName</h4>
+                        </div>
+                        <div class="left col-xs-7">
+                            <h3>@cus.CustomerName</h3>
+                            <p><strong>MST:</strong> @cus.CompanyCode</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-map-marker customer-pro-icon"></i>  @cus.Address</li>
+                                <li><i class="fa fa-phone-square customer-pro-icon"></i>  @cus.Phone</li>
+                                <li><i class="fa fa-envelope-o customer-pro-icon"></i>  @cus.BuyerEmail</li>
+                            </ul>
+                        </div>
+                        <div class="right col-xs-5 text-center">
+                            <img src="/Content/Images/default_avatar.jpg" alt="" class="img-circle img-responsive">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 bottom text-center">
+                        <div class="col-xs-12 col-sm-6 emphasis">
+                        </div>
+                        <div class="col-xs-12 col-sm-6 emphasis">
+                            <button type="button" class="btn btn-primary btn-outline btn-xs">
+                                <i class="fa fa-user"> </i> Xem chi tiết
+                            </button>
+                            <button type="button" class="btn btn-danger btn-xs">
+                                <i class="fa fa-trash-o"> </i> Xóa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End customer view -->
+        }
+        <!-- End foreach in Model -->
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <table>
+                @if (Model != null && Model.Count() > 0)
+                {
+                    <tfoot class="pager-content">
+                        <tr>
+                            <td colspan="8">
+                                @Ajax.Pager(sortAndPage.PageSize,
+                                   sortAndPage.CurrentPageIndex,
+                                   sortAndPage.TotalRecordCount,
+                                   "SortingAndPagingAccounts",
+                                   new
+                                   {
+                                       sortBy = sortAndPage.SortBy,
+                                       sortDesc = sortAndPage.SortDescending
+                                   },
+                                    new AjaxOptions
+                                    {
+                                        UpdateTargetId = "divGridCustomer",
+                                        OnBegin = "OnBegin",
+                                        OnSuccess = "OnSuccess",
+                                        OnFailure = "OnFailure"
+                                    },
+                                   "pagerButton",
+                                   "pagerButtonDisabled",
+                                   "pagerButtonCurrentPage")
+                            </td>
+                        </tr>
+                    </tfoot>
+                }
+            </table>
+        </div>
+    </div>

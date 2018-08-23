@@ -1,0 +1,162 @@
+﻿@model IEnumerable<iHoaDon.Entities.AccountLogin>
+
+@using iHoaDon.Web
+@using iHoaDon.Web.Areas.Admin.Models
+@using iHoaDon.Web.Helper;
+@using iHoaDon.Web.Models
+@{
+    var sortAndPage = ViewBag.SortAndPage as SortAndPageModel;
+    var search = ViewBag.ModelSearch as LogItemSearchModel;
+    var index = (sortAndPage.CurrentPageIndex - 1) * sortAndPage.PageSize;
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        HoverTable.AddHover('tblGridItem');
+    });
+</script>
+<table id="tblGridItem" class="table_main">
+    <thead>
+    <tr>
+            <th>
+                STT
+            </th>
+            <th>
+             @Ajax.SortLink("LoginName",
+                                "Tên đăng nhập",
+                                sortAndPage.SortBy,
+                                sortAndPage.SortDescending,
+                                "SortingAndPagingItem",
+                                new
+                                {
+                                    page = sortAndPage.CurrentPageIndex,
+                                    pageSize = sortAndPage.PageSize,
+                                    loginName = search.LoginName,
+                                    fromDate = search.FromDate,
+                                    toDate = search.ToDate,
+                                    status = search.Status
+                                },
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "divGridItem",
+                                    OnBegin = "OnBegin",
+                                    OnSuccess = "OnSuccess",
+                                    OnFailure = "OnFailure"
+                                },
+                                "sort asc",
+                                "sort desc")
+            </th>
+ <th>
+             @Ajax.SortLink("LoginIP",
+                                "Địa chỉ IP",
+                                sortAndPage.SortBy,
+                                sortAndPage.SortDescending,
+                                "SortingAndPagingItem",
+                                new
+                                {
+                                    page = sortAndPage.CurrentPageIndex,
+                                    pageSize = sortAndPage.PageSize,
+                                    loginName = search.LoginName,
+                                    fromDate = search.FromDate,
+                                    toDate = search.ToDate,
+                                    status = search.Status
+                                },
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "divGridItem",
+                                    OnBegin = "OnBegin",
+                                    OnSuccess = "OnSuccess",
+                                    OnFailure = "OnFailure"
+                                },
+                                "sort asc",
+                                "sort desc")
+            </th>
+            <th>
+                             @Ajax.SortLink("LoginTime",
+                                "Thời gian đăng nhập",
+                                sortAndPage.SortBy,
+                                sortAndPage.SortDescending,
+                                "SortingAndPagingItem",
+                                new
+                                {
+                                    page = sortAndPage.CurrentPageIndex,
+                                    pageSize = sortAndPage.PageSize,
+                                    loginName = search.LoginName,
+                                    fromDate = search.FromDate,
+                                    toDate = search.ToDate,
+                                    status = search.Status
+                                },
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "divGridItem",
+                                    OnBegin = "OnBegin",
+                                    OnSuccess = "OnSuccess",
+                                    OnFailure = "OnFailure"
+                                },
+                                "sort asc",
+                                "sort desc")
+                
+            </th>
+            <th>
+                Trạng thái
+            </th>
+        </tr>
+    </thead>
+ <tbody>
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr @(index % 2 == 1 ? "class=even-row" : "")>
+                    <td align="center">@(index + 1)</td>
+                    <td style="text-align: center">@item.LoginName</td>
+                    <td style="text-align: center">@item.LoginIP</td>
+                    <td style="text-align: center">@(item.LoginTime.ToString("dd/MM/yyyy hh:mm:ss tt"))</td>
+                    <td style="text-align:center;">
+                        @(item.Status?"Thành công":"Thất bại")
+                    </td>
+                </tr>
+            index++;
+            }
+        }
+        @if (Model == null || Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="5">
+                    Không có nhật lý nào.
+                </td>
+            </tr>
+        }
+    </tbody>
+    @if (Model != null && Model.Count() > 0)
+    {
+        <tfoot>
+            <tr>
+                <td colspan="5">
+                    @Ajax.Pager(sortAndPage.PageSize,
+                                sortAndPage.CurrentPageIndex,
+                                sortAndPage.TotalRecordCount,
+                                "SortingAndPagingItem",
+                                new
+                                {
+                                    loginName=search.LoginName,
+                                    status=search.Status,
+                                    fromDate = search.FromDate,
+                                    toDate = search.ToDate,
+                                    sortBy = sortAndPage.SortBy,
+                                    sortDesc = sortAndPage.SortDescending
+                                },
+                                 new AjaxOptions
+                                 {
+                                     UpdateTargetId = "divGridItem",
+                                     OnBegin = "OnBegin",
+                                     OnSuccess = "OnSuccess",
+                                     OnFailure = "OnFailure"
+                                 },
+                                "pagerButton",
+                                "pagerButtonDisabled",
+                                "pagerButtonCurrentPage")
+                </td>
+            </tr>
+        </tfoot>
+    }
+</table>

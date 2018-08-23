@@ -1,0 +1,142 @@
+﻿@model iHoaDon.Web.ReissueinvoiceModel
+@{
+    ViewBag.Title = "iHoaDon | Phát hành hóa đơn";
+    Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
+}
+<link href="/Content/Vendors/formvalidation/formValidation.css" rel="stylesheet" />
+<link href="/Content/Vendors/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet" />
+<link href="/Content/Vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+<h2>Đăng ký phát hành hóa đơn</h2>
+<br />
+
+<div id="divloading">
+    @using (Html.BeginForm("Reissueinvoice", "ListReleaseInvoice", FormMethod.Post, new { @id = "re-issue-form", enctype = "multipart/form-data", @class = "issue-form form-horizontal form-label-left" }))
+    {
+        if (Html.ValidationSummary(true) != null)
+        {
+            @Html.ValidationSummary(true)
+        }
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Loại hóa đơn <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.DropDownListFor(model => model.TemplateId, Model.ListNo, new { @onchange = "selectTemplate()", @class = "form-control col-md-7 col-xs-12", @required = "required" })
+                @Html.ValidationMessageFor(model => model.TemplateId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Mẫu số <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.No, new { @class = "form-control col-md-7 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.No)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Ký hiệu <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.SerialInvoice, new { @class = "form-control col-md-7 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.SerialInvoice)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Từ số <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.StartNumber, new { @id = "startNumber", @onchange = "onchangeevent();", @class = "form-control", data_fv_digits = "true" })
+                @Html.ValidationMessageFor(model => model.StartNumber)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Đến số <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.EndNumber, new { @id = "endNumber", @onchange = "onchangeevent();", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EndNumber)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Số lượng phát hành <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.Quantity, new { @id = "quantity", @readonly = "readonly", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Quantity)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Ngày bắt đầu <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.StartUsingDate, new { @class = "date form-control datepicker" })
+                @Html.ValidationMessageFor(model => model.StartUsingDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <button type="submit" class="btn btn-success" id="re-issue-form-submit"><i class="fa fa-send"></i>&nbsp; Đăng ký phát hành</button>
+            </div>
+        </div>
+    }
+</div>
+
+@section ContentScript{
+    <script src="/Content/Vendors/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+    <script src="/Content/Vendors/bootstrap-datepicker/bootstrap-datepicker.vi.min.js"></script>
+    <script src="/Content/Vendors/formvalidation/formValidation.js"></script>
+    <script src="/Content/Vendors/formvalidation/framework/bootstrap4.js"></script>
+    <script src="/Content/Vendors/formvalidation/language/vi_VN.js"></script>
+    <script src="/Content/js/re_issue_invoice.js"></script>
+    <script src="/Content/Vendors/moment/min/moment.min.js"></script>
+    <script src="/Content/Vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var picker = $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                language: 'vi',
+                autoclose: true
+            })
+                .on('changeDate', function (e) {
+                    $('#re-issue-form').formValidation('revalidateField', 'StartUsingDate');
+                });
+        });
+        function selectTemplate() {
+            var today = new Date();
+            var year = today.getYear() + '';
+
+            var stateId = $('#TemplateId').val();
+            $('#No').val(stateId + '0/');
+            $('#SerialInvoice').val('AA/' + year.substring(1, 3) + 'E');
+        }
+
+        function onchangeevent() {
+
+            var x = Number($('#startNumber').val());
+            var y = Number($('#endNumber').val());
+            var z = (y - x) + 1;
+            if (z >= 0) {
+                $('#quantity').val(z);
+            } else {
+                alert("Đến số không được nhỏ hơn từ số!");
+                $('#endNumber').focus();
+            }
+        }
+    </script>}

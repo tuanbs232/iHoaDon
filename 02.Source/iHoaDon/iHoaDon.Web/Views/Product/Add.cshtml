@@ -1,0 +1,96 @@
+﻿@model iHoaDon.Web.ProductModel
+@{
+    ViewBag.Title = "Add";
+    ViewBag.PageTitle = "Danh mục hàng hóa";
+    if (Model != null && Model.ProductID != 0)
+    {
+        ViewBag.PageSubTitle = "Cập nhật thông tin hàng hóa";
+        ViewBag.ButtonText = "Cập nhật";
+    }
+    else
+    {
+        ViewBag.PageSubTitle = "Thêm mới hàng hóa";
+        ViewBag.ButtonText = "Thêm mới";
+    }
+    Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
+}
+
+<div class="row">
+    @using (Html.BeginForm("Add", "Product", FormMethod.Post, new { @id = "re-issue-form", enctype = "multipart/form-data", @class = "issue-form form-horizontal form-label-left" }))
+    {
+
+        if (Html.ValidationSummary(true) != null)
+        {
+            @Html.ValidationSummary(true)
+        }
+        @Html.TextBoxFor(model => model.ProductID, new { style = "display:none" })
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Mã hàng hóa <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.ProductCode, new { @class = "form-control col-md-7 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.ProductCode)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Tên hàng hóa <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control col-md-7 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.ProductName)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Đơn vị tính <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.DropDownListFor(model => model.UnitID, Model.ListUnitId, new { @onchange = "selectTemplate()", @class = "form-control col-md-7 col-xs-12", @required = "required" })
+                @Html.ValidationMessageFor(model => model.UnitID)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Đơn giá <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control col-md-7 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.Price)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Ghi chú <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.Note, new { @class = "form-control col-md-7 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.Note)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <button type="submit" class="btn btn-success" id="re-issue-form-submit"><i class="fa fa-send"></i>&nbsp; @ViewBag.ButtonText</button>
+                <a href="/Product" class="btn btn-outline-default"><i class="fa fa-caret-left"></i>&nbsp; Quay lại</a>
+            </div>
+        </div>
+
+    }
+</div>
+
+
+@section ContentScript{
+    <script>
+        $(document).ready(function () {
+            $('.nav-product').addClass('current-page');
+            $('.nav-product').closest('ul').css('display', 'block');
+            $('.nav-product').closest('li.nav-danhmuc').addClass('active');
+        })
+    </script>
+}

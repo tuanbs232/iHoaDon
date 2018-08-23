@@ -1,0 +1,67 @@
+﻿@model iHoaDon.Web.LogOnUseModel
+@{
+    ViewBag.Title = "LogOn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    
+    <fieldset>
+        <legend>Thông tin đăng nhập</legend>
+        <div style="padding-left: 80px; padding-top: 10px">
+            <table class="table_column">
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.CompanyCode)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.CompanyCode)
+                        @Html.ValidationMessageFor(m => m.CompanyCode)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.Password)
+                    </td>
+                    <td>
+                        @Html.PasswordFor(m => m.Password)
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        @Html.CheckBoxFor(m => m.RememberMe, new {@style="float: left; padding-right: 5px;"})
+                        @Html.LabelFor(m => m.RememberMe)
+                    </td>
+                </tr>
+             
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                      
+                           <button id="btnCommit" type="submit" class="button">
+                            <img alt="" src="@Url.Content("~/Content/icons/key_go.png")" />
+                           Đăng nhập</button>
+                    </td>
+                </tr>
+               <tr>
+                    <td></td>
+                   <td>
+                       <a style="line-height: 2.5" href="#">Quên mật khẩu?</a><br/>
+                       Bạn chưa có tài khoản nào? 
+                       @Html.ActionLink("Đăng ký", "Register", "Accounts" )
+                      </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            @ViewBag.Office
+        </div>
+    </fieldset>
+
+    
+}

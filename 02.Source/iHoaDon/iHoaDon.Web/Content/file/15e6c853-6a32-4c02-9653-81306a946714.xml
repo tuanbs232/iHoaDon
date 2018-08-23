@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inv:invoice xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:inv="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1">
+  <inv:invoiceData id="data">
+    <inv:invoiceAppRecordId>836765</inv:invoiceAppRecordId>
+    <inv:invoiceType>01GTKT</inv:invoiceType>
+    <inv:templateCode>3</inv:templateCode>
+    <inv:invoiceSeries>3</inv:invoiceSeries>
+    <inv:invoiceNumber>0</inv:invoiceNumber>
+    <inv:invoiceName>Hóa đơn giá trị gia tăng</inv:invoiceName>
+    <inv:invoiceIssuedDate>2015-11-27T18:14:06.9485953+07:00</inv:invoiceIssuedDate>
+    <inv:signedDate>2015-11-27T18:14:06.9485953+07:00</inv:signedDate>
+    <inv:submittedDate>2015-11-27T18:14:06.9485953+07:00</inv:submittedDate>
+    <inv:currencyCode>VNÐ</inv:currencyCode>
+    <inv:invoiceNote />
+    <inv:payments>
+      <inv:payment>
+        <inv:paymentMethodName>Cash</inv:paymentMethodName>
+      </inv:payment>
+    </inv:payments>
+    <inv:delivery />
+    <inv:sellerLegalName>GTNHH vân trang</inv:sellerLegalName>
+    <inv:buyerDisplayName>GTNHH vân trang</inv:buyerDisplayName>
+    <inv:buyerLegalName>GTNHH vân trang</inv:buyerLegalName>
+    <inv:buyerTaxCode>0106550719</inv:buyerTaxCode>
+    <inv:buyerAddressLine>Bắc Giang</inv:buyerAddressLine>
+    <inv:buyerPhoneNumber>0812345678</inv:buyerPhoneNumber>
+    <inv:buyerFaxNumber>0812345678</inv:buyerFaxNumber>
+    <inv:buyerEmail>thanhlongbg@gmail.com</inv:buyerEmail>
+    <inv:items>
+      <inv:item>
+        <inv:lineNumber>2</inv:lineNumber>
+        <inv:itemCode>01-Bkav</inv:itemCode>
+        <inv:itemName>Bkav-Virus</inv:itemName>
+        <inv:unitName>1</inv:unitName>
+        <inv:quantity>100</inv:quantity>
+        <inv:itemTotalAmountWithoutVat>200000</inv:itemTotalAmountWithoutVat>
+        <inv:vatPercentage>0</inv:vatPercentage>
+        <inv:unitPrice>2000</inv:unitPrice>
+      </inv:item>
+      <inv:item>
+        <inv:lineNumber>2</inv:lineNumber>
+        <inv:itemCode>01-Bkav</inv:itemCode>
+        <inv:itemName>Bkav-Virus</inv:itemName>
+        <inv:unitName>1</inv:unitName>
+        <inv:quantity>100</inv:quantity>
+        <inv:itemTotalAmountWithoutVat>200000</inv:itemTotalAmountWithoutVat>
+        <inv:vatPercentage>0</inv:vatPercentage>
+        <inv:unitPrice>2000</inv:unitPrice>
+      </inv:item>
+    </inv:items>
+    <inv:invoiceTaxBreakdowns>
+      <inv:invoiceTaxBreakdown>
+        <inv:vatPercentage>5</inv:vatPercentage>
+        <inv:vatTaxableAmount>42000000</inv:vatTaxableAmount>
+        <inv:vatTaxAmount>2100000</inv:vatTaxAmount>
+      </inv:invoiceTaxBreakdown>
+      <inv:invoiceTaxBreakdown>
+        <inv:vatPercentage>10</inv:vatPercentage>
+        <inv:vatTaxableAmount>48000000</inv:vatTaxableAmount>
+        <inv:vatTaxAmount>4800000</inv:vatTaxAmount>
+      </inv:invoiceTaxBreakdown>
+    </inv:invoiceTaxBreakdowns>
+    <inv:totalAmountWithoutVAT>90000000</inv:totalAmountWithoutVAT>
+    <inv:totalAmountWithVATInWords>Hai trăm nghìn hai trăm hai mươi đồng</inv:totalAmountWithVATInWords>
+  </inv:invoiceData>
+  <inv:controlData />
+</inv:invoice>

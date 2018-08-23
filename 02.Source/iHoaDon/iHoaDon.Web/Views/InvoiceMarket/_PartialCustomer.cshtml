@@ -1,0 +1,26 @@
+﻿@model  IEnumerable<iHoaDon.Entities.Customer>  
+@if (Model != null && Model.Any())
+{
+    <ul id="country-list">
+        @foreach (var item in Model)
+        {
+
+            <li onClick="selectCountry('@item.Id','@item.CompanyName','@item.CompanyName','@item.CompanyCode','@item.Address','@item.Phone','@item.BuyerEmail','@item.BankAccount','@item.BankName')">@item.CompanyName</li>
+        }
+    </ul>
+}
+<script type="text/javascript">
+    function selectCountry(id,customerName, companyName, companyCode, address, phone, buyerEmail, bankCodeBuy, bankNameBuy) {
+        $("input[name=CustomerName]").val(customerName);
+        $("input[name=CustomerId]").val("");
+        $("input[name=CustomerId]").val(id);
+        $("input[name=CompanyName]").val(companyName);
+        $("input[name=CompanyCode]").val(companyCode);
+        $("input[name=Address]").val(address);
+        $("input[name=Phone]").val(phone);
+        $("input[name=BuyerEmail]").val(buyerEmail);
+        $("input[name=BankCodeBuy]").val(bankCodeBuy);
+        $("input[name=BankNameBuy]").val(bankNameBuy);
+        $("#suggesstion-box").hide();
+    }
+</script>

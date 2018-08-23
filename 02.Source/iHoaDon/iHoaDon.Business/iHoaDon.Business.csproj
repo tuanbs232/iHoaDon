@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E128B8D2-CC4E-4784-8D3D-CD8B143C77CA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>iHoaDon.Business</RootNamespace>
+    <AssemblyName>iHoaDon.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\BkavCA\BkavCA\Bkav.BkavCA.Web\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionLogService.cs" />
+    <Compile Include="AccountService.cs" />
+    <Compile Include="BanksService.cs" />
+    <Compile Include="CurrencyService.cs" />
+    <Compile Include="CustomerInvoiceService.cs" />
+    <Compile Include="CustomerService.cs" />
+    <Compile Include="Enum\Constants.cs" />
+    <Compile Include="Extension\DelegateUtil.cs" />
+    <Compile Include="Extension\EntityUtils.cs" />
+    <Compile Include="InvoiceNumberService.cs" />
+    <Compile Include="InvoiceService.cs" />
+    <Compile Include="ListReleaseInvoiceService.cs" />
+    <Compile Include="LogService.cs" />
+    <Compile Include="Extension\PermissionsExtension.cs" />
+    <Compile Include="Extension\UserInfoExtension.cs" />
+    <Compile Include="ProductService.cs" />
+    <Compile Include="ProfileService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Base\IFFormHandler.cs" />
+    <Compile Include="Service\Base\Service.cs" />
+    <Compile Include="Specification\ActionLogQuery.cs" />
+    <Compile Include="Specification\AccountQuery.cs" />
+    <Compile Include="Specification\BanksQuery.cs" />
+    <Compile Include="Specification\CurrencyQuery.cs" />
+    <Compile Include="Specification\CustomerInvoiceQuery.cs" />
+    <Compile Include="Specification\CustomerQuery.cs" />
+    <Compile Include="Specification\InvoiceNumberQuery.cs" />
+    <Compile Include="Specification\InvoiceQuery.cs" />
+    <Compile Include="Specification\ListReleaseInvoiceQuery.cs" />
+    <Compile Include="Specification\ProductQuery.cs" />
+    <Compile Include="Specification\ProfileQuery.cs" />
+    <Compile Include="Specification\LogQuery.cs" />
+    <Compile Include="Specification\TaxRateQuerry.cs" />
+    <Compile Include="Specification\TemplateInvoiceQuery.cs" />
+    <Compile Include="Specification\TransactionQuery.cs" />
+    <Compile Include="Specification\UnitQuerry.cs" />
+    <Compile Include="TaxRateService.cs" />
+    <Compile Include="TemplateInvoiceService.cs" />
+    <Compile Include="TransactionService.cs" />
+    <Compile Include="UnitService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\iHoaDon.DataAccess\iHoaDon.DataAccess.csproj">
+      <Project>{46f4c88d-2769-4132-9b88-d935e0a6e36f}</Project>
+      <Name>iHoaDon.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iHoaDon.Entities\iHoaDon.Entities.csproj">
+      <Project>{4f17cf17-727a-4684-bbf0-3abdef0211b3}</Project>
+      <Name>iHoaDon.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iHoaDon.Infrastructure\iHoaDon.Infrastructure.csproj">
+      <Project>{fb737d0d-03bd-4472-bf53-fd3111061249}</Project>
+      <Name>iHoaDon.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iHoaDon.Resources\iHoaDon.Resources.csproj">
+      <Project>{26d0b5a8-74c2-4f90-b7fc-6312c16a271b}</Project>
+      <Name>iHoaDon.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iHoaDon.Util\iHoaDon.Util.csproj">
+      <Project>{98ec19d4-86b8-44e0-bd10-fd9117ee691b}</Project>
+      <Name>iHoaDon.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

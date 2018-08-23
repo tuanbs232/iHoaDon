@@ -1,0 +1,48 @@
+﻿@model iHoaDon.Web.UnitModel
+@{
+    ViewBag.Title = "iHoaDon | ";
+    ViewBag.PageTitle = "Danh mục đơn vị tính";
+    if(Model != null && Model.Id != 0)
+    {
+        ViewBag.PageSubTitle = "Cập nhật đơn vị tính";
+        ViewBag.ButtonText = "Cập nhật";
+    }
+    else
+    {
+        ViewBag.PageSubTitle = "Thêm mới đơn vị tính";
+        ViewBag.ButtonText = "Thêm mới";
+    }
+    Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
+}
+
+<div class="row">
+    @using (Html.BeginForm("Add", "Unit", FormMethod.Post, new { @id = "re-issue-form", enctype = "multipart/form-data", @class = "issue-form form-horizontal form-label-left" }))
+    {
+
+        if (Html.ValidationSummary(true) != null)
+        {
+            @Html.ValidationSummary(true)
+        }
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Tên đơn vị tính <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control col-md-7 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <button type="submit" class="btn btn-success" id="re-issue-form-submit"><i class="fa fa-send"></i>&nbsp; @ViewBag.ButtonText</button>
+                <a href="/Unit" class="btn btn-outline-default"><i class="fa fa-caret-left"></i>&nbsp; Quay lại</a>
+            </div>
+        </div>
+    }
+</div>
+

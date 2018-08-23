@@ -1,0 +1,158 @@
+﻿@model IEnumerable<iHoaDon.Entities.ActionLog>
+@using iHoaDon.Web
+@using iHoaDon.Web.Helper;
+@{
+    var sortAndPage = ViewBag.SortAndPage as iHoaDon.Web.Models.SortAndPageModel;
+    var search = ViewBag.ModelSearch as iHoaDon.Web.Areas.Admin.Models.LogActionSearchModel;
+    var index = (sortAndPage.CurrentPageIndex - 1) * sortAndPage.PageSize;
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        HoverTable.AddHover('tblGridItem');
+    });
+</script>
+<table id="tblGridItem" class="table_main">
+    <thead>
+    <tr>
+            <th>
+                STT
+            </th>
+            <th>
+             @Ajax.SortLink("LoginName",
+                                "Tên đăng nhập",
+                                sortAndPage.SortBy,
+                                sortAndPage.SortDescending,
+                                "SortingAndPagingActionLog",
+                                new
+                                {
+                                    page = sortAndPage.CurrentPageIndex,
+                                    pageSize = sortAndPage.PageSize,
+                                    loginName = search.LoginName,
+                                    actionContent=search.ActionContent,
+                                    actionType=search.ActionType
+                                },
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "divGridItem",
+                                    OnBegin = "OnBegin",
+                                    OnSuccess = "OnSuccess",
+                                    OnFailure = "OnFailure"
+                                },
+                                "sort asc",
+                                "sort desc")
+            </th>
+            <th>
+             @Ajax.SortLink("ActionContent",
+                                "Thao tác",
+                                sortAndPage.SortBy,
+                                sortAndPage.SortDescending,
+                                "SortingAndPagingActionLog",
+                                new
+                                {
+                                    page = sortAndPage.CurrentPageIndex,
+                                    pageSize = sortAndPage.PageSize,
+                                    loginName = search.LoginName,
+                                    actionContent = search.ActionContent,
+                                    actionType = search.ActionType
+                                },
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "divGridItem",
+                                    OnBegin = "OnBegin",
+                                    OnSuccess = "OnSuccess",
+                                    OnFailure = "OnFailure"
+                                },
+                                "sort asc",
+                                "sort desc")
+            </th>
+            <th>
+                 @Ajax.SortLink("ActionTime",
+                                "Thời gian thao tác",
+                                sortAndPage.SortBy,
+                                sortAndPage.SortDescending,
+                                "SortingAndPagingActionLog",
+                                new
+                                {
+                                    page = sortAndPage.CurrentPageIndex,
+                                    pageSize = sortAndPage.PageSize,
+                                    loginName = search.LoginName,
+                                    actionContent = search.ActionContent,
+                                    actionType = search.ActionType
+                                },
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "divGridItem",
+                                    OnBegin = "OnBegin",
+                                    OnSuccess = "OnSuccess",
+                                    OnFailure = "OnFailure"
+                                },
+                                "sort asc",
+                                "sort desc")
+            </th>
+        <th>
+            Hành động
+        </th>
+        </tr>
+    </thead>
+ <tbody>
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr @(index % 2 == 1 ? "class=even-row" : "")>
+                    <td align="center">@(index + 1)</td>
+                    <td style="text-align: center">@item.LoginName</td>
+                    <td>@item.ActionContent</td>
+                    <td style="text-align: center">@item.ActionTime.ToString("dd/MM/yy hh:mm:ss tt")</td>
+                    <td style="text-align:center;">
+                    @if (item.DataBeforeChange!=null && item.DataBeforeChange.Length>0)
+                    {
+                        <a title="Chi tiết" href="@Url.Action("Details", new {id = item.Id})" class="button">
+                            <img alt="" src="@Url.Content("~/Content/icons/application_view_detail.png")" /></a>
+                    }
+                    </td>
+                </tr>
+            index++;
+            }
+        }
+        @if (Model == null || Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="5">
+                    Không có nhật lý nào.
+                </td>
+            </tr>
+        }
+    </tbody>
+    @if (Model != null && Model.Count() > 0)
+    {
+        <tfoot>
+            <tr>
+                <td colspan="5">
+                    @Ajax.Pager(sortAndPage.PageSize,
+                                sortAndPage.CurrentPageIndex,
+                                sortAndPage.TotalRecordCount,
+                                "SortingAndPagingActionLog",
+                                new
+                                {
+                                    loginName=search.LoginName,
+                                    actionContent=search.ActionContent,
+                                    sortBy = sortAndPage.SortBy,
+                                    sortDesc = sortAndPage.SortDescending,
+                                    actionType = search.ActionType
+                                },
+                                 new AjaxOptions
+                                 {
+                                     UpdateTargetId = "divGridItem",
+                                     OnBegin = "OnBegin",
+                                     OnSuccess = "OnSuccess",
+                                     OnFailure = "OnFailure"
+                                 },
+                                "pagerButton",
+                                "pagerButtonDisabled",
+                                "pagerButtonCurrentPage")
+                </td>
+            </tr>
+        </tfoot>
+    }
+</table>

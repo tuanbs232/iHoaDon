@@ -1,0 +1,118 @@
+﻿@model iHoaDon.Web.CustomerModel
+@{
+    ViewBag.Title = "Add";
+    ViewBag.PageTitle = "Danh mục khách hàng";
+    ViewBag.PageSubTitle = "Thêm người mua hàng";
+    Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
+}
+<link href="/Content/Vendors/formvalidation/formValidation.css" rel="stylesheet" />
+<link href="/Content/css/customer.css" rel="stylesheet" />
+
+
+<div class="row">
+    <div class="col-md-12">
+    </div>
+</div>
+<div class="row">
+    @using (Html.BeginForm("Add", "Customer", FormMethod.Post, new { @id = "re-issue-form", enctype = "multipart/form-data", @class = "issue-form form-horizontal form-label-left" }))
+    {
+
+        if (Html.ValidationSummary(true) != null)
+        {
+            @Html.ValidationSummary(true)
+        }
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Tên người mua hàng <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control col-md-7 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.CustomerName)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Tên công ty <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.CompanyName, new { @class = "form-control col-md-7 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.CompanyName)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Mã số thuế <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.CompanyCode, new { @class = "form-control col-md-7 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.CompanyCode)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Địa chỉ <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.Address, new { @class = "form-control col-md-7 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.Address)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Số tài khoản ngân hàng <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.BankAccount, new { @class = "form-control col-md-7 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.BankAccount)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Tên ngân hàng <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.BankName, new { @class = "form-control col-md-7 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.BankName)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Số điện thoại <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control col-md-7 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.Phone)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Email <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextBoxFor(model => model.BuyerEmail, new { @class = "form-control col-md-7 col-xs-12" })
+                @Html.ValidationMessageFor(model => model.BuyerEmail)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <button type="submit" class="btn btn-success" id="re-issue-form-submit"><i class="fa fa-send"></i>&nbsp; Thêm người mua hàng</button>
+                <a href="/Customer" class="btn btn-outline-default"><i class="fa fa-caret-left"></i>&nbsp; Quay lại</a>
+            </div>
+        </div>
+
+    }
+</div>
+@section ContentScript{
+    <script>
+        $(document).ready(function () {
+            $('.nav-customer').addClass('current-page');
+            $('.nav-customer').closest('ul').css('display', 'block');
+            $('.nav-customer').closest('li.nav-danhmuc').addClass('active');
+        })
+    </script>
+}
+

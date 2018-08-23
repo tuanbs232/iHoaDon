@@ -1,0 +1,171 @@
+﻿<error errorId="c4781a0f-1e02-4203-bf9e-5eac18461a9d" application="/LM/W3SVC/5/ROOT" host="DESKTOP-BO4MS35" type="System.NullReferenceException" message="Object reference not set to an instance of an object." source="iHoaDon.Web" detail="System.NullReferenceException: Object reference not set to an instance of an object.&#xD;&#xA;   at iHoaDon.Web.Controllers.InvoiceController.Index(String id) in v:\Projects\LHD\SourceCode\27-11-015\iHoaDon\iHoaDon.Web\Controllers\InvoiceController.cs:line 73&#xD;&#xA;   at lambda_method(Closure , ControllerBase , Object[] )&#xD;&#xA;   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.&lt;&gt;c__DisplayClass15.&lt;InvokeActionMethodWithFilters&gt;b__12()&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethodFilter(IActionFilter filter, ActionExecutingContext preContext, Func`1 continuation)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeAction(ControllerContext controllerContext, String actionName)&#xD;&#xA;   at System.Web.Mvc.Controller.ExecuteCore()&#xD;&#xA;   at System.Web.Mvc.ControllerBase.Execute(RequestContext requestContext)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClass6.&lt;&gt;c__DisplayClassb.&lt;BeginProcessRequest&gt;b__5()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass1.&lt;MakeVoidDelegate&gt;b__0()&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClasse.&lt;EndProcessRequest&gt;b__d()&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" time="2016-06-06T14:54:36.0267338Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, sdch&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:vi-VN,vi;q=0.8,fr-FR;q=0.6,fr;q=0.4,en-US;q=0.2,en;q=0.2&#xD;&#xA;HTTP_COOKIE:.bkavTvan=79B61E6A56E0C7BBF8CBCF91546DEE23A2EBB5B21D45E8C97808F9E7939972E5DBD0409C36F55D92F916AF4F037C7F779B1AF369E2FFC79FC6A140C85C74B2EC26E22A8723EF43ADD695E9E6460FDF9A9F33688328BA440F50D9808CB693EC3B1E1AEE2128A2F1707B206C590096812C28096D3BB2357E6F1FD1FF5F2D67DCD3945C95C678E17AF7FEB5190B22B731CE4F6E8349A274FF8967436AC88EAAF6EB61C96B4DC070017B3BCBC332CCAA4CF599BF3D5B948485C1432EB431F2C854D99E59D645841ADFED4AB44C19C95A7425DB8692C85D5C424FCD78007515B02DDBC7A43CB8A1C6366D1C7E5904178A4946AFEE2B6691D99CCF88F17FB9C186DF110F4BA87739500C99FCF2E7F81ACCE83310A29C5EE7DACD255BE8368ECC73A442D6515B9D6D58300A61EE7F7EDCA404CD1EE51DCD0DC2CF388A749D1C3F0D7325; checkLogin=E01024635; __RequestVerificationToken_Lw__=+uAsHEFdnAGjHOgHbH6eR7anEZJD3G8xmsy8J5RoRKf9x8qUB5Lqcd63mc5QYyR+P4k/ZfZ9MEUEtX/sfG1jiBA3MDSkw7XkVxysjfMbiWORh4lBV1/h/oWZhQmD/iEBVcZOqkoA97NGjkSm3xxnbnkDZsnIFNfYkSriV38JCUc=&#xD;&#xA;HTTP_HOST:localhost:89&#xD;&#xA;HTTP_REFERER:http://localhost:89/ListReleaseInvoice&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36&#xD;&#xA;HTTP_UPGRADE_INSECURE_REQUESTS:1&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Connection: keep-alive&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate, sdch&#xD;&#xA;Accept-Language: vi-VN,vi;q=0.8,fr-FR;q=0.6,fr;q=0.4,en-US;q=0.2,en;q=0.2&#xD;&#xA;Cookie: .bkavTvan=79B61E6A56E0C7BBF8CBCF91546DEE23A2EBB5B21D45E8C97808F9E7939972E5DBD0409C36F55D92F916AF4F037C7F779B1AF369E2FFC79FC6A140C85C74B2EC26E22A8723EF43ADD695E9E6460FDF9A9F33688328BA440F50D9808CB693EC3B1E1AEE2128A2F1707B206C590096812C28096D3BB2357E6F1FD1FF5F2D67DCD3945C95C678E17AF7FEB5190B22B731CE4F6E8349A274FF8967436AC88EAAF6EB61C96B4DC070017B3BCBC332CCAA4CF599BF3D5B948485C1432EB431F2C854D99E59D645841ADFED4AB44C19C95A7425DB8692C85D5C424FCD78007515B02DDBC7A43CB8A1C6366D1C7E5904178A4946AFEE2B6691D99CCF88F17FB9C186DF110F4BA87739500C99FCF2E7F81ACCE83310A29C5EE7DACD255BE8368ECC73A442D6515B9D6D58300A61EE7F7EDCA404CD1EE51DCD0DC2CF388A749D1C3F0D7325; checkLogin=E01024635; __RequestVerificationToken_Lw__=+uAsHEFdnAGjHOgHbH6eR7anEZJD3G8xmsy8J5RoRKf9x8qUB5Lqcd63mc5QYyR+P4k/ZfZ9MEUEtX/sfG1jiBA3MDSkw7XkVxysjfMbiWORh4lBV1/h/oWZhQmD/iEBVcZOqkoA97NGjkSm3xxnbnkDZsnIFNfYkSriV38JCUc=&#xD;&#xA;Host: localhost:89&#xD;&#xA;Referer: http://localhost:89/ListReleaseInvoice&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36&#xD;&#xA;Upgrade-Insecure-Requests: 1&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/5/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="V:\Projects\LHD\SourceCode\27-11-015\iHoaDon\iHoaDon.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="5" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/5" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/Invoice/Index/01GTKT" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="V:\Projects\LHD\SourceCode\27-11-015\iHoaDon\iHoaDon.Web\Invoice\Index\01GTKT" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="31812" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/Invoice/Index/01GTKT" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="89" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/10.0" />
+    </item>
+    <item name="URL">
+      <value string="/Invoice/Index/01GTKT" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, sdch" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="vi-VN,vi;q=0.8,fr-FR;q=0.6,fr;q=0.4,en-US;q=0.2,en;q=0.2" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string=".bkavTvan=79B61E6A56E0C7BBF8CBCF91546DEE23A2EBB5B21D45E8C97808F9E7939972E5DBD0409C36F55D92F916AF4F037C7F779B1AF369E2FFC79FC6A140C85C74B2EC26E22A8723EF43ADD695E9E6460FDF9A9F33688328BA440F50D9808CB693EC3B1E1AEE2128A2F1707B206C590096812C28096D3BB2357E6F1FD1FF5F2D67DCD3945C95C678E17AF7FEB5190B22B731CE4F6E8349A274FF8967436AC88EAAF6EB61C96B4DC070017B3BCBC332CCAA4CF599BF3D5B948485C1432EB431F2C854D99E59D645841ADFED4AB44C19C95A7425DB8692C85D5C424FCD78007515B02DDBC7A43CB8A1C6366D1C7E5904178A4946AFEE2B6691D99CCF88F17FB9C186DF110F4BA87739500C99FCF2E7F81ACCE83310A29C5EE7DACD255BE8368ECC73A442D6515B9D6D58300A61EE7F7EDCA404CD1EE51DCD0DC2CF388A749D1C3F0D7325; checkLogin=E01024635; __RequestVerificationToken_Lw__=+uAsHEFdnAGjHOgHbH6eR7anEZJD3G8xmsy8J5RoRKf9x8qUB5Lqcd63mc5QYyR+P4k/ZfZ9MEUEtX/sfG1jiBA3MDSkw7XkVxysjfMbiWORh4lBV1/h/oWZhQmD/iEBVcZOqkoA97NGjkSm3xxnbnkDZsnIFNfYkSriV38JCUc=" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:89" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:89/ListReleaseInvoice" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36" />
+    </item>
+    <item name="HTTP_UPGRADE_INSECURE_REQUESTS">
+      <value string="1" />
+    </item>
+  </serverVariables>
+  <cookies>
+    <item name=".bkavTvan">
+      <value string="79B61E6A56E0C7BBF8CBCF91546DEE23A2EBB5B21D45E8C97808F9E7939972E5DBD0409C36F55D92F916AF4F037C7F779B1AF369E2FFC79FC6A140C85C74B2EC26E22A8723EF43ADD695E9E6460FDF9A9F33688328BA440F50D9808CB693EC3B1E1AEE2128A2F1707B206C590096812C28096D3BB2357E6F1FD1FF5F2D67DCD3945C95C678E17AF7FEB5190B22B731CE4F6E8349A274FF8967436AC88EAAF6EB61C96B4DC070017B3BCBC332CCAA4CF599BF3D5B948485C1432EB431F2C854D99E59D645841ADFED4AB44C19C95A7425DB8692C85D5C424FCD78007515B02DDBC7A43CB8A1C6366D1C7E5904178A4946AFEE2B6691D99CCF88F17FB9C186DF110F4BA87739500C99FCF2E7F81ACCE83310A29C5EE7DACD255BE8368ECC73A442D6515B9D6D58300A61EE7F7EDCA404CD1EE51DCD0DC2CF388A749D1C3F0D7325" />
+    </item>
+    <item name="checkLogin">
+      <value string="E01024635" />
+    </item>
+    <item name="__RequestVerificationToken_Lw__">
+      <value string="+uAsHEFdnAGjHOgHbH6eR7anEZJD3G8xmsy8J5RoRKf9x8qUB5Lqcd63mc5QYyR+P4k/ZfZ9MEUEtX/sfG1jiBA3MDSkw7XkVxysjfMbiWORh4lBV1/h/oWZhQmD/iEBVcZOqkoA97NGjkSm3xxnbnkDZsnIFNfYkSriV38JCUc=" />
+    </item>
+  </cookies>
+</error>

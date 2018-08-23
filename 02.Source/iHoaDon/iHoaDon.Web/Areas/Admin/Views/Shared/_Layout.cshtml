@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>iHoaDon | Administrator System</title>
+    <script language="javascript" type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")"></script>
+    <link href="@Url.Content("~/Content/Admin/StyleSheet/screen.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script language="javascript" type="text/javascript" src="@Url.Content("~/Scripts/Admin/screen.js")"></script>
+    @RenderSection("Javascripts", false)
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <div class="hdrBar">
+    </div>
+    <div class="hdr">
+        <div class="hdr_top">
+            <a href="/" title="Trang chủ" class="fl">
+                <img src="@Url.Content("~/Content/Admin/Images/administrator-system.png")" width="223" height="12" /></a>
+            <div class="fr" style="padding-top: 10px;">
+                @if (Request.IsAuthenticated)
+                {
+                    <text><span>Xin chào, </span><strong>
+                        @if (User.IsInRole(iHoaDon.Entities.Roles.Admin) || User.IsInRole(iHoaDon.Entities.Roles.AdminAccountManager) || User.IsInRole(iHoaDon.Entities.Roles.AdminTechSupport))
+                        {
+                            @Html.ActionLink(User.Identity.Name, "Me", "User", new { area = "Admin" }, null)
+                        }
+                        else
+                        {
+                            @Html.ActionLink(User.Identity.Name, "Edit", "User", new { area = "Admin" })
+                        }
+                    </strong>[ @Html.ActionLink("Thoát", "LogOff", "Account", new { area = "Admin" }, null)
+                    ]</text>
+                }
+
+            </div>
+        </div>
+        @Html.Partial("_TopMenu")
+        @RenderSection("Toolbar", false)
+    </div>
+    <div class="bdw">
+        @RenderBody()
+    </div>
+    <div class="footer">
+        iHoaDon © @DateTime.Now.Year
+    </div>
+</body>

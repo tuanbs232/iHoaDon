@@ -1,0 +1,49 @@
+﻿@model iHoaDon.Web.SearchCustomerModel
+@{
+    ViewBag.Title = "iHoaDon | Khách hàng";
+
+    ViewBag.PageTitle = "Danh sách khách hàng";
+    ViewBag.EnabledSearch = true;
+    ViewBag.SearchAction = "/Customer/SearchCustomer";
+    ViewBag.SearchPlaceholder = "Tên, mã số thuế, ...";
+    Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
+}
+
+<script type="text/javascript">
+    function OnBegin() {
+        $('#divGridCustomer').block({
+            message: '<img src="/Content/images/ajax-loader.gif" width="32" height="32" /><br /><strong>Đang xử lý...</strong>',
+            css: {
+                width: '100px',
+                height: '50px',
+                padding: '5px 0px 5px 0px'
+            }
+        });
+    }
+
+    function OnSuccess() {
+        $('#divGridCustomer').unblock();
+    }
+
+    function OnFailure() {
+        alert("Có lỗi xảy ra");
+        $('#divGridCustomer').unblock();
+    }
+
+    function SetPageSize() {
+        var dropDown = $("#divGridCustomer select[name='pageSize']");
+        var currentPageSize = $("#currentPageSize");
+        if (dropDown.length != 0) {
+            currentPageSize.val(dropDown.val());
+        } else {
+            if (currentPageSize.val() == '') {
+                currentPageSize.val('25');
+            }
+        }
+    }
+</script>
+
+@{
+    var customer = ViewBag.Customer as IEnumerable<iHoaDon.Entities.Customer>;
+    Html.RenderPartial("Partial", customer);
+}

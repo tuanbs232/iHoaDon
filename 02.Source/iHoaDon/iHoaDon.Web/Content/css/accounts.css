@@ -1,0 +1,24 @@
+﻿h2 {
+    font-size: 18px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+ul.bar_tabs{
+    background-color: unset;
+}
+
+table.customer-info-table tr, table.customer-info-table td{
+    border: none !important;
+}
+
+table.customer-info-table td{
+    padding: 15px 0px !important;
+}
+.field-validation-error {
+    color: #CE5454;
+    font-size: 85%;
+}
+.input-validation-error {
+    border-color: #CE5454 !important;
+}

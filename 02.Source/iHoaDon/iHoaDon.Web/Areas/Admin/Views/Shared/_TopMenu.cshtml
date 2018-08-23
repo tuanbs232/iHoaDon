@@ -1,0 +1,22 @@
+﻿<div class="navbar">
+    <ul class="ul">
+        <li>
+            @Html.ActionLink("Quản lý tài khoản", "Index", "Account", new { area = "Admin" }, new { @class = "c" })
+            <ul class="ul">
+                <li>@Html.ActionLink("Danh sách tài khoản", "Index", "Account", new { area = "Admin" }, null)</li>
+                <li>@Html.ActionLink("Thêm mới tài khoản quản trị", "Create", "User", new { area = "Admin" }, null)</li>
+                <li>@Html.ActionLink("Thay đổi mật khâu", "ChangePassword", "Account", new { area = "Admin" }, null)</li>
+            </ul>
+        </li>
+    <li class="s"></li>
+            <li>
+                <a href="javascript:void(0)" class="c">Nhật ký</a>
+                <ul class="ul">
+                    <li>@Html.ActionLink("Nhật ký đăng nhập", "Index", "ActionLog", new { area = "Admin" }, null)</li>
+                    <li>@Html.ActionLink("Nhật ký hành động", "ActionLog", "ActionLog", new { area = "Admin" }, null)</li>
+                </ul>
+            </li>
+    </ul>
+    <div class="clr">
+    </div>
+</div>

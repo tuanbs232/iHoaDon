@@ -1,0 +1,30 @@
+﻿<script type="text/javascript">
+    function submitform() {
+        document.forms["myform"].submit();
+    }
+</script>
+@section Toolbar{
+    <div class="toolbar">
+        <div id="AlertMsg">
+        </div>
+        <div style="padding-top: 10px; float: left; padding-left: 10px">
+        </div>
+        <div class="clr">
+        </div>
+    </div>
+    @if (ViewBag.SaveSuccess != null)
+    {
+        if (ViewBag.SaveSuccess)
+        {
+        <script>
+            AlertShow('Cập nhật thành công!');
+        </script>
+        }
+        else
+        {
+        <script>
+            AlertShow('Cập nhật thất bại!', 'error');
+        </script>
+        }
+    }
+}

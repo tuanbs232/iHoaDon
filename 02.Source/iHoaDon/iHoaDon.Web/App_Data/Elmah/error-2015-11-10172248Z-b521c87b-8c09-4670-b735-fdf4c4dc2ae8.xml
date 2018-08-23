@@ -1,0 +1,218 @@
+﻿<error errorId="b521c87b-8c09-4670-b735-fdf4c4dc2ae8" application="/" host="DESKTOP-IVBN7P9" type="System.NullReferenceException" message="Object reference not set to an instance of an object." source="App_Web_1mnhkrsf" detail="System.NullReferenceException: Object reference not set to an instance of an object.&#xD;&#xA;   at ASP._Page_Views_Accounts_Register_cshtml.Execute() in p:\Projects\iHoaDon\iHoaDon.Web\Views\Accounts\Register.cshtml:line 107&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.WebPages.StartPage.RunPage()&#xD;&#xA;   at System.Web.WebPages.StartPage.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)&#xD;&#xA;   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)&#xD;&#xA;   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)&#xD;&#xA;   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.&lt;&gt;c__DisplayClass1c.&lt;InvokeActionResultWithFilters&gt;b__19()&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.&lt;&gt;c__DisplayClass1c.&lt;&gt;c__DisplayClass1e.&lt;InvokeActionResultWithFilters&gt;b__1b()&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeAction(ControllerContext controllerContext, String actionName)&#xD;&#xA;   at System.Web.Mvc.Controller.ExecuteCore()&#xD;&#xA;   at System.Web.Mvc.ControllerBase.Execute(RequestContext requestContext)&#xD;&#xA;   at System.Web.Mvc.ControllerBase.System.Web.Mvc.IController.Execute(RequestContext requestContext)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClass6.&lt;&gt;c__DisplayClassb.&lt;BeginProcessRequest&gt;b__5()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass1.&lt;MakeVoidDelegate&gt;b__0()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass8`1.&lt;BeginSynchronous&gt;b__7(IAsyncResult _)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClasse.&lt;EndProcessRequest&gt;b__d()&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.&lt;GetCallInAppTrustThunk&gt;b__0(Action f)&#xD;&#xA;   at System.Web.Mvc.SecurityUtil.ProcessInApplicationTrust(Action action)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" time="2015-11-10T17:22:48.8557846Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:max-age=0&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_CONTENT_LENGTH:730&#xD;&#xA;HTTP_CONTENT_TYPE:multipart/form-data; boundary=----WebKitFormBoundaryF43peSGGF33mDyFA&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:vi&#xD;&#xA;HTTP_COOKIE:CKFinder_Path=Images%3A%2F%3A1; _culture=vi-VN; _pk_id.47.1fff=8a2c6946598d08be.1443027516.12.1446486882.1446485960.; __RequestVerificationToken_Lw__=A4yOut2jW1z1MxbysL+p6q2MbHVfTwmotxti57YHf17EK9IoNvs0gK+3khPoS/Ib0hAYXcsAlmLvLkX1qZBRYlivN0xEtmDkKR0X27ck28cMKpF62dsDvpxVM/0pMLZ9iOe9lUCCMFOqLjHkNivVs8YwDp7eW7ppkygsubamG3k=; ASP.NET_SessionId=q1cbgqwda1sgsb2jeo3ckqmf; .bkavTvan=ACA83A3CCC80609B769C098262C55D6C8E51993847FDAEAF3A5E6993A3E1794DB087A246CE4889C76A1502CCB28A1958131735C79E0349C5F8D63AFBE6923F86E8A342D14EECF134CA7B43ED4B9F456D9884AEB678CCA9C4EA1691A095E353D34C46D85D7C82574D52F89760B05DEFCB06C5A2E50DCC13F3394873410331C836950F9E19745A496E589DB068D360D33ADECCFE1AA226CE1ECA8CCEB01F2C5E8064DF3672D839833AC0BEE095295DCF55B17FD12D51C58037480F1FBE4A4DA5806B90D354770F2A20054BB917DA4878B344513A4CC30A4573D1D581C0063D7C01950A61B37D3468072B3F881EA5599E0E55BBF39CE7EBC4DEA97E4EB5F3C8E376BCFC263431602DD7F0DED4F3A85B9C3EFC151EAF69AC2295E0B556F78FE4B1309D58ADBCE84B40CBE7254E8DD779D897540FE37E35047C9DB0C5FEC3344F86BC; checkLogin=E01014959&#xD;&#xA;HTTP_HOST:localhost:18331&#xD;&#xA;HTTP_REFERER:http://localhost:18331/Invoice/Reissueinvoice&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36&#xD;&#xA;HTTP_ORIGIN:http://localhost:18331&#xD;&#xA;HTTP_UPGRADE_INSECURE_REQUESTS:1&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: max-age=0&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Content-Length: 730&#xD;&#xA;Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryF43peSGGF33mDyFA&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate&#xD;&#xA;Accept-Language: vi&#xD;&#xA;Cookie: CKFinder_Path=Images%3A%2F%3A1; _culture=vi-VN; _pk_id.47.1fff=8a2c6946598d08be.1443027516.12.1446486882.1446485960.; __RequestVerificationToken_Lw__=A4yOut2jW1z1MxbysL+p6q2MbHVfTwmotxti57YHf17EK9IoNvs0gK+3khPoS/Ib0hAYXcsAlmLvLkX1qZBRYlivN0xEtmDkKR0X27ck28cMKpF62dsDvpxVM/0pMLZ9iOe9lUCCMFOqLjHkNivVs8YwDp7eW7ppkygsubamG3k=; ASP.NET_SessionId=q1cbgqwda1sgsb2jeo3ckqmf; .bkavTvan=ACA83A3CCC80609B769C098262C55D6C8E51993847FDAEAF3A5E6993A3E1794DB087A246CE4889C76A1502CCB28A1958131735C79E0349C5F8D63AFBE6923F86E8A342D14EECF134CA7B43ED4B9F456D9884AEB678CCA9C4EA1691A095E353D34C46D85D7C82574D52F89760B05DEFCB06C5A2E50DCC13F3394873410331C836950F9E19745A496E589DB068D360D33ADECCFE1AA226CE1ECA8CCEB01F2C5E8064DF3672D839833AC0BEE095295DCF55B17FD12D51C58037480F1FBE4A4DA5806B90D354770F2A20054BB917DA4878B344513A4CC30A4573D1D581C0063D7C01950A61B37D3468072B3F881EA5599E0E55BBF39CE7EBC4DEA97E4EB5F3C8E376BCFC263431602DD7F0DED4F3A85B9C3EFC151EAF69AC2295E0B556F78FE4B1309D58ADBCE84B40CBE7254E8DD779D897540FE37E35047C9DB0C5FEC3344F86BC; checkLogin=E01014959&#xD;&#xA;Host: localhost:18331&#xD;&#xA;Referer: http://localhost:18331/Invoice/Reissueinvoice&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36&#xD;&#xA;Origin: http://localhost:18331&#xD;&#xA;Upgrade-Insecure-Requests: 1&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="P:\Projects\iHoaDon\iHoaDon.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="DESKTOP-IVBN7P9\LP_Admin" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="730" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="multipart/form-data; boundary=----WebKitFormBoundaryF43peSGGF33mDyFA" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="" />
+    </item>
+    <item name="HTTPS">
+      <value string="" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/Accounts/Register" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="P:\Projects\iHoaDon\iHoaDon.Web\Accounts\Register" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="POST" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/Accounts/Register" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="18331" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="" />
+    </item>
+    <item name="URL">
+      <value string="/Accounts/Register" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="max-age=0" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_CONTENT_LENGTH">
+      <value string="730" />
+    </item>
+    <item name="HTTP_CONTENT_TYPE">
+      <value string="multipart/form-data; boundary=----WebKitFormBoundaryF43peSGGF33mDyFA" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="vi" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="CKFinder_Path=Images%3A%2F%3A1; _culture=vi-VN; _pk_id.47.1fff=8a2c6946598d08be.1443027516.12.1446486882.1446485960.; __RequestVerificationToken_Lw__=A4yOut2jW1z1MxbysL+p6q2MbHVfTwmotxti57YHf17EK9IoNvs0gK+3khPoS/Ib0hAYXcsAlmLvLkX1qZBRYlivN0xEtmDkKR0X27ck28cMKpF62dsDvpxVM/0pMLZ9iOe9lUCCMFOqLjHkNivVs8YwDp7eW7ppkygsubamG3k=; ASP.NET_SessionId=q1cbgqwda1sgsb2jeo3ckqmf; .bkavTvan=ACA83A3CCC80609B769C098262C55D6C8E51993847FDAEAF3A5E6993A3E1794DB087A246CE4889C76A1502CCB28A1958131735C79E0349C5F8D63AFBE6923F86E8A342D14EECF134CA7B43ED4B9F456D9884AEB678CCA9C4EA1691A095E353D34C46D85D7C82574D52F89760B05DEFCB06C5A2E50DCC13F3394873410331C836950F9E19745A496E589DB068D360D33ADECCFE1AA226CE1ECA8CCEB01F2C5E8064DF3672D839833AC0BEE095295DCF55B17FD12D51C58037480F1FBE4A4DA5806B90D354770F2A20054BB917DA4878B344513A4CC30A4573D1D581C0063D7C01950A61B37D3468072B3F881EA5599E0E55BBF39CE7EBC4DEA97E4EB5F3C8E376BCFC263431602DD7F0DED4F3A85B9C3EFC151EAF69AC2295E0B556F78FE4B1309D58ADBCE84B40CBE7254E8DD779D897540FE37E35047C9DB0C5FEC3344F86BC; checkLogin=E01014959" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:18331" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:18331/Invoice/Reissueinvoice" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36" />
+    </item>
+    <item name="HTTP_ORIGIN">
+      <value string="http://localhost:18331" />
+    </item>
+    <item name="HTTP_UPGRADE_INSECURE_REQUESTS">
+      <value string="1" />
+    </item>
+  </serverVariables>
+  <form>
+    <item name="InvoiceType">
+      <value string="" />
+    </item>
+    <item name="TemplateCode">
+      <value string="" />
+    </item>
+    <item name="Serial">
+      <value string="" />
+    </item>
+    <item name="InvoiceNumber">
+      <value string="" />
+    </item>
+    <item name="FromNumber">
+      <value string="" />
+    </item>
+    <item name="ToNumber">
+      <value string="" />
+    </item>
+    <item name="InvoiceIssuedDate">
+      <value string="" />
+    </item>
+  </form>
+  <cookies>
+    <item name="CKFinder_Path">
+      <value string="Images%3A%2F%3A1" />
+    </item>
+    <item name="_culture">
+      <value string="vi-VN" />
+    </item>
+    <item name="_pk_id.47.1fff">
+      <value string="8a2c6946598d08be.1443027516.12.1446486882.1446485960." />
+    </item>
+    <item name="__RequestVerificationToken_Lw__">
+      <value string="A4yOut2jW1z1MxbysL+p6q2MbHVfTwmotxti57YHf17EK9IoNvs0gK+3khPoS/Ib0hAYXcsAlmLvLkX1qZBRYlivN0xEtmDkKR0X27ck28cMKpF62dsDvpxVM/0pMLZ9iOe9lUCCMFOqLjHkNivVs8YwDp7eW7ppkygsubamG3k=" />
+    </item>
+    <item name="ASP.NET_SessionId">
+      <value string="q1cbgqwda1sgsb2jeo3ckqmf" />
+    </item>
+    <item name=".bkavTvan">
+      <value string="ACA83A3CCC80609B769C098262C55D6C8E51993847FDAEAF3A5E6993A3E1794DB087A246CE4889C76A1502CCB28A1958131735C79E0349C5F8D63AFBE6923F86E8A342D14EECF134CA7B43ED4B9F456D9884AEB678CCA9C4EA1691A095E353D34C46D85D7C82574D52F89760B05DEFCB06C5A2E50DCC13F3394873410331C836950F9E19745A496E589DB068D360D33ADECCFE1AA226CE1ECA8CCEB01F2C5E8064DF3672D839833AC0BEE095295DCF55B17FD12D51C58037480F1FBE4A4DA5806B90D354770F2A20054BB917DA4878B344513A4CC30A4573D1D581C0063D7C01950A61B37D3468072B3F881EA5599E0E55BBF39CE7EBC4DEA97E4EB5F3C8E376BCFC263431602DD7F0DED4F3A85B9C3EFC151EAF69AC2295E0B556F78FE4B1309D58ADBCE84B40CBE7254E8DD779D897540FE37E35047C9DB0C5FEC3344F86BC" />
+    </item>
+    <item name="checkLogin">
+      <value string="E01014959" />
+    </item>
+  </cookies>
+</error>

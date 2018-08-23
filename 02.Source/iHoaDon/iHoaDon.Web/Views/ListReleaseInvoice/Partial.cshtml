@@ -1,0 +1,111 @@
+﻿@using iHoaDon.Web
+@model IEnumerable<iHoaDon.Entities.ListReleaseInvoice>
+@{
+    ViewBag.Title = "Partial";
+    var sortAndPage = ViewBag.SortAndPage as iHoaDon.Web.Models.SortAndPageModel;
+    var search = ViewBag.ModelSearch as SearchListReleaseInvoiceModel;
+}
+<table id="listReleaseInvoice" class="table table-striped">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên loại hóa đơn</th>
+            <th>Mẫu số</th>
+            <th>Ký hiệu</th>
+            <th>Từ số</th>
+            <th>Đến số</th>
+            <th>Số lượng</th>
+            <th>Đã dùng</th>
+            <th>Đã hủy</th>
+            <th>Ngày bắt đầu sử dụng</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var index = (sortAndPage.CurrentPageIndex - 1) * sortAndPage.PageSize;
+        }
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+            <tr id="row-@index" @(index % 2 == 1 ? "class=even-row" : "")>
+                <td align="center">
+                    @(index + 1)
+                </td>
+                <td style="padding-left: 10px;">
+                    @item.TemplateName (@item.TemplateCode)
+                </td>
+                <td style="padding-left: 10px">
+                    @item.No
+                </td>
+                <td style="padding-left: 10px">
+                    @item.SerialInvoice
+                </td>
+                <td style="padding-left: 10px">
+                    @item.StartNumber
+                </td>
+                <td style="padding-left: 10px">
+                    @item.EndNumber
+                </td>
+                <td style="padding-left: 10px">
+                    @item.Quantity
+                </td>
+                <td style="padding-left: 10px">[232]
+                </td>
+                <td style="padding-left: 10px">[32323]
+                </td>
+                <td style="padding-left: 10px">
+                    @Convert.ToDateTime(item.StartUsingDate).ToString("dd/MM/yyyy")
+                </td>
+                <td align="center">
+                    <table class="table_column">
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("Cancelinvoice", "ListReleaseInvoice", new { id = item.Id })" class="btn btn-outline-danger btn-sm">
+                                   <i class="fa fa-trash-o"></i> Hủy</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+                index++;
+            }
+        }
+        @if (Model == null || Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="11">Không có bản ghi nào!
+                </td>
+            </tr>
+        }
+    </tbody>
+    @if (Model != null && Model.Count() > 0)
+    {
+        @*<tfoot>
+            <tr>
+                <td colspan="11">
+                    @Ajax.Pager(sortAndPage.PageSize,
+                                sortAndPage.CurrentPageIndex,
+                                sortAndPage.TotalRecordCount,
+                                "SortingAndPagingAccounts",
+                                new
+                                {
+                                    sortBy = sortAndPage.SortBy,
+                                    sortDesc = sortAndPage.SortDescending
+                                },
+                                 new AjaxOptions
+                                 {
+                                     UpdateTargetId = "divGridListReleaseInvoice",
+                                     OnBegin = "OnBegin",
+                                     OnSuccess = "OnSuccess",
+                                     OnFailure = "OnFailure"
+                                 },
+                                "pagerButton",
+                                "pagerButtonDisabled",
+                                "pagerButtonCurrentPage")
+                </td>
+            </tr>
+        </tfoot>*@
+    }
+</table>
