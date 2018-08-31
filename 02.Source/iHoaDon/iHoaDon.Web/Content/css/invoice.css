@@ -3,3 +3,69 @@
 .inv-title {
     text-align: center;
 }
+.inv-right{
+    text-align: right;
+}
+.inv-right .row .col-sm-2{
+    padding-right: 0px;
+}
+.form-horizontal .control-label {
+    padding-top: 2px;
+    font-weight: 100;
+    margin-bottom: 0;
+    text-align: right;
+    font-size: 12px;
+}
+.form-group{
+    margin-bottom: 5px;
+}
+.form-control {
+    height: 25px;
+    padding: 4px 0px;
+    font-size: 12px;
+}
+.well {
+    min-height: 350px;
+    background-color: unset;
+}
+.divider{
+    margin: 30px 0px;
+}
+.invoice-items-table td{
+    padding: 5px !important;
+}
+.invoice-items-table th, .sum-table th {
+    font-weight: 100 !important;
+    font-size: 12px;
+    background-color: #26b99a;
+    color: white;
+}
+.switchery {
+    width: 32px;
+    height: 20px
+}
+
+    .switchery > small {
+        width: 20px;
+        height: 20px
+    }
+
+.add-row, .remove-row {
+    font-size: 16px;
+    cursor: pointer;
+}
+.remove-row {
+    color: #d9534f;
+}
+.sum-table td input {
+    border: none;
+}
+.sum-table td{
+    font-size: 12px;
+}
+.x_panel, .x_title, .well, .divider, .form-control {
+    border-color: #a3a6ab;
+}
+.x_title{
+
+}
