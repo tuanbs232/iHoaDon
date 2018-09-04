@@ -124,7 +124,7 @@ function addRow(tableID, invType) {
 	var newSuffix = oldSuffix + 1;
 	
     var idxCol = "<td><input id='lineNumber" + newSuffix + "' class='disable form-control' type='text' name='invoiceItemList[" + newSuffix + "].lineNumber' readonly='true' value='" + rowCount + "'></td>";
-	var promotionCol = "<td><select id='itemPromotion" + newSuffix +"' name='invoiceItemList[" + newSuffix + "].promotion' style='width: 60px;' onchange='changeItemPromotion(" + newSuffix + ");' class='form-control'>"		                
+	var promotionCol = "<td><select id='itemPromotion" + newSuffix +"' name='invoiceItemList[" + newSuffix + "].promotion' onchange='changeItemPromotion(" + newSuffix + ");' class='form-control'>"		                
 			           + "<option value='0'></option><option value='1'>Khuyến mại</option></select></td>";
 	
 	var itemCodeCol = cloneItemCodeCol(tableID, newSuffix);
@@ -142,7 +142,7 @@ function addRow(tableID, invType) {
 	}
 	if (invType == '01GTKT' || invType == '02GTTT' || invType == '07KPTQ') {
         enableItemTotalCol = "<td style='text-align: center;'><input id='enableItemTotal" + newSuffix + "' type='checkbox' onClick='toggleItemTotal(" + newSuffix + ");' title='" + $("#enableItemTotal" + oldSuffix).attr("title") + "' class='js-switch1 js-switch-" + newSuffix +"' style='width: 60px;'/></td>";
-        itemPriceCol = "<td><input type='text' id='itemPrice" + newSuffix + "' name='invoiceItemList[" + newSuffix + "].unitPrice' class='validate[required, positive] format-currency' style='width: 60px;' maxlength='15'></td>";
+        itemPriceCol = "<td><input type='text' id='itemPrice" + newSuffix + "' name='invoiceItemList[" + newSuffix + "].unitPrice' class='validate[required, positive] format-currency' maxlength='15'></td>";
 	}else{
 		promotionCol = "";
 		

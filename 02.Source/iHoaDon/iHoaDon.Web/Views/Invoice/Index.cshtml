@@ -4,7 +4,8 @@
     ViewBag.Title = "Lập hóa đơn";
     ViewBag.PageSubTitle = "Lập hóa đơn";
     Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
-    ViewBag.ViewWidth = "col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2";
+    //ViewBag.ViewWidth = "col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2";
+    ViewBag.ViewWidth = "col-sm-10 col-sm-offset-1";
 }
 <style>
     .file-input-wrapper {
@@ -306,16 +307,16 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5px;">STT</th>
-                                    <th>Khuyến mại</th>
-                                    <th>Mã hàng hóa, dịch vụ</th>
+                                    <th width="120px">Khuyến mại</th>
+                                    <th width="150px">Mã hàng hóa, dịch vụ</th>
                                     <th>Tên hàng hóa, dịch vụ</th>
                                     <th style="width: 120px;">Đơn vị tính</th>
                                     <th style="width: 15px;">Số lượng</th>
-                                    <th>Đơn giá</th>
+                                    <th width="100px">Đơn giá</th>
 
-                                    <th style="width: 120px;">Thuế suất</th>
+                                    <th style="width: 100px;">Thuế suất</th>
 
-                                    <th>Thành tiền</th>
+                                    <th width="150px">Thành tiền</th>
                                     <th style="width: 80px;">Cho nhập tiền</th>
                                     <th style="width: 60px; text-align: center;">
                                         <i class="fa fa-plus-circle add-row" title="Thêm dòng" onclick="addRow('dataTable', '01GTKT')"></i>
@@ -331,14 +332,14 @@
                                     </td>
                                     <!-- Khuyến mại -->
                                     <td>
-                                        <select id="itemPromotion0" name="invoiceItemList[0].promotion" style="width: 60px;" onchange="changeItemPromotion(0);" class="form-control" tabindex="-1">
+                                        <select id="itemPromotion0" name="invoiceItemList[0].promotion" onchange="changeItemPromotion(0);" class="form-control" tabindex="-1">
                                             <option value="0"></option>
                                             <option value="1">Khuyến mại</option>
                                         </select>
                                     </td>
                                     <!-- Mã hàng hóa, dịch vụ -->
                                     <td>
-                                        <select id="itemCode0" name="invoiceItemList[0].itemCode" style="width: 100px;" class="form-control" tabindex="-1">
+                                        <select id="itemCode0" name="invoiceItemList[0].itemCode" class="form-control" tabindex="-1">
                                             <option value="">--- Chọn ---</option>
                                             @foreach (var item in Model.Products)
                                 {
@@ -367,12 +368,12 @@
                                     </td>
                                     <!-- Đơn giá -->
                                     <td>
-                                        <input type="text" id="itemPrice0" name="invoiceItemList[0].unitPrice" style="width: 60px;" class="validate[required, positive] format-currency form-control" maxlength="15">
+                                        <input type="text" id="itemPrice0" name="invoiceItemList[0].unitPrice" class="validate[required, positive] format-currency form-control" maxlength="15">
                                     </td>
                                     <!-- Thuế suất -->
                                     <td>
 
-                                        <select id="itemVat0" name="invoiceItemList[0].vatCategoryPercentage" style="width: 100px;" tabindex="-1" class="form-control">
+                                        <select id="itemVat0" name="invoiceItemList[0].vatCategoryPercentage" tabindex="-1" class="form-control">
                                             <option value="">--- Chọn ---</option>
 
                                             <option value="10">10%</option>
@@ -389,7 +390,7 @@
                                     </td>
                                     <!-- Thành tiền -->
                                     <td>
-                                        <input type="text" id="itemTotal0" name="invoiceItemList[0].itemTotalAmountWithoutVat" class="format-currency disable form-control" style="width: 100px;" readonly="readonly">
+                                        <input type="text" id="itemTotal0" name="invoiceItemList[0].itemTotalAmountWithoutVat" class="format-currency disable form-control" readonly="readonly">
                                     </td>
                                     <td style="text-align: center;">
                                         <input id="enableItemTotal0" type="checkbox" onchange="toggleItemTotal(0);" title="Cho phép nhập Thành tiền" class="js-switch1" style="width: 60px;" />
