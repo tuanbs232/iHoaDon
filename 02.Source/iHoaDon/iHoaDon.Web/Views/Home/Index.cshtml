@@ -1,11 +1,571 @@
 ﻿@{
-    ViewBag.Title = "iHoaDon - Hóa đơn điện tử";
-    if (Request.IsAuthenticated)
-    {
-        Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
-    }
-    else
-    {
-        Layout = "~/Views/Shared/_UnAuthenticatedLayout.cshtml";
-    }
+    Layout = null;
 }
+<html>
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>iHoaDon-Hóa đơn điện tử</title>
+
+    <meta name="keywords" content="iHoaDon" />
+    <meta name="description" content="iHoaDon">
+    <meta name="author" content="tuanbs208@gmail.com">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/Content/icons/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <meta name="msapplication-TileColor" content="#191919" />
+    <meta property="og:title" content="iHoaDon Group" />
+    <meta property="og:type" content="Company" />
+    <meta property="og:url" content="#" />
+    <meta property="og:image" content="#" />
+    <link href="/Content/Vendors/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/Vendors/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="/Content/Vendors/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
+    <link href="/Content/Vendors/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="/Content/Vendors/owl.carousel/assets/owl.theme.default.css" rel="stylesheet" />
+    <link href="/Content/Vendors/magnific-popup/magnific-popup.css" rel="stylesheet" />
+    <link href="/Content/indextheme/theme.css" rel="stylesheet" />
+    <link href="/Content/indextheme/theme-elements.css" rel="stylesheet" />
+    <link href="/Content/indextheme/theme-blog.css" rel="stylesheet" />
+    <link href="/Content/indextheme/theme-shop.css" rel="stylesheet" />
+    <link href="/Content/indextheme/theme-animate.css" rel="stylesheet" />
+    <link href="/Content/Vendors/rs-plugin/css/settings.css" rel="stylesheet" />
+    <link href="/Content/Vendors/rs-plugin/css/layers.css" rel="stylesheet" />
+    <link href="/Content/Vendors/rs-plugin/css/navigation.css" rel="stylesheet" />
+    <link href="/Content/Vendors/circle-flip-slideshow/css/component.css" rel="stylesheet" />
+    <link href="/Content/indextheme/skins/default.css" rel="stylesheet" />
+    <link href="/Content/indextheme/custom.css" rel="stylesheet" />
+    <script src="/Content/Vendors/modernizr/modernizr.js"></script>
+    <style>
+        .iHoaDon-scope {
+            padding-top: 50px;
+            padding-bottom: 50px;
+            color: #888;
+        }
+
+            .iHoaDon-scope h1 {
+                color: #fff;
+            }
+
+            .iHoaDon-scope i.fa {
+                color: #fff !important;
+            }
+
+            .iHoaDon-scope strong {
+                color: #fff !important;
+            }
+
+        .iHoaDon-cus {
+            background: #eee;
+            padding-top: 50px;
+            margin-bottom: -50px;
+        }
+
+        .div-divider {
+            margin-top: 30px;
+            height: 1px;
+            border-top: solid 1px #ddd;
+        }
+
+        .page-header.parallax {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .nav-pills .social-icons a {
+            background-color: #aaa;
+            color: #fff !important;
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+            line-height: 30px;
+            padding: 0px;
+        }
+        .counters label {
+            text-transform: uppercase;
+            padding-top: 10px;
+        }
+        .counters .fa, .counters .icons {
+            display: inline-block;
+            font-size: 35px;
+            line-height: 35px;
+            margin-bottom: 5px;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border: solid 2px;
+            border-radius: 50%;
+        }
+        .counter p {
+            padding: 0px 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="body">
+        <header id="header">
+            <div class="header-body">
+                <div class="header-container container">
+                    <div class="header-row">
+                        <div class="header-column">
+                            <div class="header-logo">
+                                <a href="index.html">
+                                    <img alt="iHoaDon Group" src="/Content/Logo.png">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="header-column">
+                            <div class="header-row">
+                                <div class="header-nav">
+                                    <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main">
+                                        <i class="fa fa-bars"></i>
+                                    </button>
+                                    <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
+                                        <nav>
+                                            <ul class="nav nav-pills" id="mainNav">
+                                                <li class="active">
+                                                    <a href="javascript::void(0)">
+                                                        TRANG CHỦ
+                                                    </a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                        TÀI LIỆU HƯỚNG DẪN
+                                                        <span class=" fa fa-angle-down"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                                        <li><a href="javascript:;"> Văn bản pháp luật</a></li>
+                                                        <li><a href="javascript:;"> Hướng dẫn sử dụng</a></li>
+                                                        <li><a href="javascript::void(0)">Mẫu hóa đơn</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript::void(0)">
+                                                        LIÊN HỆ
+                                                    </a>
+                                                </li>
+                                                @*<li class="">
+                                                    <a href="javascript::void(0)" class="user-profile" data-target="#examplePositionSidebar" data-toggle="modal">
+                                                        <i class="fa fa-sign-in"></i>&nbsp;&nbsp;ĐĂNG NHẬP
+                                                    </a>
+                                                </li>*@
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div role="main" class="main">
+            <div class="slider-with-overlay">
+
+                <div class="slider-container rev_slider_wrapper" style="height: 560px;">
+                    <div id="revolutionSlider" class="slider rev_slider" data-plugin-revolution-slider data-plugin-options='{"gridwidth": 1170, "gridheight": 560}'>
+                        <ul>
+                            <li data-transition="fade">
+                                <img src="/Content/Images/Slides/slide-03.jpg"
+                                     alt=""
+                                     data-bgposition="center center"
+                                     data-bgfit="cover"
+                                     data-bgrepeat="no-repeat"
+                                     class="rev-slidebg">
+
+                                <div class="tp-caption"
+                                     data-x="77"
+                                     data-y="180"
+                                     data-start="1000"
+                                     data-transform_in="x:[-300%];opacity:0;s:500;"><img src="/Content/Images/Slides/slide-title-border.png" alt=""></div>
+
+                                <div class="tp-caption top-label"
+                                     data-x="157"
+                                     data-y="173"
+                                     data-start="500"
+                                     data-transform_in="y:[-300%];opacity:0;s:500;">Hóa đơn điện tử</div>
+
+                                <div class="tp-caption"
+                                     data-x="380"
+                                     data-y="180"
+                                     data-start="1000"
+                                     data-transform_in="x:[300%];opacity:0;s:500;"><img src="/Content/Images/Slides/slide-title-border.png" alt=""></div>
+
+                                <div class="tp-caption main-label"
+                                     data-x="85"
+                                     data-y="210"
+                                     data-start="1500"
+                                     data-whitespace="nowrap"
+                                     data-transform_in="y:[100%];s:500;"
+                                     data-transform_out="opacity:0;s:500;"
+                                     data-mask_in="x:0px;y:0px;">iHOADON</div>
+
+                                <div class="tp-caption bottom-label"
+                                     data-x="35"
+                                     data-y="280"
+                                     data-start="2000"
+                                     data-transform_in="y:[100%];opacity:0;s:500;">Thuận tiện - Nhanh chóng - Tiết kiệm - An toàn</div>
+
+                            </li>
+                            <li data-transition="fade">
+                                <img src="/Content/Images/Slides/slide-02.jpg"
+                                     alt=""
+                                     data-bgposition="center center"
+                                     data-bgfit="cover"
+                                     data-bgrepeat="no-repeat"
+                                     class="rev-slidebg">
+
+                                <div class="tp-caption"
+                                     data-x="77"
+                                     data-y="180"
+                                     data-start="1000"
+                                     data-transform_in="x:[-300%];opacity:0;s:500;"><img src="/Content/Images/Slides/slide-title-border.png" alt=""></div>
+
+                                <div class="tp-caption top-label"
+                                     data-x="157"
+                                     data-y="173"
+                                     data-start="500"
+                                     data-transform_in="y:[-300%];opacity:0;s:500;">Hóa đơn xác thực</div>
+
+                                <div class="tp-caption"
+                                     data-x="380"
+                                     data-y="180"
+                                     data-start="1000"
+                                     data-transform_in="x:[300%];opacity:0;s:500;"><img src="/Content/Images/Slides/slide-title-border.png" alt=""></div>
+
+                                <div class="tp-caption main-label"
+                                     data-x="85"
+                                     data-y="210"
+                                     data-start="1500"
+                                     data-whitespace="nowrap"
+                                     data-transform_in="y:[100%];s:500;"
+                                     data-transform_out="opacity:0;s:500;"
+                                     data-mask_in="x:0px;y:0px;">iHOADON</div>
+
+                                <div class="tp-caption bottom-label"
+                                     data-x="35"
+                                     data-y="280"
+                                     data-start="2000"
+                                     data-transform_in="y:[100%];opacity:0;s:500;">Thuận tiện - Nhanh chóng - Tiết kiệm - An toàn</div>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <div class="slider-contact-form">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-md-5 col-md-offset-7">
+
+                                <div class="featured-boxes mt-none mb-none">
+                                    <div class="featured-box featured-box-primary mt-xl">
+                                        <div class="box-content">
+                                            <h4 class="mb-none">ĐĂNG NHẬP</h4>
+                                            <p>Phát hành và quản lý hóa đơn điện tử.</p>
+                                            <form action="/Accounts/LogOnUser" method="post">
+                                                <input type="hidden" name="returnUrl" />
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="CompanyCode">Tên đăng nhập</label>
+                                                    <input type="text" class="form-control" id="" name="CompanyCode" placeholder="Tên đăng nhập" value="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="Password">Mật khẩu</label>
+                                                    <input type="password" class="form-control" id="Password" name="Password"
+                                                           placeholder="Mật khẩu">
+                                                </div>
+                                                <div class="form-group clearfix">
+                                                    <a class="float-right" href="#">Quên mật khẩu?</a>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary btn-block submit-btn" id="submit-login">Đăng nhập</button>
+                                                <p>Chưa có tài khoản? <a href="/Accounts/Register">Đăng ký ngay</a></p>
+                                                <br />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="container">
+                </br></br>
+                <div class="row center">
+                    <div class="col-md-12">
+                        <h2 class="mb-sm word-rotator-title" itemscope>
+                            Sứ mệnh của iHoaDon là cung cấp giải pháp Hóa đơn điện tử và Hóa đơn xác thực với tôn chỉ: <br /><strong itemprop="name">"Thuận tiện - Nhanh chóng - Tiết kiệm - An toàn"</strong>
+                        </h2>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 2 loại hình kinh doanh của iHoaDon -->
+            <div class="container">
+                <div class="row center">
+                    <div class="col-md-12">
+                        <img src="img/dark-and-light.jpg" class="img-responsive appear-animation" data-appear-animation="fadeInUp" alt="dark and light" style="margin: 45px 0px -30px;">
+                    </div>
+                </div>
+            </div>
+            <section class="page-header page-header-custom-background parallax" data-stellar-background-ratio="0.5" style="background-image: url(/Content/Images/parallax.jpg);">
+                <div class="container-fluid iHoaDon-scope">
+                    <div class="row center">
+                        <h1 data-appear-animation="fadeInRight">Về iHoaDon</h1>
+                        <hr class="tall">
+                    </div>
+                    <div class="row">
+                        <div class="counters">
+                            <div class="col-md-3 col-sm-6">
+                                <div class="counter counter-dark">
+                                    <i class="fa fa-users"></i>
+                                    <label>Tư vấn chuyên nghiệp</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="counter counter-dark">
+                                    <i class="fa fa-star"></i>
+                                    <label>Nhanh chóng, thuận tiện</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="counter counter-dark counter-with-unit counter-primary">
+                                    <i class="fa fa-money"></i>
+                                    <label>Tiết kiệm chi phí</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="counter counter-dark counter-with-unit counter-primary">
+                                    <i class="fa fa-shield"></i>
+                                    <label>An toàn giao dịch</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- -------------------------------- -->
+            <div class="container">
+                <div class="row center">
+                    </br></br>
+                    <h1 data-appear-animation="fadeInRight">Sản phẩm &amp; Dịch vụ</h1>
+                    <hr class="tall">
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive mt-xl appear-animation" src="/Content/Images/ei.jpg" alt="layout styles" data-appear-animation="fadeInLeft">
+                    </div>
+                    <div class="col-md-7 col-md-offset-1">
+                        <h2 class="mt-xl"><strong>Lợi ích của hoá đơn điện tử​</strong></h2>
+                        <p class="lead justify-align">
+                            Thuận tiện, nhanh chóng
+                        </p>
+                        <p class="justify-align">
+                            <ul>
+                                <li>
+                                    Giao diện làm việc trực quan, sinh động, các công cụ tìm kiếm thông minh kết hợp với hệ thống báo cáo chi tiết giúp bạn dễ dàng trong việc xuất hóa đơn và điều hành doanh nghiệp.
+                                </li>
+                                <li>
+                                    Hóa đơn điện tử không bị ảnh hưởng bởi nhân sự ký hóa đơn trực tiếp, thay vào đó là sử dụng chữ ký điện tử mang đến sự tiện lợi hơn bao giờ hết.
+                                </li>
+                            </ul>
+                        </p>
+                        <p class="lead justify-align">
+                            Tiết kiệm, hiệu quả
+                        </p>
+                        <p class="justify-align">
+                            <ul>
+                                <li>
+                                    Giúp doanh nghiệp tiết kiệm lên đến 95% nhờ giảm thiểu chi phí in ấn, lưu trữ bảo quản hóa đơn.
+                                </li>
+                                <li>
+                                    Không cần phải bàn giao, chuyển phát nhanh hóa đơn vốn tốn nhiều chi phí và dễ dàng thất lạc hóa đơn. Giờ đây bạn đã có thể gửi hóa đơn qua Email, tin nhắn SMS ngay tức thì đến khách hàng, đối tác của bạn.
+                                </li>
+                            </ul>
+                        </p>
+                        <p class="lead justify-align">
+                            ...
+                        </p>
+                    </div>
+                </div>
+
+                <hr class="tall">
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <h2 class="mt-xl"><strong>3 bước hoàn thành hóa đơn</strong></h2>
+                        <p class="lead justify-align">
+                            <i class="fa fa-hand-o-right"></i>&nbsp; quyết định phát hành
+                        </p>
+                        <p>
+                            Ra quyết định áp dụng hình thức hóa đơn điện tử và gửi tới cơ quan thuế bằng bản cứng hoặc bằng bản mềm đã được ký chữ ký số của doanh nghiệp.
+                        </p>
+                        <p class="lead justify-align">
+                            <i class="fa fa-hand-o-right"></i>&nbsp;Tạo mẫu và thông báo phát hành hóa đơn
+                        </p>
+                        <p>
+                            Lựa chọn mẫu hóa đơn phù hợp nhất với doanh nghiệp bạn trên kho mẫu có sẵn. Sau đó đăng ký mẫu vừa chọn gửi đến cơ quan Thuế.
+                        </p>
+                        <p class="lead justify-align">
+                            <i class="fa fa-hand-o-right"></i>&nbsp;Sử dụng hóa đơn điện tử được đăng ký
+                        </p>
+                        <p>
+                            Sau 2 ngày gửi thông báo phát hành hóa đơn tới cơ quan thuế. Bạn đã có thể sử dụng hệ thống hóa đơn điện tử vào hoạt động kinh doanh của mình.
+                        </p>
+                    </div>
+                    <div class="col-md-4 col-md-offset-1 mt-xl">
+                        <img class="img-responsive appear-animation" src="/Content/Images/e-invoice.png" alt="style switcher" data-appear-animation="fadeInRight">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid iHoaDon-cus">
+                <div class="row center">
+                    <div class="col-md-12">
+                        <h2 class="mb-none word-rotator-title mt-lg" data-appear-animation="fadeInRight">
+                            Đối tác của iHoaDon
+                        </h2>
+
+                        <hr class="tall">
+                    </div>
+                </div>
+                <div class="row center mt-xl">
+                    <div class="owl-carousel owl-theme" data-plugin-options='{"items": 6, "autoplay": true, "autoplayTimeout": 3000}'>
+                    </div>
+                </div>
+                </br></br>
+            </div>
+        </div>
+
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-ribbon">
+                        <span>Get in Touch</span>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="newsletter">
+                            <h4>iHoaDon Group</h4>
+                            <div>
+                                <a href="#">
+                                    <img alt="iHoaDon Group" height="59" data-sticky-width="82" data-sticky-height="40" data-sticky-top="33" src="/Content/icons/favicon.ico">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>Liên kết</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-details">
+                            <h4>Liên hệ</h4>
+                            <ul class="contact">
+                                <li><p><i class="fa fa-map-marker"></i> <strong>Trụ sở:</strong> </p></li>
+                                <li><p><i class="fa fa-phone"></i> <strong>Điện thoại:</strong>  </p></li>
+                                <li><p><i class="fa fa-envelope"></i> <strong>Fax:</strong> </p></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <h4>Mạng xã hội</h4>
+                        <ul class="social-icons">
+                            <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li class="social-icons-linkedin"><a href="#" target="_blank" title="Google Plus"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p><strong>"Bảo mật, an toàn hóa đơn"</strong></br>© iHoaDon 2018. All rights reserved.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <nav id="sub-menu">
+                                <ul>
+                                    <li><a href="#">FAQ's</a></li>
+                                    <li><a href="#">Sitemap</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="/Content/Vendors/jquery/dist/jquery.js"></script>
+        <script src="/Content/Vendors/jquery.appear/jquery.appear.js"></script>
+        <script src="/Content/Vendors/jquery.easing/jquery.easing.js"></script>
+        <script src="/Content/Vendors/jquery-cookie/jquery-cookie.js"></script>
+        <script src="/Content/Vendors/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="/Content/Vendors/common/common.js"></script>
+        <script src="/Content/Vendors/jquery.validation/jquery.validation.js"></script>
+        <script src="/Content/Vendors/jquery.stellar/jquery.stellar.js"></script>
+        <script src="/Content/Vendors/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
+        <script src="/Content/Vendors/jquery.gmap/jquery.gmap.js"></script>
+        <script src="/Content/Vendors/jquery.lazyload/jquery.lazyload.js"></script>
+        <script src="/Content/Vendors/isotope/jquery.isotope.js"></script>
+        <script src="/Content/Vendors/owl.carousel/owl.carousel.js"></script>
+        <script src="/Content/Vendors/magnific-popup/jquery.magnific-popup.js"></script>
+        <script src="/Content/Vendors/vide/vide.js"></script>
+        <script src="/Content/indextheme/theme.js"></script>
+        <script src="/Content/Vendors/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+        <script src="/Content/Vendors/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+        <script src="/Content/indextheme/views/view.home.js"></script>
+        <script src="/Content/indextheme/custom.js"></script>
+        <script src="/Content/indextheme/theme.init.js"></script>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="examplePositionSidebar" aria-hidden="true" aria-labelledby="examplePositionSidebar"
+             role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-simple modal-sidebar modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h3 class="modal-title">Đăng nhập</h3>
+                        <p>Sử dụng tài khoản hệ thống</p>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/Accounts/LogOnUser" method="post">
+                            <input type="hidden" name="returnUrl" />
+                            <div class="form-group">
+                                <label class="sr-only" for="CompanyCode">Tên đăng nhập</label>
+                                <input type="text" class="form-control" id="" name="CompanyCode" placeholder="Tên đăng nhập" value="">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="Password">Mật khẩu</label>
+                                <input type="password" class="form-control" id="Password" name="Password"
+                                       placeholder="Mật khẩu">
+                            </div>
+                            <div class="form-group clearfix">
+                                <a class="float-right" href="#">Quên mật khẩu?</a>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block submit-btn" id="submit-login">Đăng nhập</button>
+                            <p>Chưa có tài khoản? <a href="/Accounts/Register">Đăng ký ngay</a></p>
+                            <br />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+    </div>
+</body>
+
+</html>

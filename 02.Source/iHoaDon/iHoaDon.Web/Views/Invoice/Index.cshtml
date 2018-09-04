@@ -4,6 +4,7 @@
     ViewBag.Title = "Lập hóa đơn";
     ViewBag.PageSubTitle = "Lập hóa đơn";
     Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
+    ViewBag.ViewWidth = "col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2";
 }
 <style>
     .file-input-wrapper {
@@ -31,6 +32,7 @@
 
 @*<link rel="stylesheet" type="text/css" media="all" href="/Content/ics.css">*@
 <link rel="stylesheet" type="text/css" media="all" href="/Content/validationEngine.jquery.css">
+<link href="/Content/Vendors/switchery/dist/switchery.css" rel="stylesheet" />
 @*<link rel="stylesheet" type="text/css" media="all" href="/Content/ics-responsive.css">*@
 <link href="/Content/css/invoice.css" rel="stylesheet" />
 <link href="/Content/select2.css" rel="stylesheet">
@@ -63,155 +65,172 @@
         {
             HttpMethod = "POST",
             OnSuccess = "onSuccess"
-        }, new { @class = "confirm-form", id = "myForm", onSubmit = "disableAutoNumeric();" }))
+        }, new { @class = "confirm-form form-horizontal", id = "myForm", onSubmit = "disableAutoNumeric();" }))
         {
             <div class="inv-title">
-                <h3>Hoá đơn giá trị gia tăng</h3>
+                <h3>HÓA ĐƠN GIÁ TRỊ GIA TĂNG</h3>
                 @DateTime.Now.ToString("dd/MM/yyyy")
 
                 <input type="hidden" name="templateCode" id="templateCode" value="01GTKT" />
             </div>
 
             <div class="inv-right">
-                <label for="label.tplno">Mẫu số</label>
-                @Html.DropDownListFor(model => model.ResleaseIdNo, Model.RelesaseNos, new { @class = "form-control", tabindex = "-1" })
-                <div style="height: 5px"></div>
-                <label for="label.symbol">Ký hiệu</label>
+                <div class="row form-group">
+                    <label for="label.tplno" class="control-label col-sm-2 col-sm-offset-8">Mẫu số</label>
+                    <div class="col-sm-2">
+                        @Html.DropDownListFor(model => model.ResleaseIdNo, Model.RelesaseNos, new { @class = "form-control", tabindex = "-1" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label for="label.symbol" class="control-label col-sm-2 col-sm-offset-8">Ký hiệu</label>
+                    <div class="col-sm-2">
+                        @Html.DropDownListFor(model => model.Serial, new List<SelectListItem>
+                                         {
+                                             new SelectListItem
+                                                 {
+                                                     Text = "",
+                                                     Value = ""
+                                                 }
+                                         }, new { @class = "form-control", tabindex = "-1" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label for="label.number" class="control-label col-sm-2 col-sm-offset-8">Số hóa đơn</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(model => model.InvoiceNumber, new { @readonly = "readonly", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="divider"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 hidden">
+                    <div class="well">
+                        <fieldset>
+                            <legend class="accordion-heading">
+                                <a data-toggle="collapse" href="#collapse-seller-info" class="">Thông tin người bán</a>
+                            </legend>
+                            <div id="collapse-seller-info" class="accordion-body in collapse" style="height: auto;">
+                                <div class="form-group">
 
-                @Html.DropDownListFor(model => model.Serial, new List<SelectListItem>
-                                                                 {
-                                                                     new SelectListItem
-                                                                         {
-                                                                             Text = "",
-                                                                             Value = ""
-                                                                         }
-                                                                 }, new { @class = "select2 select2-offscreen", tabindex = "-1" })
-                <div style="height: 5px"></div>
-                <label for="label.number">Số hóa đơn</label>
-                @Html.TextBoxFor(model => model.InvoiceNumber, new { @readonly = "readonly", style = "background: #fff;border: none;" })
+                                    <label for="sellerDisplayName.01GTKT" class="control-label col-sm-4">Đơn vị bán hàng</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.CompanyNameAcc, new { @id = "sellerLegalName", @name = "sellerLegalName", @readonly = "readonly", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!-- Ma so thue -->
+
+                                <div class="form-group">
+
+                                    <label for="sellerTaxCode" class="control-label col-sm-4">Mã số thuế</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.CompanyCodeAcc, new { @id = "sellerTaxCode", @name = "sellerTaxCode", @readonly = "readonly", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!-- Dia chi -->
+
+                                <div class="form-group">
+
+                                    <label for="addressLine" class="control-label col-sm-4">Địa chỉ</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.AddressAcc, new { @id = "sellerAddressLine", @name = "sellerAddressLine", @readonly = "readonly", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!-- Dien thoai -->
+
+                                <div class="form-group">
+
+                                    <label for="sellerPhoneNumber" class="control-label col-sm-4">Điện thoại</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.PhoneAcc, new { @id = "sellerPhoneNumber", @name = "sellerPhoneNumber", @readonly = "readonly", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="well">
+                        <fieldset>
+                            <legend class="accordion-heading">
+                                <a data-toggle="collapse" href="#collapse-buyer-info">Thông tin người mua hàng</a>
+                            </legend>
+                            <div id="collapse-buyer-info" class="accordion-body collapse in">
+                                <!-- Ten nguoi mua -->
+                                <div class="form-group">
+                                    @Html.HiddenFor(model => model.CustomerId)
+                                    <label class="control-label col-sm-4">Họ tên người mua</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.CustomerName, new { maxlength = "100", @class = "form-control" })
+                                        <div id="suggesstion-box"></div>
+                                        @* <a href="/" id="openBuyerformPopup" tabindex="-1" style="padding-left: 2px; padding-right: 5px;">Thêm mới</a>*@
+                                        @*<a style="padding-left: 20px;" href="@Url.Action("Add", "Customer", new { id = 0 })"><img alt="" src="@Url.Content("~/Content/icons/add.png")" />Thêm mới</a>*@
+                                    </div>
+                                </div>
+                                <!-- Ma so thue -->
+                                <div class="form-group">
+                                    <label for="companyCode" class="control-label col-sm-4">Mã số thuế</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.CompanyCode, new { maxlength = "14", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!-- Ten don vi -->
+
+                                <div class="form-group">
+
+                                    <label for="companyName" class="control-label col-sm-4">Tên đơn vị</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.CompanyName, new { maxlength = "200", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!-- Email -->
+
+                                <div class="form-group">
+
+                                    <label for="buyerEmail" class="control-label col-sm-4">Email</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.BuyerEmail, new { maxlength = "50", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!-- Dia chi -->
+
+                                <div class="form-group">
+
+                                    <label for="addressLine" class="control-label col-sm-4">Địa chỉ</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.Address, new { maxlength = "500", @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend class="accordion-heading">
+                                <a data-toggle="collapse" href="#collapse-note-info">Thông tin ghi chú</a>
+                            </legend>
+                            <div id="collapse-note-info" class="accordion-body collapse in">
+                                <!-- Ten nguoi van chuyen -->
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4">Ghi chú</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextAreaFor(model => model.Comment, new { maxlength = "400", @class = "auto-trim form-control", rows = "5" })
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </div>
             </div>
             <div class="well form-horizontal">
                 <!-- thong tin nguoi ban -->
-                <fieldset>
-                    <legend class="accordion-heading">
-                        <a data-toggle="collapse" href="#collapse-seller-info" class="">Thông tin người bán</a>
-                    </legend>
-                    <div id="collapse-seller-info" class="accordion-body in collapse" style="height: auto;">
-                        <div class="control-group">
-
-                            <label for="sellerDisplayName.01GTKT" class="control-label">Đơn vị bán hàng</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.CompanyNameAcc, new { @id = "sellerLegalName", @name = "sellerLegalName", @readonly = "readonly" })
-                                @*     <input id="sellerLegalName" name="sellerLegalName" readonly="readonly" type="text" value="" maxlength="200">*@
-                            </div>
-                        </div>
-
-                        <!-- Ma so thue -->
-
-                        <div class="control-group">
-
-                            <label for="sellerTaxCode" class="control-label">Mã số thuế</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.CompanyCodeAcc, new { @id = "sellerTaxCode", @name = "sellerTaxCode", @readonly = "readonly" })
-                                @*<input id="sellerTaxCode" name="sellerTaxCode" class="input-medium" readonly="readonly" type="text" value="0106538422" maxlength="14">*@
-                            </div>
-                        </div>
-
-                        <!-- Dia chi -->
-
-                        <div class="control-group">
-
-                            <label for="addressLine" class="control-label">Địa chỉ</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.AddressAcc, new { @id = "sellerAddressLine", @name = "sellerAddressLine", @readonly = "readonly" })
-                                @*<input id="sellerAddressLine" name="sellerAddressLine" class="validate[required]" readonly="readonly" type="text" value="P401 tầng 4 tòa nhà HH1 khu ĐT Yên Hòa" maxlength="500">*@
-                            </div>
-                        </div>
-
-                        <!-- Dien thoai -->
-
-                        <div class="control-group">
-
-                            <label for="sellerPhoneNumber" class="control-label">Điện thoại</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.PhoneAcc, new { @id = "sellerPhoneNumber", @name = "sellerPhoneNumber", @readonly = "readonly" })
-                                @*  <input id="sellerPhoneNumber" name="sellerPhoneNumber" class="input-xxlarge validate[required]" readonly="readonly" type="text" value="0972855393" maxlength="11">*@
-                            </div>
-                        </div>
-
-                    </div>
-                </fieldset>
                 <!-- thong tin nguoi mua -->
-                <fieldset>
-                    <legend class="accordion-heading">
-                        <a data-toggle="collapse" href="#collapse-buyer-info">Thông tin người mua</a>
-                    </legend>
-                    <div id="collapse-buyer-info" class="accordion-body collapse in">
-                        <!-- Ten nguoi mua -->
-                        <div class="control-group">
-                            @Html.HiddenFor(model => model.CustomerId)
-                            <label class="control-label">Họ tên người mua</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.CustomerName, new { maxlength = "100" })
-                                <div id="suggesstion-box"></div>
-                                @* <a href="/" id="openBuyerformPopup" tabindex="-1" style="padding-left: 2px; padding-right: 5px;">Thêm mới</a>*@
-                                <a style="padding-left: 20px;" href="@Url.Action("Add", "Customer", new { id = 0 })"><img alt="" src="@Url.Content("~/Content/icons/add.png")" />Thêm mới</a>
-                            </div>
-                        </div>
-                        <!-- Ma so thue -->
-                        <div class="control-group no-margin">
-                            <label for="companyCode" class="control-label">Mã số thuế</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.CompanyCode, new { maxlength = "14" })
-                            </div>
-                        </div>
-
-                        <!-- Ten don vi -->
-
-                        <div class="control-group">
-
-                            <label for="companyName" class="control-label">Tên đơn vị</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.CompanyName, new { maxlength = "200" })
-                            </div>
-                        </div>
-
-                        <!-- Email -->
-
-                        <div class="control-group">
-
-                            <label for="buyerEmail" class="control-label">Email</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.BuyerEmail, new { maxlength = "50" })
-                            </div>
-                        </div>
-
-                        <!-- Dia chi -->
-
-                        <div class="control-group">
-
-                            <label for="addressLine" class="control-label">Địa chỉ</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.Address, new { maxlength = "500" })
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend class="accordion-heading">
-                        <a data-toggle="collapse" href="#collapse-note-info">Thông tin ghi chú</a>
-                    </legend>
-                    <div id="collapse-note-info" class="accordion-body collapse in">
-                        <!-- Ten nguoi van chuyen -->
-                        <div class="control-group">
-                            <label class="control-label">Ghi chú</label>
-                            <div class="controls">
-                                @Html.TextAreaFor(model => model.Comment, new { maxlength = "400", @class = "auto-trim", rows = "3" })
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
                 <!-- thong tin giao dich -->
                 <fieldset>
                     <legend class="accordion-heading">
@@ -219,66 +238,62 @@
                     </legend>
                     <div id="collapse-transaction-info" class="accordion-body collapse in">
                         <div class="row-fluid">
-                            <div class="control-group no-margin span4">
+                            <div class="form-group">
+                                <label for="s2id_autogen2" class="control-label col-sm-2">Hình thức thanh toán</label>
+                                <div class="col-sm-2">
+                                    @Html.DropDownListForEnum(model => model.PaymentsType, typeof(iHoaDon.Entities.Enum.PaymentsType), new { @class = "form-control", tabindex = "-1" })
 
-                                <div class="control-group">
-                                    <label for="s2id_autogen2" class="control-label">Hình thức thanh toán</label>
-                                    <div class="controls">
-                                        @Html.DropDownListForEnum(model => model.PaymentsType, typeof(iHoaDon.Entities.Enum.PaymentsType), new { @class = "select2 select2-offscreen", style = "width: 200px;", tabindex = "-1" })
-
-                                    </div>
+                                </div>
+                                <label for="type" class="control-label col-sm-2">Loại tiền</label>
+                                <div class="col-sm-2">
+                                    @Html.DropDownListFor(model => model.CurrencyId, Model.Currencies, new { @class = "form-control", tabindex = "-1" })
+                                </div>
+                                <label for="exchangeRate" class="control-label req col-sm-2">Tỷ giá</label>
+                                <div class="col-sm-2">
+                                    @Html.TextBoxFor(model => model.CurrencyRate, new { @class = "format-currency validate[positive] input-medium form-control", @readonly = "readonly", maxlength = "20" })
                                 </div>
                             </div>
-                            <div class="control-group no-margin span3">
-                                <label for="type" class="control-label">Loại tiền</label>
-                                <div class="controls">
-                                    @Html.DropDownListFor(model => model.CurrencyId, Model.Currencies, new { @class = "select2 select2-offscreen", tabindex = "-1" })
-                                </div>
+                            <div class="form-group no-margin span3">
                             </div>
-                            <div class="control-group no-margin span3">
-                                <label for="exchangeRate" class="control-label req">Tỷ giá</label>
-                                <div class="controls">
-                                    @Html.TextBoxFor(model => model.CurrencyRate, new { @class = "format-currency validate[positive] input-medium", @readonly = "readonly", maxlength = "20" })
-                                </div>
+                            <div class="form-group no-margin span3">
                             </div>
                         </div>
 
                         <div class="row-fluid" id="bankInfoDiv" style="display: none;">
+                            <div class="divider"></div>
                             <!-- Tai khoan nguoi ban -->
-                            <div class="row-fluid" style="margin-bottom: 10px">
-                                <div class="pull-left first">
-                                    <label class="control-label" style="font-size: 13px;">Tài khoản người bán</label>
-                                    <div class="controls">
-                                        @Html.DropDownListFor(model => model.BankIdSeller, Model.BanksSeller.Select(c => new SelectListItem
-                                        {
-                                            Value = c.Id + "",
-                                            Text = c.BankCode
-                                        }), new { style = "width: 300px;", @class = "select2 select2-offscreen", tabindex = "-1" })
+                            <div class="form-group" style="margin-bottom: 10px">
+                                <label class="control-label col-sm-2">Tài khoản người bán</label>
+                                <div class="col-sm-4">
+                                    @Html.DropDownListFor(model => model.BankIdSeller, Model.BanksSeller.Select(c => new SelectListItem
+            {
+                Value = c.Id + "",
+                Text = c.BankCode
+            }), new { @class = "form-control", tabindex = "-1" })
 
-                                    </div>
                                 </div>
-                                <div class="pull-left" style="margin-left: 10px">
-                                    @Html.TextBoxFor(model => model.BankNameBuy, new { placeholder = "Tên ngân hàng", @class = "input-xxlarge", @readonly = "readonly" })
+                                <div class="col-sm-4" style="margin-left: 10px">
+                                    @Html.TextBoxFor(model => model.BankNameBuy, new { placeholder = "Tên ngân hàng", @class = "input-xxlarge form-control", @readonly = "readonly" })
                                 </div>
                             </div>
 
                             <!-- Tai khoan nguoi mua -->
-                            <div class="row-fluid" style="margin-bottom: 10px">
-                                <div class="pull-left first">
-                                    <label class="control-label" style="font-size: 13px;">Tài khoản người mua</label>
-                                    <div class="controls">
-                                        @Html.TextBoxFor(model => model.BankCodeBuy, new { style = "width: 292px;", placeholder = "Số tài khoản", @class = "uppercase", maxlength = "20" })
-                                    </div>
+                            <div class="form-group" style="margin-bottom: 10px">
+                                <label class="control-label col-sm-2">Tài khoản người mua</label>
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(model => model.BankCodeBuy, new { placeholder = "Số tài khoản", @class = "uppercase form-control", maxlength = "20" })
                                 </div>
-                                <div class="pull-left" style="margin-left: 10px">
-                                    @Html.TextBoxFor(model => model.BankNameBuy, new { style = "width: 292px;", placeholder = "Tên ngân hàng", @class = "uppercase", maxlength = "255" })
+                                <div class="col-sm-4" style="margin-left: 10px">
+                                    @Html.TextBoxFor(model => model.BankNameBuy, new { placeholder = "Tên ngân hàng", @class = "uppercase form-control", maxlength = "255" })
                                 </div>
                             </div>
+                            <div class="divider"></div>
                         </div>
 
                     </div>
                 </fieldset>
-
+            </div>
+                <div class="well form-horizontal">
 
                 <!-- Chi tiet hoa don -->
                 <fieldset style="overflow: hidden">
@@ -287,7 +302,7 @@
                     </legend>
 
                     <div id="collapse-detail" class="table-responsive form no-border-bottom accordion-body collapse in">
-                        <table class="table_main" id="dataTable">
+                        <table class="table table-bordered invoice-items-table" id="dataTable">
                             <thead>
                                 <tr>
                                     <th style="width: 5px;">STT</th>
@@ -301,56 +316,63 @@
                                     <th style="width: 120px;">Thuế suất</th>
 
                                     <th>Thành tiền</th>
-                                    <th></th>
-                                    <th style="width: 5px;">
-                                        <i class="icon-plus icon-white" title="Thêm dòng" onclick="addRow('dataTable', '01GTKT')"></i>
+                                    <th style="width: 80px;">Cho nhập tiền</th>
+                                    <th style="width: 60px; text-align: center;">
+                                        <i class="fa fa-plus-circle add-row" title="Thêm dòng" onclick="addRow('dataTable', '01GTKT')"></i>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <tr suffix="0">
+                                    <!-- STT -->
                                     <td>
-                                        <input id="lineNumber0" class="disable" type="text" name="invoiceItemList[0].lineNumber" readonly="true" value="1">
+                                        <input id="lineNumber0" class="disable form-control" type="text" name="invoiceItemList[0].lineNumber" readonly="true" value="1">
                                     </td>
-                                    <td style="padding: 10px">
-                                        <select id="itemPromotion0" name="invoiceItemList[0].promotion" style="width: 100%;" onchange="changeItemPromotion(0);" class="select2 select2-offscreen" tabindex="-1">
+                                    <!-- Khuyến mại -->
+                                    <td>
+                                        <select id="itemPromotion0" name="invoiceItemList[0].promotion" style="width: 60px;" onchange="changeItemPromotion(0);" class="form-control" tabindex="-1">
                                             <option value="0"></option>
                                             <option value="1">Khuyến mại</option>
                                         </select>
                                     </td>
+                                    <!-- Mã hàng hóa, dịch vụ -->
                                     <td>
-                                        <select id="itemCode0" name="invoiceItemList[0].itemCode" style="width: 100%;" class="product combo-select2 select2-offscreen" tabindex="-1">
+                                        <select id="itemCode0" name="invoiceItemList[0].itemCode" style="width: 100px;" class="form-control" tabindex="-1">
                                             <option value="">--- Chọn ---</option>
                                             @foreach (var item in Model.Products)
-                                            {
-                                                <option value="@item.ProductCode" data-name='@item.ProductName' data-unit='@item.Unit.Name' data-price='@item.Price'>@item.ProductCode</option>
-                                            }
+                                {
+                                    <option value="@item.ProductCode" data-name='@item.ProductName' data-unit='@item.Unit.Name' data-price='@item.Price'>@item.ProductCode</option>
+                    }
                                         </select>
                                     </td>
+                                    <!-- Tên hàng hóa, dịch vụ -->
                                     <td>
-                                        <input type="text" id="itemName0" name="invoiceItemList[0].itemName" class="validate[required]" maxlength="255">
+                                        <input type="text" id="itemName0" name="invoiceItemList[0].itemName" class="validate[required] form-control" style="min-width: 150px;" maxlength="255">
                                     </td>
+                                    <!-- Đơn vị tính -->
                                     <td>
-                                        <select id="itemUnit0" name="invoiceItemList[0].unitCode" style="width: 100%;" onchange="changeUnitName(this, 'invoiceItemList[0].unitName');" tabindex="-1" class="select2 select2-offscreen custom-select-comboized">
+                                        <select id="itemUnit0" name="invoiceItemList[0].unitCode" style="min-width: 80px;" onchange="changeUnitName(this, 'invoiceItemList[0].unitName');" tabindex="-1" class="form-control">
                                             <option value=" ">--- Chọn ---</option>
                                             @foreach (var item in Model.Units)
-                                            {
-                                                <option value="@item.Id" unit-name="@item.Name">@item.Name</option>
-                                            }
+                                {
+                                    <option value="@item.Id" unit-name="@item.Name">@item.Name</option>
+                    }
                                         </select>
                                         <input type="text" id="invoiceItemList[0].unitName" name="invoiceItemList[0].unitName" style="display: none; width: 85px; height: 20px;" class="validate[required] custom-select-combo-input" maxlength="20">
                                     </td>
+                                    <!-- Số lượng -->
                                     <td>
-                                        <input type="text" id="itemQty0" name="invoiceItemList[0].quantity" class="validate[required, positive] format-float" maxlength="20">
+                                        <input type="text" id="itemQty0" name="invoiceItemList[0].quantity" style="width: 60px;" class="validate[required, positive] format-float form-control" maxlength="20">
                                     </td>
+                                    <!-- Đơn giá -->
                                     <td>
-                                        <input type="text" id="itemPrice0" name="invoiceItemList[0].unitPrice" class="validate[required, positive] format-currency" maxlength="15">
+                                        <input type="text" id="itemPrice0" name="invoiceItemList[0].unitPrice" style="width: 60px;" class="validate[required, positive] format-currency form-control" maxlength="15">
                                     </td>
-
+                                    <!-- Thuế suất -->
                                     <td>
 
-                                        <select id="itemVat0" name="invoiceItemList[0].vatCategoryPercentage" style="width: 100%;" tabindex="-1" class="select2 select2-offscreen validate[required]">
+                                        <select id="itemVat0" name="invoiceItemList[0].vatCategoryPercentage" style="width: 100px;" tabindex="-1" class="form-control">
                                             <option value="">--- Chọn ---</option>
 
                                             <option value="10">10%</option>
@@ -365,27 +387,30 @@
 
                                         </select>
                                     </td>
-
+                                    <!-- Thành tiền -->
                                     <td>
-                                        <input type="text" id="itemTotal0" name="invoiceItemList[0].itemTotalAmountWithoutVat" class="format-currency disable" readonly="readonly">
+                                        <input type="text" id="itemTotal0" name="invoiceItemList[0].itemTotalAmountWithoutVat" class="format-currency disable form-control" style="width: 100px;" readonly="readonly">
                                     </td>
-                                    <td>
-                                        <input id="enableItemTotal0" style="width: 12px" type="checkbox" onclick="toggleItemTotal(0);" title="Cho phép nhập Thành tiền">
+                                    <td style="text-align: center;">
+                                        <input id="enableItemTotal0" type="checkbox" onchange="toggleItemTotal(0);" title="Cho phép nhập Thành tiền" class="js-switch1" style="width: 60px;" />
                                     </td>
-                                    <td>
-                                        <i id="deleteRow1" title="Xóa" class="icon-trash"></i>
+                                    <td style="text-align: center;">
+                                        <i id="deleteRow1" title="Xóa" class="fa fa-trash-o remove-row"></i>
                                     </td>
                                 </tr>
 
 
                             </tbody>
                         </table>
+                        <button class="btn btn-success btn-sm" style="background-color: #26b99a;" onclick="addRow('dataTable', '01GTKT')"><i class="fa fa-plus"></i>&nbsp;Thêm sản phẩm</button>
 
-                        <div class="row-fluid" style="margin-bottom: 10px; margin-top: 20px;">
-                            <div class="pull-right" style="margin-left: 10px">
-                                <input id="discountAmount" name="discountAmount" class="input-large format-currency" type="text" value="">
+                        <div class="inv-right">
+                            <div class="row form-group">
+                                <label for="label.tplno" class="control-label col-sm-4 col-sm-offset-6">Tổng tiền chiết khấu thương mại</label>
+                                <div class="col-sm-2">
+                                    <input id="discountAmount" name="discountAmount" class="input-large format-currency form-control" type="text" value="">
+                                </div>
                             </div>
-                            <label class="pull-right" style="font-size: 13px; width: 200px;">Tổng tiền chiết khấu thương mại</label>
                         </div>
                         <!-- Chu ky dien tu nguoi mua -->
                     </div>
@@ -397,7 +422,7 @@
                         <a data-toggle="collapse" href="#collapse-summary">Tổng tiền</a>
                     </legend>
                     <div id="collapse-summary" class="table-responsive form no-border-bottom accordion-body collapse in">
-                        <table id="summaryTable" class="table_main">
+                        <table id="summaryTable" class="table sum-table">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -453,28 +478,22 @@
                 <input type="hidden" name="tranId" id="tranId" value="0" />
                 <fieldset class="form-actions">
                     @*<input type="submit" class="btn btn-primary" value="Submit" name="submit" style="width: 70px; height: 25px !important; padding: 0px !important;" />*@
-                    <button id="btnSave">Lưu</button>
-                    <button type="submit" class="button" id="submit">
-                        <img alt="" src="@Url.Content("~/Content/icons/disk.png")" />
+                    <button type="submit" class="btn btn-success" id="submit">
                         Lưu tạm
                     </button>
 
-                    <button type="button" class="button" id="viewContent">
-                        <img alt="" src="@Url.Content("~/Content/icons/View.png")" />
+                    <button type="button" class="btn btn-primary" id="viewContent">
                         Xem hóa đơn
                     </button>
                     <input type="hidden" id="hasPermissionToPrintInv" value="true">
                     <input type="hidden" id="hasPermissionToCreateNewInv" value="true">
-                    <button type="button" onclick="createNewBlankInvoice();" id="btnNewBlank" class="button">
-                        <img alt="" src="@Url.Content("~/Content/icons/add.png")" />
+                    <button type="button" onclick="createNewBlankInvoice();" id="btnNewBlank" class="btn btn-default">
                         Tạo hóa đơn mới
                     </button>
-                    <button type="button" id="btnSign" class="button" name="sign" onclick="callApplet('Bạn chắc chắn muốn ký &amp; gửi hóa đơn?')">
-                        <img alt="" src="@Url.Content("~/Content/icons/script_edit.png")" />
+                    <button type="button" id="btnSign" class="btn btn-danger" name="sign" onclick="callApplet('Bạn chắc chắn muốn ký &amp; gửi hóa đơn?')">
                         Ký và gửi hóa đơn
                     </button>
-                    <button type="button" class="btn" id="btnCancel" style="width: 85px; height: 28px">
-                        <img alt="" src="@Url.Content("~/Content/icons/arrow_redo.png")" />
+                    <button type="button" class="btn btn-outline-default" id="btnCancel" style="width: 85px; height: 28px">
                         Quay lại
                     </button>
                     <div id="mydiv"></div>
@@ -502,6 +521,13 @@
     <script type="text/javascript" src="/Scripts/select2.js"></script>
     <script type="text/javascript" src="/Scripts/jquery.maxlength.js"></script>
     <!-- thong tin nguoi mua -->
+    <script>
+        $(document).ready(function () {
+            $('.nav-gtkt').addClass('current-page');
+            $('.nav-gtkt').closest('ul').css('display', 'block');
+            $('.nav-gtkt').closest('li.nav-invoice').addClass('active');
+        })
+    </script>
     <script type="text/javascript">
                     $(document).ready(function () {
                         $('.combo-select2').select2();
@@ -630,6 +656,7 @@
     <script type="text/javascript" src="/Scripts/custom-select-combo.js"></script>
     <script type="text/javascript" src="/Scripts/invoice.js"></script>
     <script type="text/javascript" src="/Scripts/invoice_normal.js"></script>
+    <script src="/Content/Vendors/switchery/dist/switchery.min.js"></script>
 
 
 
@@ -666,7 +693,7 @@
                 $("#itemUnit" + suffix).trigger('change');
 
                 if ($("#templateCode").val().indexOf('01GTKT') >= 0) {
-                    $("#itemVat" + suffix).select2();
+                    //$("#itemVat" + suffix).select2();
 
                     if ($('#itemPromotion' + suffix).val() != '1') {
                         setSelect2Validation("itemVat" + suffix, 'validate[required]');

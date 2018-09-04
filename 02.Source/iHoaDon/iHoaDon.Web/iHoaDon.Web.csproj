@@ -55,6 +55,10 @@
     <Reference Include="ActionMailer.Net.Mvc">
       <HintPath>..\..\..\03.Resources\Libs\ActionMailer.Net.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Bkav.eHoadon.XML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Bkav.eHoadon.XML.dll</HintPath>
+    </Reference>
     <Reference Include="CKFinder, Version=2.3.1.2492, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\CKFinder.dll</HintPath>
@@ -83,9 +87,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Web.Services3">
-      <HintPath>..\..\XeViet\XeViet\Project.XeViet.News\bin\Microsoft.Web.Services3.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -1037,7 +1038,6 @@
     <Content Include="Content\datepicker.css" />
     <Content Include="Content\default.css" />
     <Content Include="Content\document_edit.png" />
-    <Content Include="Content\icons\147.ico" />
     <Content Include="Content\icons\accept.png" />
     <Content Include="Content\icons\add.png" />
     <Content Include="Content\icons\anchor.png" />
@@ -2077,12 +2077,46 @@
     <Content Include="Content\Images\back_enabled.png" />
     <Content Include="Content\Images\back_enabled_hover.png" />
     <Content Include="Content\Images\default_avatar.jpg" />
+    <Content Include="Content\Images\e-invoice.png" />
+    <Content Include="Content\Images\ei.jpg" />
     <Content Include="Content\Images\forward_disabled.png" />
     <Content Include="Content\Images\forward_enabled.png" />
     <Content Include="Content\Images\forward_enabled_hover.png" />
     <Content Include="Content\Images\glyphicons-halflings-white.png" />
-    <Content Include="Content\Images\hot_news_repeat.gif" />
     <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\parallax.jpg" />
+    <Content Include="Content\Images\Slides\slide-01.png" />
+    <Content Include="Content\Images\Slides\slide-02.jpg" />
+    <Content Include="Content\Images\Slides\slide-03.jpg" />
+    <Content Include="Content\Images\Slides\slide-bg-light.jpg" />
+    <Content Include="Content\Images\Slides\slide-bg.jpg" />
+    <Content Include="Content\Images\Slides\slide-concept-draft.png" />
+    <Content Include="Content\Images\Slides\slide-title-border-light.png" />
+    <Content Include="Content\Images\Slides\slide-title-border.png" />
+    <Content Include="Content\indextheme\custom.css" />
+    <Content Include="Content\indextheme\custom.js" />
+    <Content Include="Content\indextheme\examples\examples.carousels.js" />
+    <Content Include="Content\indextheme\examples\examples.gallery.js" />
+    <Content Include="Content\indextheme\examples\examples.lightboxes.js" />
+    <Content Include="Content\indextheme\fonts\star.svg" />
+    <Content Include="Content\indextheme\skins\default.css" />
+    <Content Include="Content\indextheme\skins\skin-corporate-3.css" />
+    <Content Include="Content\indextheme\skins\skin-corporate-4.css" />
+    <Content Include="Content\indextheme\skins\skin-corporate-5.css" />
+    <Content Include="Content\indextheme\skins\skin-corporate-6.css" />
+    <Content Include="Content\indextheme\skins\skin-corporate-7.css" />
+    <Content Include="Content\indextheme\skins\skin-corporate-8.css" />
+    <Content Include="Content\indextheme\skins\skin-corporate-hosting.css" />
+    <Content Include="Content\indextheme\theme-animate.css" />
+    <Content Include="Content\indextheme\theme-blog.css" />
+    <Content Include="Content\indextheme\theme-elements.css" />
+    <Content Include="Content\indextheme\theme-shop.css" />
+    <Content Include="Content\indextheme\theme.css" />
+    <Content Include="Content\indextheme\theme.init.js" />
+    <Content Include="Content\indextheme\theme.js" />
+    <Content Include="Content\indextheme\views\view.contact.js" />
+    <Content Include="Content\indextheme\views\view.home.js" />
+    <Content Include="Content\indextheme\views\view.hosting.js" />
     <Content Include="Content\info.png" />
     <Content Include="Content\iso-backgroundtvan.gif" />
     <Content Include="Content\js\accounts.js" />
@@ -2449,6 +2483,10 @@
     <Content Include="Content\Vendors\Chart.js\test\scale.logarithmic.tests.js" />
     <Content Include="Content\Vendors\Chart.js\test\scale.radialLinear.tests.js" />
     <Content Include="Content\Vendors\Chart.js\test\scale.time.tests.js" />
+    <Content Include="Content\Vendors\circle-flip-slideshow\css\component.css" />
+    <Content Include="Content\Vendors\circle-flip-slideshow\js\jquery.flipshow.js" />
+    <Content Include="Content\Vendors\circle-flip-slideshow\README.txt" />
+    <Content Include="Content\Vendors\common\common.js" />
     <Content Include="Content\Vendors\DateJS\build\date-af-ZA.js" />
     <Content Include="Content\Vendors\DateJS\build\date-ar-AE.js" />
     <Content Include="Content\Vendors\DateJS\build\date-ar-BH.js" />
@@ -3376,6 +3414,8 @@
     <Content Include="Content\Vendors\formvalidation\language\vi_VN.js" />
     <Content Include="Content\Vendors\formvalidation\language\zh_CN.js" />
     <Content Include="Content\Vendors\formvalidation\language\zh_TW.js" />
+    <Content Include="Content\Vendors\isotope\jquery.isotope.js" />
+    <Content Include="Content\Vendors\jquery-cookie\jquery-cookie.js" />
     <Content Include="Content\Vendors\jquery-sparkline\Changelog.txt" />
     <Content Include="Content\Vendors\jquery-sparkline\dist\jquery.sparkline.js" />
     <Content Include="Content\Vendors\jquery-sparkline\dist\jquery.sparkline.min.js" />
@@ -3399,6 +3439,14 @@
     <Content Include="Content\Vendors\jquery-sparkline\src\vcanvas-canvas.js" />
     <Content Include="Content\Vendors\jquery-sparkline\src\vcanvas-vml.js" />
     <Content Include="Content\Vendors\jquery-sparkline\version.txt" />
+    <Content Include="Content\Vendors\jquery.appear\jquery.appear.js" />
+    <Content Include="Content\Vendors\jquery.easing\jquery.easing.js" />
+    <Content Include="Content\Vendors\jquery.easy-pie-chart\jquery.easy-pie-chart.js" />
+    <Content Include="Content\Vendors\jquery.gmap\jquery.gmap.js" />
+    <Content Include="Content\Vendors\jquery.lazyload\jquery.lazyload.js" />
+    <Content Include="Content\Vendors\jquery.lazyload\jquery.scrollstop.js" />
+    <Content Include="Content\Vendors\jquery.stellar\jquery.stellar.js" />
+    <Content Include="Content\Vendors\jquery.validation\jquery.validation.js" />
     <Content Include="Content\Vendors\jquery\AUTHORS.txt" />
     <Content Include="Content\Vendors\jquery\dist\jquery.js" />
     <Content Include="Content\Vendors\jquery\dist\jquery.min.js" />
@@ -3502,6 +3550,9 @@
     <Content Include="Content\Vendors\jquery\src\var\support.js" />
     <Content Include="Content\Vendors\jquery\src\var\toString.js" />
     <Content Include="Content\Vendors\jquery\src\wrap.js" />
+    <Content Include="Content\Vendors\magnific-popup\jquery.magnific-popup.js" />
+    <Content Include="Content\Vendors\magnific-popup\magnific-popup.css" />
+    <Content Include="Content\Vendors\modernizr\modernizr.js" />
     <Content Include="Content\Vendors\moment\locale\af.js" />
     <Content Include="Content\Vendors\moment\locale\ar-ma.js" />
     <Content Include="Content\Vendors\moment\locale\ar-sa.js" />
@@ -3860,6 +3911,16 @@
     <Content Include="Content\Vendors\nprogress\nprogress.js" />
     <Content Include="Content\Vendors\nprogress\support\extras.css" />
     <Content Include="Content\Vendors\nprogress\support\style.css" />
+    <Content Include="Content\Vendors\owl.carousel\assets\ajax-loader.gif" />
+    <Content Include="Content\Vendors\owl.carousel\assets\owl.carousel.css" />
+    <Content Include="Content\Vendors\owl.carousel\assets\owl.carousel.min.css" />
+    <Content Include="Content\Vendors\owl.carousel\assets\owl.theme.default.css" />
+    <Content Include="Content\Vendors\owl.carousel\assets\owl.theme.default.min.css" />
+    <Content Include="Content\Vendors\owl.carousel\assets\owl.theme.green.css" />
+    <Content Include="Content\Vendors\owl.carousel\assets\owl.theme.green.min.css" />
+    <Content Include="Content\Vendors\owl.carousel\assets\owl.video.play.png" />
+    <Content Include="Content\Vendors\owl.carousel\owl.carousel.js" />
+    <Content Include="Content\Vendors\owl.carousel\owl.carousel.min.js" />
     <Content Include="Content\Vendors\parsleyjs\bower_components\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="Content\Vendors\parsleyjs\bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="Content\Vendors\parsleyjs\bower_components\bootstrap\dist\css\bootstrap.css" />
@@ -4110,6 +4171,107 @@
     <Content Include="Content\Vendors\parsleyjs\src\vendor\inputevent.js" />
     <Content Include="Content\Vendors\pnotify\pnotify.custom.css" />
     <Content Include="Content\Vendors\pnotify\pnotify.custom.js" />
+    <Content Include="Content\Vendors\rs-plugin\assets\coloredbg.png" />
+    <Content Include="Content\Vendors\rs-plugin\assets\gridtile.png" />
+    <Content Include="Content\Vendors\rs-plugin\assets\gridtile_3x3.png" />
+    <Content Include="Content\Vendors\rs-plugin\assets\gridtile_3x3_white.png" />
+    <Content Include="Content\Vendors\rs-plugin\assets\gridtile_white.png" />
+    <Content Include="Content\Vendors\rs-plugin\assets\loader.gif" />
+    <Content Include="Content\Vendors\rs-plugin\assets\sources\fb.png" />
+    <Content Include="Content\Vendors\rs-plugin\assets\sources\fr.png" />
+    <Content Include="Content\Vendors\rs-plugin\assets\sources\ig.png" />
+    <Content Include="Content\Vendors\rs-plugin\assets\sources\post.png" />
+    <Content Include="Content\Vendors\rs-plugin\assets\sources\revolution_slide1.png" />
+    <Content Include="Content\Vendors\rs-plugin\assets\sources\revolution_slide2.png" />
+    <Content Include="Content\Vendors\rs-plugin\assets\sources\tw.png" />
+    <Content Include="Content\Vendors\rs-plugin\assets\sources\vm.png" />
+    <Content Include="Content\Vendors\rs-plugin\assets\sources\wc.png" />
+    <Content Include="Content\Vendors\rs-plugin\assets\sources\yt.png" />
+    <Content Include="Content\Vendors\rs-plugin\css\closedhand.cur" />
+    <Content Include="Content\Vendors\rs-plugin\css\index.php" />
+    <Content Include="Content\Vendors\rs-plugin\css\layers.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\navigation-skins\ares.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\navigation-skins\custom.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\navigation-skins\dione.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\navigation-skins\erinyen.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\navigation-skins\gyges.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\navigation-skins\hades.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\navigation-skins\hebe.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\navigation-skins\hephaistos.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\navigation-skins\hermes.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\navigation-skins\hesperiden.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\navigation-skins\metis.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\navigation-skins\persephone.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\navigation-skins\uranus.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\navigation-skins\zeus.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\navigation.css" />
+    <Content Include="Content\Vendors\rs-plugin\css\openhand.cur" />
+    <Content Include="Content\Vendors\rs-plugin\css\settings.css" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\font-awesome\css\index.php" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\font-awesome\fonts\index.php" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\font-awesome\index.php" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\index.php" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\pe-icon-7-stroke\css\helper.css" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\pe-icon-7-stroke\css\index.php" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\pe-icon-7-stroke\css\pe-icon-7-stroke.css" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\pe-icon-7-stroke\fonts\index.php" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\pe-icon-7-stroke\index.php" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\revicons\index.php" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\revicons\revicons.svg" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\index.php" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\revolution.extension.actions.min.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\revolution.extension.carousel.min.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\revolution.extension.kenburn.min.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\revolution.extension.layeranimation.min.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\revolution.extension.migration.min.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\revolution.extension.navigation.min.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\revolution.extension.parallax.min.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\revolution.extension.slideanims.min.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\revolution.extension.video.min.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\source\index.php" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\source\revolution.extension.actions.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\source\revolution.extension.carousel.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\source\revolution.extension.kenburn.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\source\revolution.extension.layeranimation.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\source\revolution.extension.migration.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\source\revolution.extension.navigation.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\source\revolution.extension.parallax.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\source\revolution.extension.slideanims.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\extensions\source\revolution.extension.video.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\index.php" />
+    <Content Include="Content\Vendors\rs-plugin\js\jquery.themepunch.enablelog.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\jquery.themepunch.revolution.min.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\jquery.themepunch.tools.min.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\source\index.php" />
+    <Content Include="Content\Vendors\rs-plugin\js\source\jquery.themepunch.enablelog.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\source\jquery.themepunch.revolution.js" />
+    <Content Include="Content\Vendors\rs-plugin\js\source\jquery.themepunch.tools.min.js" />
+    <Content Include="Content\Vendors\rs-plugin\php\facebook\class-facebook.php" />
+    <Content Include="Content\Vendors\rs-plugin\php\flickr\class-flickr.php" />
+    <Content Include="Content\Vendors\rs-plugin\php\instagram\class-instagram.php" />
+    <Content Include="Content\Vendors\rs-plugin\php\twitter\class-twitter.php" />
+    <Content Include="Content\Vendors\rs-plugin\php\twitter\connection\Application.php" />
+    <Content Include="Content\Vendors\rs-plugin\php\twitter\connection\ConnectionAbstract.php" />
+    <Content Include="Content\Vendors\rs-plugin\php\twitter\connection\User.php" />
+    <Content Include="Content\Vendors\rs-plugin\php\twitter\RestApi.php" />
+    <Content Include="Content\Vendors\rs-plugin\php\vimeo\class-vimeo.php" />
+    <Content Include="Content\Vendors\rs-plugin\php\youtube\class-youtube.php" />
+    <Content Include="Content\Vendors\simple-line-icons\css\simple-line-icons.css" />
+    <Content Include="Content\Vendors\simple-line-icons\fonts\Simple-Line-Icons.svg" />
+    <Content Include="Content\Vendors\switchery\dist\switchery.css" />
+    <Content Include="Content\Vendors\switchery\dist\switchery.js" />
+    <Content Include="Content\Vendors\switchery\dist\switchery.min.css" />
+    <Content Include="Content\Vendors\switchery\dist\switchery.min.js" />
+    <Content Include="Content\Vendors\switchery\meteor\export.js" />
+    <Content Include="Content\Vendors\switchery\meteor\tests.js" />
+    <Content Include="Content\Vendors\switchery\package.js" />
+    <Content Include="Content\Vendors\switchery\switchery.css" />
+    <Content Include="Content\Vendors\switchery\switchery.js" />
+    <Content Include="Content\Vendors\vide\vide.js" />
     <Content Include="Content\Viewer\01GTKT.xslt" />
     <Content Include="Content\Viewer\details.js" />
     <Content Include="Content\Viewer\InvoiceResult.xml" />
@@ -4513,7 +4675,36 @@
     <Content Include="Content\Vendors\bootstrap\nuget\MyGet.ps1" />
     <Content Include="Content\Vendors\bootstrap\package.json" />
     <Content Include="Content\Vendors\bootstrap\README.md" />
+    <Content Include="Content\Vendors\owl.carousel\LICENSE" />
+    <Content Include="Content\Vendors\owl.carousel\README.md" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.ttf" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\revicons\revicons.eot" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\revicons\revicons.ttf" />
+    <Content Include="Content\Vendors\rs-plugin\fonts\revicons\revicons.woff" />
+    <Content Include="Content\Vendors\simple-line-icons\bower.json" />
+    <Content Include="Content\Vendors\simple-line-icons\fonts\Simple-Line-Icons.eot" />
+    <Content Include="Content\Vendors\simple-line-icons\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="Content\Vendors\simple-line-icons\fonts\Simple-Line-Icons.woff" />
+    <Content Include="Content\Vendors\simple-line-icons\less\simple-line-icons.less" />
+    <Content Include="Content\Vendors\simple-line-icons\package.json" />
+    <Content Include="Content\Vendors\simple-line-icons\README.md" />
+    <Content Include="Content\Vendors\simple-line-icons\scss\simple-line-icons.scss" />
+    <Content Include="Content\indextheme\fonts\star.eot" />
+    <Content Include="Content\indextheme\fonts\star.ttf" />
+    <Content Include="Content\indextheme\fonts\star.woff" />
+    <Content Include="Content\Vendors\switchery\.bower.json" />
+    <Content Include="Content\Vendors\switchery\bower.json" />
+    <Content Include="Content\Vendors\switchery\CHANGELOG.md" />
+    <Content Include="Content\Vendors\switchery\package.json" />
+    <None Include="Properties\PublishProfiles\BCSEWhiteHat.pubxml" />
     <None Include="Properties\PublishProfiles\eBHXH.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\autoNumeric.js" />
     <Content Include="Scripts\bkav-extension-signer-v1.0.0.js" />
@@ -4707,10 +4898,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bkav.eHoadon.XML\Bkav.eHoadon.XML.csproj">
-      <Project>{0066f966-afaa-45fc-8f0d-999eaeeacceb}</Project>
-      <Name>Bkav.eHoadon.XML</Name>
-    </ProjectReference>
     <ProjectReference Include="..\iHoaDon.Business\iHoaDon.Business.csproj">
       <Project>{e128b8d2-cc4e-4784-8d3d-cd8b143c77ca}</Project>
       <Name>iHoaDon.Business</Name>

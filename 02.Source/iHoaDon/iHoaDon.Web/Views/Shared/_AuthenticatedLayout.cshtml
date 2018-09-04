@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="shortcut icon" href="/Content/icons/favicon.ico" type="image/x-icon" />
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,10 +18,10 @@
     <!-- Custom Theme Style -->
     <link href="/Content/css/custom.css" rel="stylesheet" />
 </head>
-<body class="nav-md">
+<body class="nav-md footer_fixed">
     <div class="container body">
         <div class="main_container">
-            <div class="col-md-3 left_col">
+            <div class="col-md-3 left_col menu_fixed">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
                         <a href="/Home/Dashboard" class="site_title"><i class="fa fa-paw"></i> <span>IHoaDon</span></a>
@@ -53,19 +54,28 @@
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
-                            <h3>General</h3>
+                            @*<h3>General</h3>*@
                             <ul class="nav side-menu">
                                 <li>
-                                    <a><i class="fa fa-home"></i> Hệ thống <span class="fa fa-chevron-down"></span></a>
+                                    <a><i class="fa fa-user"></i> Tài khoản <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="#">Thông tin doanh nghiệp</a></li>
+                                        <li><a href="#">Thông tin tài khoản</a></li>
+                                        <li><a href="#">Phân quyền</a></li>
+                                        <li><a href="#">Đổi mật khẩu</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-book"></i> Phát hành hóa đơn <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="#">Tạo mẫu hóa đơn</a></li>
                                         <li><a href="/ListReleaseInvoice">Phát hành hóa đơn</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-">
-                                    <a><i class="fa fa-paper-plane-o"></i> Xuất hóa đơn <span class="fa fa-chevron-down"></span></a>
+                                <li class="nav-invoice">
+                                    <a><i class="fa fa-paper-plane-o"></i> Lập hóa đơn <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="/Invoice?id=01GTKT">Hóa đơn GTGT</a></li>
+                                        <li class="nav-gtkt"><a href="/Invoice?id=01GTKT">Hóa đơn GTGT</a></li>
                                         <li><a href="/InvoiceMarket?id=02GTTT">Hóa đơn bán hàng</a></li>
                                         <li><a href="/InvoiceTollTariffs?id=07KPTQ">Hóa đơn bán hàng (phi thuế quan)</a></li>
                                         <li><a href="/InvoiceTollTariffs?id=07KPTQ">Phiếu xuất kho kiêm vận chuyển nội bộ</a></li>
@@ -73,27 +83,31 @@
                                     </ul>
                                 </li>
                                 <li class="nav-danhmuc">
-                                    <a><i class="fa fa-tags"></i> Danh mục <span class="fa fa-chevron-down"></span></a>
+                                    <a><i class="fa fa-tags"></i> Quản lý danh mục <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li class="nav-customer"><a href="/Customer">Danh mục khách hàng</a></li>
-                                        <li class="nav-product"><a href="/Product">Danh mục hàng hóa</a></li>
-                                        <li class="nav-unit"><a href="/Unit">Danh mục đơn vị tính</a></li>
                                         <li class="nav-xx"><a href="#">Danh mục tỷ giá</a></li>
+                                        <li class="nav-unit"><a href="/Unit">Danh mục đơn vị tính</a></li>
+                                        <li class="nav-product"><a href="/Product">Danh mục hàng hóa, dịch vụ</a></li>
+                                        <li class="nav-product"><a href="#">Danh mục tỉnh thành</a></li>
+                                        <li class="nav-product"><a href="#">Danh mục quận huyện</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-danhmuc">
-                                    <a><i class="fa fa-pie-chart"></i> Thống kê <span class="fa fa-chevron-down"></span></a>
+                                    <a><i class="fa fa-pie-chart"></i> Báo cáo thống kê <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li class="nav-customer"><a href="/SearchInvoice">Tra cứu hóa đơn</a></li>
-                                        <li class="nav-product"><a href="#">Báo cáo</a></li>
+                                        <li class="nav-customer"><a href="/SearchInvoice">Tình hình sử dụng hóa đơn</a></li>
+                                        <li class="nav-product"><a href="#">Bảng kê khóa đơn đã sử dụng theo người bán</a></li>
+                                        <li class="nav-product"><a href="#">Bảng kê khóa đơn đã sử dụng theo người mua</a></li>
+                                        <li class="nav-product"><a href="#">Báo cáo tổng hợp</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </div>
-                        <div class="menu_section">
+                        @*<div class="menu_section">
                             <h3>Tiện ích</h3>
                             <ul class="nav side-menu"></ul>
-                        </div>
+                        </div>*@
                     </div>
                     <!-- /sidebar menu -->
                 </div>
@@ -175,7 +189,7 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="@ViewBag.ViewWidth">
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h2>@ViewBag.PageSubTitle</h2>
@@ -212,9 +226,9 @@
             </div>
             <!-- /page content -->
             <!-- footer content -->
-            <footer>
-                <div class="pull-right">
-
+            <footer style=" border-top: 1px solid #D9DEE4;">
+                <div class="pull-right" style="font-size: 12px;">
+                    © iHoaDon 2018. All rights reserved
                 </div>
                 <div class="clearfix"></div>
             </footer>

@@ -558,7 +558,7 @@ function checkUnitCode(field, rules, i, options) {
 
 function cloneItemCodeCol(tableID, suffix) {
 	
-	var result = "<td><select id='itemCode" + suffix + "' name='invoiceItemList[" + suffix + "].itemCode' style='width: 100%;' class='product combo-select2'>";
+	var result = "<td><select id='itemCode" + suffix + "' name='invoiceItemList[" + suffix + "].itemCode' style='width: 100%;' class='form-control'>";
 	result += $('#' + tableID).find('select[id^="itemCode"]:first').html();
 	result += "</select></td>";
 	
@@ -567,8 +567,9 @@ function cloneItemCodeCol(tableID, suffix) {
 
 function cloneItemVatCol(tableID, suffix) {
 	
-	var result = "<td><select id='itemVat" + suffix + "' name='invoiceItemList[" + suffix + "].vatCategoryPercentage' style='width: 100%;'>";
-	result += $('#' + tableID).find('select[id^="itemVat"]:first').html();
+	var result = "<td><select id='itemVat" + suffix + "' name='invoiceItemList[" + suffix + "].vatCategoryPercentage' class='form-control' style='width: 100px;'>";
+    result += $('#' + tableID).find('select[id^="itemVat"]:first').html();
+    //document.querySelector('[id^="poll-"]').id;
 	result += "</select></td>";
 	
 	return result;
@@ -581,9 +582,9 @@ function cloneItemUnitCol(tableID, suffix) {
 		clss = "class='validate[funcCall[checkUnitCode]]'";
 	}
 	
-	var result = "<td><select id='itemUnit" + suffix + "' name='invoiceItemList[" + suffix + "].unitCode' style='width: 100%;' onchange='changeUnitName(this, \"invoiceItemList["+suffix+"].unitName\");' "+clss+">";
+	var result = "<td><select id='itemUnit" + suffix + "' class='form-control' name='invoiceItemList[" + suffix + "].unitCode' style='width: 100%;' onchange='changeUnitName(this, \"invoiceItemList["+suffix+"].unitName\");' "+clss+">";
 	result += $('#' + tableID).find('select[id^="itemUnit"]:first').html();
-	result += "</select><input type='text' id='invoiceItemList["+suffix+"].unitName' name='invoiceItemList["+suffix+"].unitName' style='display: none' class='validate[required] custom-select-combo-input'  maxlength='20' /></td>";
+	result += "</select><input type='text' id='invoiceItemList["+suffix+"].unitName' name='invoiceItemList["+suffix+"].unitName' style='display: none' class='validate[required] custom-select-combo-input form-control'  maxlength='20' /></td>";
 	
 	return result;
 }

@@ -361,7 +361,6 @@ namespace iHoaDon.Web.Controllers
         public string ViewXML(int id)
         {
             //id = 1;
-
             var transaction = _transactionSvc.GetById(id);
             string result = string.Empty;
             var mappath = Server.MapPath("~/Content/File");

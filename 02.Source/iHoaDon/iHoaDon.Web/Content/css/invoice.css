@@ -25,7 +25,7 @@
     font-size: 12px;
 }
 .well {
-    min-height: 350px;
+    /*min-height: 350px;*/
     background-color: unset;
 }
 .divider{
@@ -68,4 +68,7 @@
 }
 .x_title{
 
+}
+.x_panel{
+    margin-bottom: 100px;
 }

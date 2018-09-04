@@ -3,10 +3,10 @@ function addListener(suffix) {
 	autoNumeric();
 	setOnItemCodeChanged(suffix);
 	calTotalAmount(suffix);
-	$("#itemCode"+suffix).select2({formatSelection: itemCodeFormatSelection});
+	//$("#itemCode"+suffix).select2({formatSelection: itemCodeFormatSelection});
 	$("#itemCode"+suffix).select2('val', '');
 	
-	$("#itemUnit"+suffix).select2();
+	//$("#itemUnit"+suffix).select2();
 	$("#itemUnit"+suffix).select2('val', ' ');
 	
 	$("#itemUnit" + suffix).customSelectCombo({
@@ -15,7 +15,7 @@ function addListener(suffix) {
 		  setInputValueOnTrigger: false });
 	$("#itemUnit" + suffix).trigger('change');
 	
-	$("#itemVat"+suffix).select2();
+	//$("#itemVat"+suffix).select2();
 	$("#itemVat"+suffix).select2('val', '');
 	if ($('#itemPromotion' + suffix).val() != '1') {
 		setSelect2Validation("itemVat" + suffix, 'validate[required]');
@@ -25,7 +25,7 @@ function addListener(suffix) {
 	
 	$("#itemName"+suffix).removeAttr("readonly"); 
 
-	$("#itemPromotion"+suffix).select2();
+	//$("#itemPromotion"+suffix).select2();
 	
 	$('#itemUnit' + suffix + ' option:last-child').attr('unit-name', '');
 }
@@ -123,16 +123,16 @@ function addRow(tableID, invType) {
 	var oldSuffix = parseInt(table.rows[(rowCount - 1)].getAttribute('suffix'));
 	var newSuffix = oldSuffix + 1;
 	
-	var idxCol = "<td><input id='lineNumber" + newSuffix + "' class='disable' type='text' name='invoiceItemList[" + newSuffix + "].lineNumber' readonly='true' value='" + rowCount + "'></td>";
-	var promotionCol = "<td><select id='itemPromotion" + newSuffix +"' name='invoiceItemList[" + newSuffix + "].promotion' style='width: 100%;' onchange='changeItemPromotion(" + newSuffix + ");' class='select2'>"		                
+    var idxCol = "<td><input id='lineNumber" + newSuffix + "' class='disable form-control' type='text' name='invoiceItemList[" + newSuffix + "].lineNumber' readonly='true' value='" + rowCount + "'></td>";
+	var promotionCol = "<td><select id='itemPromotion" + newSuffix +"' name='invoiceItemList[" + newSuffix + "].promotion' style='width: 60px;' onchange='changeItemPromotion(" + newSuffix + ");' class='form-control'>"		                
 			           + "<option value='0'></option><option value='1'>Khuyến mại</option></select></td>";
 	
 	var itemCodeCol = cloneItemCodeCol(tableID, newSuffix);
 	
-	var itemNameCol = "<td><input type='text' id='itemName" + newSuffix + "' name='invoiceItemList[" + newSuffix + "].itemName' class='validate[required]' maxlength='255'></td>";
+    var itemNameCol = "<td><input type='text' id='itemName" + newSuffix + "' name='invoiceItemList[" + newSuffix + "].itemName' class='validate[required] form-control' style='min-width: 150px;' maxlength='255'></td>";
 	var unitCol = cloneItemUnitCol(tableID, newSuffix);
 	
-	var qtyCol = "<td><input type='text' id='itemQty" + newSuffix + "' name='invoiceItemList[" + newSuffix + "].quantity' class='validate[required, positive] format-float' maxlength='20'></td>";
+    var qtyCol = "<td><input type='text' id='itemQty" + newSuffix + "' name='invoiceItemList[" + newSuffix + "].quantity' class='validate[required, positive] form-control format-float' maxlength='20'></td>";
 	
 	var itemVatCol = "";
 	var enableItemTotalCol = "";
@@ -141,15 +141,15 @@ function addRow(tableID, invType) {
 		itemVatCol = cloneItemVatCol(tableID, newSuffix);
 	}
 	if (invType == '01GTKT' || invType == '02GTTT' || invType == '07KPTQ') {
-		enableItemTotalCol = "<td><input id='enableItemTotal" + newSuffix + "' type='checkbox' onClick='toggleItemTotal("+newSuffix+");' title='" + $("#enableItemTotal" + oldSuffix).attr("title") + "'/></td>";
-		itemPriceCol = "<td><input type='text' id='itemPrice" + newSuffix + "' name='invoiceItemList[" + newSuffix + "].unitPrice' class='validate[required, positive] format-currency' maxlength='15'></td>";
+        enableItemTotalCol = "<td style='text-align: center;'><input id='enableItemTotal" + newSuffix + "' type='checkbox' onClick='toggleItemTotal(" + newSuffix + ");' title='" + $("#enableItemTotal" + oldSuffix).attr("title") + "' class='js-switch1 js-switch-" + newSuffix +"' style='width: 60px;'/></td>";
+        itemPriceCol = "<td><input type='text' id='itemPrice" + newSuffix + "' name='invoiceItemList[" + newSuffix + "].unitPrice' class='validate[required, positive] format-currency' style='width: 60px;' maxlength='15'></td>";
 	}else{
 		promotionCol = "";
 		
-		itemPriceCol = "<td><input type='text' id='itemPrice" + newSuffix + "' name='invoiceItemList[" + newSuffix + "].unitPrice' class='validate[positive] format-currency' maxlength='15'></td>";
+        itemPriceCol = "<td><input type='text' id='itemPrice" + newSuffix + "' name='invoiceItemList[" + newSuffix + "].unitPrice' class='validate[positive] format-currency form-control' style='min-width: 60px;' maxlength='15'></td>";
 	}
-	var itemTotalCol = "<td><input type='text' id='itemTotal" + newSuffix + "' name='invoiceItemList[" + newSuffix + "].itemTotalAmountWithoutVat' class='format-currency disable' readonly='readonly'></td>";
-	var delBtnCol = "<td><i id='deleteRow" + rowCount + "' title='" + $("#deleteRow1").attr("title") + "' class='icon-trash'></i></td>";
+	var itemTotalCol = "<td><input type='text' id='itemTotal" + newSuffix + "' name='invoiceItemList[" + newSuffix + "].itemTotalAmountWithoutVat' class='format-currency form-control disable' readonly='readonly'></td>";
+    var delBtnCol = "<td style='text-align: center;'><i id='deleteRow" + rowCount + "' title='" + $("#deleteRow1").attr("title") + "' class='fa fa-trash-o remove-row'></i></td>";
 	
 	$('#' + tableID + ' tr:last').after("<tr suffix='" + newSuffix + "'>"
 										   + idxCol
