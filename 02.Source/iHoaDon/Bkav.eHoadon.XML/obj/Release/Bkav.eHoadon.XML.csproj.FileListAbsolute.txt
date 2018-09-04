@@ -2,3 +2,7 @@ E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\obj\Re
 E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\obj\Release\Bkav.eHoadon.XML.xsd.Resource.resources
 E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\obj\Release\Bkav.eHoadon.XML.csproj.GenerateResource.cache
 E:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon\Bkav.eHoadon.XML\obj\Release\Bkav.eHoadon.XML.csproj.CoreCompileInputs.cache
+D:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Release\Bkav.eHoadon.XML.csprojResolveAssemblyReference.cache
+D:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Release\Bkav.eHoadon.XML.xsd.Resource.resources
+D:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Release\Bkav.eHoadon.XML.csproj.GenerateResource.cache
+D:\PROJECTS\Z.Projects\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Bkav.eHoadon.XML\obj\Release\Bkav.eHoadon.XML.csproj.CoreCompileInputs.cache
