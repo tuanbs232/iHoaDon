@@ -41,6 +41,40 @@ namespace iHoaDon.Web.Controllers
             return View();
         }
 
+        public ActionResult ChangePass(string message, string messageType)
+        {
+            int id = User.GetAccountId();
+            Account account = _acc.GetById(id);
+            Profile profile = _pro.GetById(account.ProfileId);
+            ViewBag.Account = account;
+            ViewBag.Profile = profile;
+
+            ViewBag.Message = message;
+            ViewBag.MessageType = messageType;
+            ViewBag.ChangePass = 1;
+            return View("Index");
+        }
+
+        [HttpPost]
+        public ActionResult ChangePass(string CurrentPass, string NewPass, string NewPassConfirm)
+        {
+            var id = User.GetAccountId();
+            var acc = _acc.GetById(id);
+            if(acc == null)
+            {
+                return RedirectToAction("ChangePass", new { message = "Không tìm thấy thông tin tài khoản", messageType = "error" });
+            }
+            try
+            {
+                _acc.ChangePassword(acc.CompanyCode, CurrentPass, NewPass);
+            }
+            catch(Exception ex)
+            {
+                return RedirectToAction("ChangePass", new { message = "Đổi mật khẩu không thành công. " + ex.Message, messageType = "error" });
+            }
+            return RedirectToAction("ChangePass", new { message = "Đổi mật khẩu thành công", messageType = "info" });
+        }
+
         public ActionResult LogOnUser()
         {
             return View();
@@ -102,12 +136,12 @@ namespace iHoaDon.Web.Controllers
                 {
 
                     ModelState.AddModelError(String.Empty, exception.Message);
-                    result = View(model);
+                    result = View("../Home/Index", model);
                 }
             }
             else
             {
-                result = View(model);
+                result = View("../Home/Index", model);
             }
             return result;
         }

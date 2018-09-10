@@ -120,6 +120,12 @@ function deleteRow(tableID, row) {
 	setTotalGoodsPrice();
 }
 
+function saveInvoice() {
+    if (validateForm()) {
+        $('#01GTKT').submit();
+    }
+}
+
 function setOnDeleteRowClick(rowNum) {
 	$("#deleteRow" + rowNum).click(function() {
 		deleteRow('dataTable', (rowNum));
@@ -160,14 +166,14 @@ function setOnItemCodeChanged(suffix) {
 			var param = {
 					itemCode : selectedVal
 			};
-			console.log(selectedVal);
 			$.ajax({
 				type : 'GET',
 				url: '/Invoice/Products',
 				cache: false,
 				data : param,
 				dataType : 'json',
-				success : function(itemMaster) {
+                success: function (itemMaster) {
+                    console.log(itemMaster);
 					if ( $('#itemPromotion' + suffix).val() == '1'){
 						$("#itemName" + suffix).val('Khuyến mại ' + itemMaster.itemName);
 					}else{
@@ -203,7 +209,8 @@ function setOnItemCodeChanged(suffix) {
 						x.add(option);
 					}
 					if (itemMaster.unitCode){
-						$("#itemUnit" + suffix).select2('val', itemMaster.unitCode);
+                        $("#itemUnit" + suffix).select2('val', itemMaster.unitCode);
+                        $("#itemUnit" + suffix).val(itemMaster.unitCode);
 					}else{
 						$("#itemUnit" + suffix).select2('val', ' ');
 					}
@@ -588,3 +595,9 @@ function cloneItemUnitCol(tableID, suffix) {
 	
 	return result;
 }
+
+$(document).ready(function () {
+    $('.customer-infos input').keyup(function () {
+        removeFormError();
+    });
+});

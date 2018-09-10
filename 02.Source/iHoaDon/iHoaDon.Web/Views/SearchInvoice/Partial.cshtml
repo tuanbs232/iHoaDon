@@ -27,12 +27,16 @@
         {
             foreach (var item in Model)
             {
+                //if(item == null || item.CustomerInvoice == null)
+                //{
+                //    continue;
+                //}
             <tr id="row-@index" @(index % 2 == 1 ? "class=even-row" : "")>
                 <td align="center">
                     @(index + 1)
                 </td>
                 <td style="padding-left: 10px;">
-                    @item.CustomerInvoice.CustomerName
+                    @item.Account.CompanyName
                 </td>
                 <td style="padding-left: 10px">
                     @item.TemplateCode
@@ -73,24 +77,24 @@
                     }
                   
                 </td>
-                <td style="padding-left: 10px">
-                    @item.TotalVATAmount
+                <td class="total-amount format-currency" style="padding-left: 10px">
+                    @item.TotalAmountWithVAT
                 </td>
                 <td align="center">
                     <table class="table_column">
                         <tr>
                             <td>
-                                <a class="btn btn-outline-primary btn-xs" href="/Invoice/ViewXML?id=@item.Id"><i class="fa fa-eye"></i> Xem</a>
+                                <button class="btn btn-outline-primary btn-xs" id="view-invoice-btn-@item.Id" onclick="viewInvoice(@item.Id)"><i class="fa fa-eye"></i> Xem</button>
+                            </td>
+                            @*<td>
+                                <a class="btn btn-outline-danger btn-xs" href="#"><i class="fa fa-trash-o"></i> Xóa</a>
                             </td>
                             <td>
-                                <a class="btn btn-outline-danger btn-xs" href="/Invoice/ViewXML?id=@item.Id"><i class="fa fa-trash-o"></i> Xóa</a>
+                                <a class="btn btn-info btn-xs" href="#"><i class="fa fa-remove"></i> Thay thế</a>
                             </td>
                             <td>
-                                <a class="btn btn-info btn-xs" href="/Invoice/ViewXML?id=@item.Id"><i class="fa fa-remove"></i> Thay thế</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-success btn-xs" href="/Invoice/ViewXML?id=@item.Id"><i class="fa fa-edit"></i> Điều chỉnh</a>
-                            </td>
+                                <a class="btn btn-success btn-xs" href="#"><i class="fa fa-edit"></i> Điều chỉnh</a>
+                            </td>*@
                         </tr>
                     </table>
                 </td>
@@ -135,3 +139,15 @@
         </tfoot>
     }
 </table>
+    <script>
+        function viewInvoice(tranId) {
+            var win = window.open('/Invoice/ViewXMLbyInvoice/' + tranId, '_blank');
+            if (win) {
+                //Browser has allowed it to be opened
+                win.focus();
+            } else {
+                //Browser has blocked it
+                alert('Please allow popups for this website');
+            }
+        }
+    </script>

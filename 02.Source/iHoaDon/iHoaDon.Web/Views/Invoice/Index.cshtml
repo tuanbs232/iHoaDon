@@ -7,29 +7,6 @@
     //ViewBag.ViewWidth = "col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2";
     ViewBag.ViewWidth = "col-sm-10 col-sm-offset-1";
 }
-<style>
-    .file-input-wrapper {
-        overflow: hidden;
-        position: relative;
-        cursor: pointer;
-        z-index: 1;
-    }
-
-        .file-input-wrapper input[type=file], .file-input-wrapper input[type=file]:focus, .file-input-wrapper input[type=file]:hover {
-            position: absolute;
-            top: 0;
-            left: 0;
-            cursor: pointer;
-            opacity: 0;
-            filter: alpha(opacity=0);
-            z-index: 99;
-            outline: 0;
-        }
-
-    .file-input-name {
-        margin-left: 8px;
-    }
-</style>
 
 @*<link rel="stylesheet" type="text/css" media="all" href="/Content/ics.css">*@
 <link rel="stylesheet" type="text/css" media="all" href="/Content/validationEngine.jquery.css">
@@ -38,42 +15,21 @@
 <link href="/Content/css/invoice.css" rel="stylesheet" />
 <link href="/Content/select2.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" media="all" href="/Content/datepicker.css">
-
-
-<style type="text/css">
-    #country-list {
-        float: left;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        width: 190px;
-    }
-
-        #country-list li {
-            padding: 10px;
-            background: #FAFAFA;
-            border-bottom: #F0F0F0 1px solid;
-        }
-
-            #country-list li:hover {
-                background: #F0F0F0;
-            }
-</style>
 <fieldset>
-    <div id="invoice">
+    <div id="invoice" class="gtkt01">
 
         @using (Ajax.BeginForm("Index", "Invoice", FormMethod.Post, new AjaxOptions
         {
             HttpMethod = "POST",
             OnSuccess = "onSuccess"
-        }, new { @class = "confirm-form form-horizontal", id = "myForm", onSubmit = "disableAutoNumeric();" }))
+        }, new { @class = "confirm-form form-horizontal", id = "01GTKT", onSubmit = "disableAutoNumeric();" }))
         {
-            <div class="inv-title">
-                <h3>HÓA ĐƠN GIÁ TRỊ GIA TĂNG</h3>
-                @DateTime.Now.ToString("dd/MM/yyyy")
+        <div class="inv-title">
+            <h3>HÓA ĐƠN GIÁ TRỊ GIA TĂNG</h3>
+            Ngày @DateTime.Now.ToString("dd") tháng @DateTime.Now.ToString("MM") năm @DateTime.Now.ToString("yyyy")
 
-                <input type="hidden" name="templateCode" id="templateCode" value="01GTKT" />
-            </div>
+            <input type="hidden" name="templateCode" id="templateCode" value="01GTKT" />
+        </div>
 
             <div class="inv-right">
                 <div class="row form-group">
@@ -104,8 +60,8 @@
                 <div class="divider"></div>
             </div>
             <div class="row">
-                <div class="col-sm-6 hidden">
-                    <div class="well">
+                <div class="col-sm-6">
+                    <div class="well hidden">
                         <fieldset>
                             <legend class="accordion-heading">
                                 <a data-toggle="collapse" href="#collapse-seller-info" class="">Thông tin người bán</a>
@@ -154,7 +110,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <div class="well">
+                    <div class="well customer-infos">
                         <fieldset>
                             <legend class="accordion-heading">
                                 <a data-toggle="collapse" href="#collapse-buyer-info">Thông tin người mua hàng</a>
@@ -163,9 +119,9 @@
                                 <!-- Ten nguoi mua -->
                                 <div class="form-group">
                                     @Html.HiddenFor(model => model.CustomerId)
-                                    <label class="control-label col-sm-4">Họ tên người mua</label>
+                                    <label class="control-label col-sm-4">Họ tên người mua *</label>
                                     <div class="col-sm-8">
-                                        @Html.TextBoxFor(model => model.CustomerName, new { maxlength = "100", @class = "form-control" })
+                                        @Html.TextBoxFor(model => model.CustomerName, new { maxlength = "100", @class = "form-control validate[required]", @placeholder="Tìm kiếm..." })
                                         <div id="suggesstion-box"></div>
                                         @* <a href="/" id="openBuyerformPopup" tabindex="-1" style="padding-left: 2px; padding-right: 5px;">Thêm mới</a>*@
                                         @*<a style="padding-left: 20px;" href="@Url.Action("Add", "Customer", new { id = 0 })"><img alt="" src="@Url.Content("~/Content/icons/add.png")" />Thêm mới</a>*@
@@ -173,9 +129,9 @@
                                 </div>
                                 <!-- Ma so thue -->
                                 <div class="form-group">
-                                    <label for="companyCode" class="control-label col-sm-4">Mã số thuế</label>
+                                    <label for="companyCode" class="control-label col-sm-4">Mã số thuế *</label>
                                     <div class="col-sm-8">
-                                        @Html.TextBoxFor(model => model.CompanyCode, new { maxlength = "14", @class = "form-control" })
+                                        @Html.TextBoxFor(model => model.CompanyCode, new { maxlength = "14", @class = "form-control validate[required]" })
                                     </div>
                                 </div>
 
@@ -183,9 +139,9 @@
 
                                 <div class="form-group">
 
-                                    <label for="companyName" class="control-label col-sm-4">Tên đơn vị</label>
+                                    <label for="companyName" class="control-label col-sm-4">Tên đơn vị *</label>
                                     <div class="col-sm-8">
-                                        @Html.TextBoxFor(model => model.CompanyName, new { maxlength = "200", @class = "form-control" })
+                                        @Html.TextBoxFor(model => model.CompanyName, new { maxlength = "200", @class = "form-control validate[required]" })
                                     </div>
                                 </div>
 
@@ -193,9 +149,9 @@
 
                                 <div class="form-group">
 
-                                    <label for="buyerEmail" class="control-label col-sm-4">Email</label>
+                                    <label for="buyerEmail" class="control-label col-sm-4">Email *</label>
                                     <div class="col-sm-8">
-                                        @Html.TextBoxFor(model => model.BuyerEmail, new { maxlength = "50", @class = "form-control" })
+                                        @Html.TextBoxFor(model => model.BuyerEmail, new { maxlength = "50", @class = "form-control validate[required]" })
                                     </div>
                                 </div>
 
@@ -203,9 +159,9 @@
 
                                 <div class="form-group">
 
-                                    <label for="addressLine" class="control-label col-sm-4">Địa chỉ</label>
+                                    <label for="addressLine" class="control-label col-sm-4">Địa chỉ *</label>
                                     <div class="col-sm-8">
-                                        @Html.TextBoxFor(model => model.Address, new { maxlength = "500", @class = "form-control" })
+                                        @Html.TextBoxFor(model => model.Address, new { maxlength = "500", @class = "form-control validate[required]" })
                                     </div>
                                 </div>
                             </div>
@@ -218,9 +174,9 @@
                             <div id="collapse-note-info" class="accordion-body collapse in">
                                 <!-- Ten nguoi van chuyen -->
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4">Ghi chú</label>
+                                    <label class="control-label col-sm-4">Ghi chú *</label>
                                     <div class="col-sm-8">
-                                        @Html.TextAreaFor(model => model.Comment, new { maxlength = "400", @class = "auto-trim form-control", rows = "5" })
+                                        @Html.TextAreaFor(model => model.Comment, new { maxlength = "400", @class = "auto-trim form-control validate[required]", rows = "5" })
                                     </div>
                                 </div>
                             </div>
@@ -307,19 +263,17 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5px;">STT</th>
-                                    <th width="120px">Khuyến mại</th>
-                                    <th width="150px">Mã hàng hóa, dịch vụ</th>
+                                    <th width="80px" style="text-align: center;" title="Là sản phẩm khuyến mại hoặc không">Khuyến mại</th>
+                                    <th width="120px" title="Chọn mã hàng hóa để tự hoàn thành các trường khác">Mã sản phẩm</th>
                                     <th>Tên hàng hóa, dịch vụ</th>
-                                    <th style="width: 120px;">Đơn vị tính</th>
+                                    <th style="width: 80px;">Đơn vị tính</th>
                                     <th style="width: 15px;">Số lượng</th>
                                     <th width="100px">Đơn giá</th>
-
                                     <th style="width: 100px;">Thuế suất</th>
-
                                     <th width="150px">Thành tiền</th>
-                                    <th style="width: 80px;">Cho nhập tiền</th>
+                                    <th style="width: 80px; text-align: center;">Cho nhập tiền</th>
                                     <th style="width: 60px; text-align: center;">
-                                        <i class="fa fa-plus-circle add-row" title="Thêm dòng" onclick="addRow('dataTable', '01GTKT')"></i>
+                                        <i class="fa fa-plus-circle add-row" title="Thêm sản phẩm" onclick="addRow('dataTable', '01GTKT')"></i>
                                     </th>
                                 </tr>
                             </thead>
@@ -328,14 +282,11 @@
                                 <tr suffix="0">
                                     <!-- STT -->
                                     <td>
-                                        <input id="lineNumber0" class="disable form-control" type="text" name="invoiceItemList[0].lineNumber" readonly="true" value="1">
+                                        <input style="text-align: center; border: none" id="lineNumber0" class="disable form-control" type="text" name="invoiceItemList[0].lineNumber" readonly="true" value="1">
                                     </td>
                                     <!-- Khuyến mại -->
-                                    <td>
-                                        <select id="itemPromotion0" name="invoiceItemList[0].promotion" onchange="changeItemPromotion(0);" class="form-control" tabindex="-1">
-                                            <option value="0"></option>
-                                            <option value="1">Khuyến mại</option>
-                                        </select>
+                                    <td style="text-align: center;">
+                                        <input  id="itemPromotion0" name="invoiceItemList[0].promotion" type="checkbox" onchange="changeItemPromotion(0);" title="Sản phẩm khuyến mại" class="js-switch1" />
                                     </td>
                                     <!-- Mã hàng hóa, dịch vụ -->
                                     <td>
@@ -373,7 +324,7 @@
                                     <!-- Thuế suất -->
                                     <td>
 
-                                        <select id="itemVat0" name="invoiceItemList[0].vatCategoryPercentage" tabindex="-1" class="form-control">
+                                        <select id="itemVat0" name="invoiceItemList[0].vatCategoryPercentage" tabindex="-1" class="select2 validate[required] form-control">
                                             <option value="">--- Chọn ---</option>
 
                                             <option value="10">10%</option>
@@ -396,14 +347,14 @@
                                         <input id="enableItemTotal0" type="checkbox" onchange="toggleItemTotal(0);" title="Cho phép nhập Thành tiền" class="js-switch1" style="width: 60px;" />
                                     </td>
                                     <td style="text-align: center;">
-                                        <i id="deleteRow1" title="Xóa" class="fa fa-trash-o remove-row"></i>
+                                        <i id="deleteRow1" title="Xóa sản phẩm" class="fa fa-trash-o remove-row"></i>
                                     </td>
                                 </tr>
 
 
                             </tbody>
                         </table>
-                        <button class="btn btn-success btn-sm" style="background-color: #26b99a;" onclick="addRow('dataTable', '01GTKT')"><i class="fa fa-plus"></i>&nbsp;Thêm sản phẩm</button>
+                        <button class="btn btn-success btn-sm" type="button" style="background-color: #26b99a;" onclick="addRow('dataTable', '01GTKT')" title="Thêm sản phẩm"><i class="fa fa-plus"></i>&nbsp;Thêm sản phẩm</button>
 
                         <div class="inv-right">
                             <div class="row form-group">
@@ -468,7 +419,7 @@
                                 <tr>
                                     <td class="text-align-left">Số tiền viết bằng chữ</td>
                                     <td colspan="3">
-                                        <input type="text" id="totalAmtWithVatInWords" name="totalAmtWithVatInWords" value="" class="text-align-right disable" readonly="true">
+                                        <input type="text" id="totalAmtWithVatInWords" name="totalAmtWithVatInWords" value="" class="text-align-right disable" readonly="true" style="width: 100%">
                                     </td>
                                 </tr>
                             </tbody>
@@ -478,24 +429,19 @@
 
                 <input type="hidden" name="tranId" id="tranId" value="0" />
                 <fieldset class="form-actions">
-                    @*<input type="submit" class="btn btn-primary" value="Submit" name="submit" style="width: 70px; height: 25px !important; padding: 0px !important;" />*@
-                    <button type="submit" class="btn btn-success" id="submit">
-                        Lưu tạm
+                    <button type="button" class="btn btn-success" id="submit" onclick="saveInvoice()">
+                        <i class="fa fa-save"></i> Lưu thông tin hóa đơn
                     </button>
-
-                    <button type="button" class="btn btn-primary" id="viewContent">
-                        Xem hóa đơn
+                    <button type="button" class="btn btn-primary invoice-actions" id="viewContent">
+                        <i class="fa fa-globe"></i> Xem hóa đơn
                     </button>
                     <input type="hidden" id="hasPermissionToPrintInv" value="true">
                     <input type="hidden" id="hasPermissionToCreateNewInv" value="true">
-                    <button type="button" onclick="createNewBlankInvoice();" id="btnNewBlank" class="btn btn-default">
-                        Tạo hóa đơn mới
+                    <button type="button" id="btnSign" class="btn btn-danger invoice-actions" name="sign">
+                        <i class="fa fa-pencil-square-o"></i> Ký và gửi hóa đơn
                     </button>
-                    <button type="button" id="btnSign" class="btn btn-danger" name="sign" onclick="callApplet('Bạn chắc chắn muốn ký &amp; gửi hóa đơn?')">
-                        Ký và gửi hóa đơn
-                    </button>
-                    <button type="button" class="btn btn-outline-default" id="btnCancel" style="width: 85px; height: 28px">
-                        Quay lại
+                    <button type="button" onclick="createNewBlankInvoice();" id="btnNewBlank" class="btn btn-outline-success invoice-actions">
+                        <i class="fa fa-file-o"></i> Tạo hóa đơn mới
                     </button>
                     <div id="mydiv"></div>
                 </fieldset>
@@ -721,9 +667,11 @@
                         } else {
                             $("#itemName" + suffix).attr("readonly", "readonly");
                         } */
+                $('.select2-container').addClass('select2-offscreen');
+                $("#itemVat0").removeClass('select2-offscreen');
             });
 
-            jQuery('#01GTKT').validationEngine();
+            //jQuery('#01GTKT').validationEngine();
 
             $("#btnSave").click(function (e) {
                 e.preventDefault();
@@ -905,6 +853,7 @@
         }
 
         function validateForm() {
+            $('.select2-container').removeClass('validate[required]');
             var isValidForm = true;
             if ($('#01GTKT').validationEngine('validate')) {
 
@@ -933,6 +882,9 @@
             //  if (date.Flag = "True") {
             $("#tranId").val(data.TransactionId);
             $("#mydiv").html(data.Message);
+            if (data.TransactionId > 0) {
+                $('.invoice-actions').show();
+            }
             //} else {
             //  $("#mydiv").html(data.Message);
             //}
@@ -942,8 +894,32 @@
         $("#viewContent").click(function () {
             var tranId = $("#tranId").val();
             if (tranId > 0) {
-                document.location.href = "/Invoice/ViewXML/" + tranId;
+                //document.location.href = "/Invoice/ViewXML/" + tranId;
+                var win = window.open('/Invoice/ViewXML/' + tranId, '_blank');
+                if (win) {
+                    //Browser has allowed it to be opened
+                    win.focus();
+                } else {
+                    //Browser has blocked it
+                    alert('Please allow popups for this website');
+                }
             }
+        });
+
+        $('#btnSign').click(function () {
+            var tranId = $("#tranId").val();
+            if (tranId <= 0) {
+                return;
+            }
+
+            $.ajax({
+                type: 'GET',
+                url: "/Invoice/SignInvoice?id=" + tranId,
+                async: false,
+                success: function (data) {
+                    console.log(data);
+                }
+            })
         });
     </script>
 }

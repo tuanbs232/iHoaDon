@@ -17,6 +17,7 @@ using invoiceData = Bkav.eHoadon.XML.eHoadon.Entity.Create.invoiceData;
 using invoiceItem = Bkav.eHoadon.XML.eHoadon.Entity.Create.invoiceItem;
 using invoiceTaxBreakdownInfo = Bkav.eHoadon.XML.eHoadon.Entity.Create.invoiceTaxBreakdownInfo;
 using paymentInfo = Bkav.eHoadon.XML.eHoadon.Entity.Create.paymentInfo;
+using System.Security.Cryptography.X509Certificates;
 
 namespace iHoaDon.Web.Controllers
 {
@@ -39,7 +40,11 @@ namespace iHoaDon.Web.Controllers
         private readonly TransactionService _transactionSvc;
 
         private readonly AccountService _accountSvc;
-        public InvoiceController(InvoiceNumberService invoiceNumSvc, ListReleaseInvoiceService listReleaseInvoiceSvc, TemplateInvoiceService templateInvoiceSvc, CustomerService cumtomerSvc, InvoiceService invoiceSvc, BanksService banksSvc, CurrencyService currencySvc, ProductService productSvc, UnitService unitSvc, TransactionService transactionSvc, AccountService accountSvc)
+        private readonly ProfileService _profileSvc;
+        public InvoiceController(InvoiceNumberService invoiceNumSvc, ListReleaseInvoiceService listReleaseInvoiceSvc, 
+            TemplateInvoiceService templateInvoiceSvc, CustomerService cumtomerSvc, InvoiceService invoiceSvc, 
+            BanksService banksSvc, CurrencyService currencySvc, ProductService productSvc, UnitService unitSvc, 
+            TransactionService transactionSvc, AccountService accountSvc, ProfileService profileSvc)
         {
             _transactionSvc = transactionSvc;
             _unitSvc = unitSvc;
@@ -52,6 +57,7 @@ namespace iHoaDon.Web.Controllers
             _currencySvc = currencySvc;
             _productSvc = productSvc;
             _accountSvc = accountSvc;
+            _profileSvc = profileSvc;
         }
 
         [HttpGet]
@@ -61,6 +67,10 @@ namespace iHoaDon.Web.Controllers
             var accountId = User.GetAccountId();
             var acc = _accountSvc.GetById(accountId);
             var lstInvoiceNum = _listReleaseInvoiceSvc.GetByTemplateId(id, accountId);
+            if(lstInvoiceNum == null || lstInvoiceNum.Count() < 1)
+            {
+                return RedirectToAction("Index", "ListReleaseInvoice", new { message = "Chưa phát hành hóa đơn. Vui lòng chọn phát hành hóa đơn trước", messageType = "error" });
+            }
 
             var invoiceModel = new InvoiceModel();
             invoiceModel.RelesaseNos = lstInvoiceNum.Select(c => new SelectListItem { Text = c.No, Value = c.Id + "" });
@@ -68,7 +78,13 @@ namespace iHoaDon.Web.Controllers
             invoiceModel.Currencies = _currencySvc.GelAll().Select(c => new SelectListItem { Text = c.CurrencyCode, Value = c.Id + "" });
             invoiceModel.Products = _productSvc.GetByAccountId(accountId);
             invoiceModel.Units = _unitSvc.GelAll();
-            
+            var invoiceNum = _invoiceNumberSvc.GetByReleaseIdAnduseStatus(lstInvoiceNum.First().Id, 0);
+            if(invoiceNum == null || invoiceNum.Count() < 1)
+            {
+                return RedirectToAction("Index", "ListReleaseInvoice", new { message = "Đã dùng hết số hóa đơn phát hành. Vui lòng phát hành mới để tiếp tục", messageType = "error" });
+            }
+            invoiceModel.InvoiceNumber = "" + invoiceNum.First().InvoicesNumber;
+
             //thông tin người bán
             invoiceModel.CompanyNameAcc = acc.CompanyName;
             invoiceModel.CompanyCodeAcc = acc.CompanyCode;
@@ -99,9 +115,20 @@ namespace iHoaDon.Web.Controllers
                 invoiceData.invoiceAppRecordId = getRandomNumber(999999);
                 //ID của bản ghi được quản lý bởi phần mềm Lập hóa đơn của DN.
                 invoiceData.invoiceType = sss; //Ký hiệu loại hóa đơn
-                invoiceData.templateCode = formCollection["ResleaseIdNo"];
+                var releaseId = -1;
+                if(int.TryParse(formCollection["ResleaseIdNo"], out releaseId))
+                {
+                    var release = _listReleaseInvoiceSvc.GetById(releaseId);
+                    invoiceData.templateCode = release.No;
+                    invoiceData.invoiceSeries = release.SerialInvoice;
+                }
+                else
+                {
+                    invoiceData.templateCode = formCollection["ResleaseIdNo"];
+                    //"01GTKT0/089";                //Ký hiệu mẫu hóa đơn
+                    invoiceData.invoiceSeries = formCollection["Serial"]; //"AC/14E";    
+                }
                 //"01GTKT0/089";                //Ký hiệu mẫu hóa đơn
-                invoiceData.invoiceSeries = formCollection["Serial"]; //"AC/14E";                    //Ký hiệu hóa đơn
                 invoiceData.invoiceNumber = formCollection["InvoiceNumber"];
                 //createUid(20);               //Số hóa đơn hiện tại có chiều dài 7 chữ số
                 invoiceData.invoiceName = "Hóa đơn giá trị gia tăng"; //Tên loại hóa đơn
@@ -122,18 +149,18 @@ namespace iHoaDon.Web.Controllers
 
                 //Thông tin người bán (Seller)
                 //invoiceData.sellerAppRecordId = createUid(20);                            //Tùy doanh nghiệp có thể dùng chung trường ID của bản ghi được quản lý bởi phần mềm Lập hóa đơn của DN.
-                invoiceData.sellerLegalName = formCollection["CustomerName"];
+                invoiceData.sellerLegalName = formCollection["CompanyNameAcc"];
                 //"CÔNG TY TNHH DỊCH VỤ TIN HỌC FPT (Demo)";  //Tên doanh nghiệp bán hàng hóa dịch vụ
 
                 var random = new Random();
                 //String tin = allowTin[random.Next(allowTin.Length)];
                 //invoiceData.sellerTaxCode = tin;                                          //Mã số thuến người bán
 
-                invoiceData.sellerAddressLine = formCollection["sellerAddressLine"];
+                invoiceData.sellerAddressLine = formCollection["AddressAcc"];
                 //"Tầng 6 Tòa nhà Thành Công, Dịch Vọng Hậu, Cầu Giấy, Hà Nội";  //Địa chỉ người bán
-                invoiceData.sellerPhoneNumber = formCollection["sellerPhoneNumber"];
+                invoiceData.sellerPhoneNumber = formCollection["PhoneAcc"];
                 //"0812345678";                                                  //Số điện thoại người bán
-                invoiceData.sellerFaxNumber = formCollection["sellerPhoneNumber"]; //"0812345678";
+                invoiceData.sellerFaxNumber = formCollection["PhoneAcc"]; //"0812345678";
                 //invoiceData.sellerContactPersonName = formCollection["sellerAddressLine"];// "Đỗ C";                                            //Tên người đại diện công ty đăng ký kinh doanh
                 //invoiceData.sellerEmail = formCollection["sellerAddressLine"]; //"yyy@fpt.com.vn";                                              //email đăng ký kinh doanh
                 //invoiceData.sellerSignedPersonName = formCollection["sellerAddressLine"];// "Phạm A";                                   //Người bán hàng hoặc người thực hiện việc xuất hóa đơn
@@ -167,6 +194,7 @@ namespace iHoaDon.Web.Controllers
 
                 for (int j = 0; j < (data - 27) / 10; j++)
                 {
+                    invoiceItem = new invoiceItem();
                     var vatCategoryPercentage = 0;
                     int.TryParse(formCollection[string.Format("invoiceItemList[{0}].vatCategoryPercentage", j)],
                                  out vatCategoryPercentage);
@@ -181,9 +209,18 @@ namespace iHoaDon.Web.Controllers
                     //Tên hàng hóa
                     invoiceItem.unitName = formCollection[string.Format("invoiceItemList[{0}].unitCode", j)];
                     ; //Đơn vị tính
-                    invoiceItem.quantity = int.Parse(formCollection[string.Format("invoiceItemList[{0}].quantity", j)]);
-                    //Số lượng                        
-                    invoiceItem.unitPrice = int.Parse(formCollection[string.Format("invoiceItemList[{0}].unitPrice", j)]);
+                    try
+                    {
+                        invoiceItem.quantity = int.Parse(formCollection[string.Format("invoiceItemList[{0}].quantity", j)]);
+                        //Số lượng                        
+                        invoiceItem.unitPrice = int.Parse(formCollection[string.Format("invoiceItemList[{0}].unitPrice", j)]);
+                    }
+                    catch (Exception)
+                    {
+                        // Cho phép nhập thành tiền
+                        invoiceItem.quantity = 0;
+                        invoiceItem.unitPrice = 0;
+                    }
                     //Đơn giá
                     invoiceItem.vatPercentage = vatCategoryPercentage;
                     //Thuế xuất của mặt hàng: -2: không kê khai thuế, -1: không chịu thuế, 0: 0%, 5:5%, 10:10%.....
@@ -280,6 +317,14 @@ namespace iHoaDon.Web.Controllers
                 invoice.invoiceData = invoiceData;
                 string xmlInvoice = invoice.Serialize(Encoding.UTF8);
 
+                var curentTranId = formCollection["tranId"];
+                if (!string.IsNullOrEmpty(curentTranId))
+                {
+                    //var tran = _transactionSvc.GetById(int.Parse(curentTranId));
+                    //var invoiceFile = tran.InvoiceXML;
+                    //var currentInvoice = _invoiceSvc.GetById(tran.InvoiceID);
+                }
+
                 var fileName = Guid.NewGuid() + ".xml";
                 var pathFile = Path.Combine(Server.MapPath("~/Content/File"), fileName);
 
@@ -337,7 +382,22 @@ namespace iHoaDon.Web.Controllers
 
 
                 transaction.InvoiceXML = fileName;
+
+                transaction.TemplateCode = invoices.TemplateCode;
+                transaction.InvoiceSeries = invoices.Serial;
                 int tranId = _invoiceSvc.Create(invoices, transaction);
+
+                if(releaseId > 0)
+                {
+                    var invoiceNums = _invoiceNumberSvc.GetByReleaseIdAnduseStatus(releaseId, 0);
+                    if(invoiceNums != null && invoiceNums.FirstOrDefault() != null)
+                    {
+                        var invoiceNum = invoiceNums.FirstOrDefault();
+                        invoiceNum.UseStatus = 1;
+                        invoiceNum.Status = 1;
+                        _invoiceNumberSvc.UpdateInvoiceNumbers(invoiceNum);
+                    }
+                }
 
 
                 return Json(new ResultInvoice
@@ -362,11 +422,20 @@ namespace iHoaDon.Web.Controllers
         {
             //id = 1;
             var transaction = _transactionSvc.GetById(id);
+            var template = "";
+            if(transaction == null)
+            {
+                return "";
+            }
+            if (!string.IsNullOrEmpty(transaction.TemplateCode))
+            {
+                template = transaction.TemplateCode;
+            }
             string result = string.Empty;
             var mappath = Server.MapPath("~/Content/File");
             var xsltMapPath = Server.MapPath("~/Content/Viewer");
             string xmlContent = System.IO.File.ReadAllText(string.Format("{0}\\{1}", mappath, transaction.InvoiceXML));
-            string xsltContent = System.IO.File.ReadAllText(string.Format("{0}\\01GTKT.xslt", mappath));
+            string xsltContent = System.IO.File.ReadAllText(string.Format("{0}\\{1}.xslt", xsltMapPath, template));
             try
             {
                 XslCompiledTransform transform = new XslCompiledTransform();
@@ -389,6 +458,134 @@ namespace iHoaDon.Web.Controllers
             }
             return result;
         }
+
+        public string ViewXMLbyInvoice(int id)
+        {
+            var tran = _transactionSvc.GetByInvoiceId(id);
+            if(tran == null)
+            {
+                return string.Empty;
+            }
+            return ViewXML(tran.Id);
+        }
+
+        public ActionResult SignInvoice(int id)
+        {
+            int accId = User.GetAccountId();
+            Account account = _accountSvc.GetById(accId);
+            if (account == null)
+            {
+                return Json(new ResultInvoice
+                {
+                    Flag = true,
+                    Message = "Không tìm thấy thông tin tài khoản",
+                    TransactionId = id
+                });
+            }
+            
+            Profile profile = _profileSvc.GetById(account.ProfileId);
+            if (profile == null)
+            {
+                return Json(new ResultInvoice
+                {
+                    Flag = true,
+                    Message = "Không tìm thấy thông tin người dùng",
+                    TransactionId = id
+                });
+            }
+            if (string.IsNullOrEmpty(profile.Serial))
+            {
+                return Json(new ResultInvoice
+                {
+                    Flag = true,
+                    Message = "Tài khoản chưa cài đặt chứng thư số",
+                    TransactionId = id
+                });
+            }
+
+            X509Certificate2 signingCert = null;
+            try
+            {
+                signingCert = Bkav.eHoadon.XML.eHoadon.Signning.eHoadonCert.GetCertificate(profile.Serial);
+            }
+            catch(Exception ex)
+            {
+                return Json(new ResultInvoice
+                {
+                    Flag = true,
+                    Message = ex.Message,
+                    TransactionId = id
+                });
+            }
+
+            var transaction = _transactionSvc.GetById(id);
+            if(transaction == null)
+            {
+                return Json(new ResultInvoice
+                {
+                    Flag = true,
+                    Message = "Không tìm thấy thông tin hóa đơn",
+                    TransactionId = id
+                });
+            }
+            var mappath = Server.MapPath("~/Content/File");
+            string xmlContent = System.IO.File.ReadAllText(string.Format("{0}\\{1}", mappath, transaction.InvoiceXML));
+            if (string.IsNullOrEmpty(xmlContent))
+            {
+                return Json(new ResultInvoice
+                {
+                    Flag = true,
+                    Message = "Không tìm thấy tệp dữ liệu hóa đơn",
+                    TransactionId = id
+                });
+            }
+            XmlDocument doc = new XmlDocument();
+            try
+            {
+                doc.LoadXml(xmlContent);
+            }
+            catch(Exception ex)
+            {
+                return Json(new ResultInvoice
+                {
+                    Flag = true,
+                    Message = "Dữ liệu hóa đơn không đúng định dạng",
+                    TransactionId = id
+                });
+            }
+
+            var signedXml = "";
+            try
+            {
+                signedXml = Bkav.eHoadon.XML.eHoadon.Signning.eHoadonSign.Sign(doc, signingCert, "data");
+                doc = new XmlDocument();
+                doc.LoadXml(signedXml);
+                doc.Save(string.Format("{0}\\{1}", mappath, transaction.InvoiceXML));
+                return Json(new ResultInvoice
+                {
+                    Flag = true,
+                    Message = "Ký hóa đơn thành công. ",
+                    TransactionId = id
+                });
+            }
+            catch(Exception ex)
+            {
+                return Json(new ResultInvoice
+                {
+                    Flag = true,
+                    Message = "Ký hóa đơn không thành công. " + ex.Message,
+                    TransactionId = id
+                });
+            }
+
+            return Json(new ResultInvoice
+            {
+                Flag = true,
+                Message = "Lưu dữ liệu thành công",
+                TransactionId = id
+            });
+        }
+
         /// <summary>
         /// Tạo số ngẫu nhiên
         /// </summary>
@@ -476,7 +673,9 @@ namespace iHoaDon.Web.Controllers
                                 ProductCode = product.ProductCode,
                                 ProductID = product.Id,
                                 ProductName = product.ProductName,
-                                UnitId = product.UnitID
+                                UnitId = product.UnitID,
+                                unitCode = product.UnitID,
+                                unitName = product.Unit.Name
                             }, JsonRequestBehavior.AllowGet);
 
         }
@@ -493,6 +692,9 @@ namespace iHoaDon.Web.Controllers
         /// gets or sets the password
         /// </summary>
         public int? UnitId { get; set; }
+
+        public int? unitCode { get; set; }
+        public string unitName { get; set; }
 
         /// <summary>
         /// gets or sets the LoginName

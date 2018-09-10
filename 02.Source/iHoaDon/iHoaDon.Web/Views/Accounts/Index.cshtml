@@ -31,19 +31,30 @@
 <div class="col-md-9 col-sm-9 col-xs-12">
     <!-- end of user-activity-graph -->
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
+        @{ 
+            var homeTabClass = "active in";
+            var passTabClass = "";
+            if (ViewBag.ChangePass == 1)
+            {
+                passTabClass = "active in";
+                homeTabClass = "";
+            }
+        }
         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-            <li role="presentation" class="active">
-                <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Thông tin</a>
+            <li role="presentation" class="@homeTabClass">
+                <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Thông tin doanh nghiệp</a>
             </li>
             <li role="presentation" class="">
                 <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Chữ ký số</a>
             </li>
-            <li role="presentation" class="">
+            <li role="presentation" class="@passTabClass">
                 <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Đổi mật khẩu</a>
             </li>
         </ul>
         <div id="myTabContent" class="tab-content">
-            <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+            <br />
+            <br />
+            <div role="tabpanel" class="tab-pane fade @homeTabClass in" id="tab_content1" aria-labelledby="home-tab">
 
                 <table class="table table-responsive customer-info-table">
                     <tr>
@@ -180,10 +191,38 @@
                 </table>
                 <!-- end user projects -->
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                <!-- start user projects -->
-                <!-- Nội dung thay đổi mật khẩu -->
-                <!-- end user projects -->
+            <div role="tabpanel" class="tab-pane @passTabClass fade" id="tab_content3" aria-labelledby="profile-tab">
+                <form class="form-horizontal" action="ChangePass" method="post">
+                    <div class="row form-group">
+                        <label class="control-label col-md-2 col-sm-6 col-xs-6" for="CurrentPass">
+                            Mật khẩu hiện tại <span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <input type="password" class="form-control col-md-6 col-xs-12" name="CurrentPass" id="CurrentPass" />
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="control-label col-md-2 col-sm-6 col-xs-6" for="NewPass">
+                            Mật khẩu mới <span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <input type="password" class="form-control col-md-6 col-xs-12" name="NewPass" id="NewPass" />
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="control-label col-md-2 col-sm-6 col-xs-6" for="NewPassConfirm">
+                            Xác nhận mật khẩu mới <span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <input type="password" class="form-control col-md-6 col-xs-12" name="NewPassConfirm" id="NewPassConfirm" />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-2 col-sm-offset-3">
+                            <button type="submit" class="btn btn-success">Cập nhật</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

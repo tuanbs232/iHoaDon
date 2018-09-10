@@ -207,7 +207,7 @@ function hidePleaseWaitDialog() {
 }
 
 function setSelect2Validation(selectId, validationClass) {
-	 $('#'+selectId).select2('container').attr('id', selectId + "Validate").addClass(validationClass);
+    $('#' + selectId).select2('container').attr('id', selectId + "Validate").addClass(validationClass);
 	 
 	 $.fn.setTypeForHook = function () {
         this.each(function () {

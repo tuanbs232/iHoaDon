@@ -2,45 +2,483 @@
 @using iHoaDon.Web.Helper;
 @{
     ViewBag.Title = "Lập hóa đơn";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.PageSubTitle = "Lập hóa đơn";
+    Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
+    ViewBag.ViewWidth = "col-sm-10 col-sm-offset-1";
 }
+<style>
+    .file-input-wrapper {
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        z-index: 1;
+    }
 
-@section Javascripts
-{
-    <style>
-        .file-input-wrapper
-        {
-            overflow: hidden;
-            position: relative;
+        .file-input-wrapper input[type=file], .file-input-wrapper input[type=file]:focus, .file-input-wrapper input[type=file]:hover {
+            position: absolute;
+            top: 0;
+            left: 0;
             cursor: pointer;
-            z-index: 1;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            z-index: 99;
+            outline: 0;
         }
 
-            .file-input-wrapper input[type=file], .file-input-wrapper input[type=file]:focus, .file-input-wrapper input[type=file]:hover
-            {
-                position: absolute;
-                top: 0;
-                left: 0;
-                cursor: pointer;
-                opacity: 0;
-                filter: alpha(opacity=0);
-                z-index: 99;
-                outline: 0;
-            }
+    .file-input-name {
+        margin-left: 8px;
+    }
+</style>
 
-        .file-input-name
+@*<link rel="stylesheet" type="text/css" media="all" href="/Content/ics.css">*@
+<link rel="stylesheet" type="text/css" media="all" href="/Content/validationEngine.jquery.css">
+@*<link rel="stylesheet" type="text/css" media="all" href="/Content/ics-responsive.css">*@
+@*<link rel="stylesheet" type="text/css" media="all" href="/Content/style.css">*@
+<link href="/Content/select2.css" rel="stylesheet">
+<link href="/Content/css/invoice.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" media="all" href="/Content/datepicker.css">
+
+<fieldset>
+    <div id="invoice" class="inv-@ViewBag.TemplateCode">
+
+        @using (Ajax.BeginForm("Index", "InvoiceMarket", FormMethod.Post, new AjaxOptions
         {
-            margin-left: 8px;
+            HttpMethod = "POST",
+            OnSuccess = "onSuccess"
+        }, new { @class = "confirm-form form-horizontal", id = "01GTKT", onSubmit = "disableAutoNumeric();" }))
+        {
+            <div class="inv-title">
+                <h3>@ViewBag.TemplateName</h3>
+                Ngày @DateTime.Now.ToString("dd") tháng @DateTime.Now.ToString("MM") năm @DateTime.Now.ToString("yyyy")
+
+
+                <input type="hidden" name="templateCode" id="templateCode" value="@ViewBag.TemplateCode" />
+            </div>
+
+            <div class="inv-right">
+                <div class="row form-group">
+                    <label for="label.tplno" class="control-label col-sm-2 col-sm-offset-8">Mẫu số</label>
+                    <div class="col-sm-2">
+                        @Html.DropDownListFor(model => model.ResleaseIdNo, Model.RelesaseNos, new { @class = "form-control", tabindex = "-1" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label for="label.symbol" class="control-label col-sm-2 col-sm-offset-8">Ký hiệu</label>
+                    <div class="col-sm-2">
+                        @Html.DropDownListFor(model => model.Serial, new List<SelectListItem>
+                                                         {
+                                                             new SelectListItem
+                                                                 {
+                                                                     Text = "",
+                                                                     Value = ""
+                                                                 }
+                                                         }, new { @class = "form-control", tabindex = "-1" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label for="label.number" class="control-label col-sm-2 col-sm-offset-8">Số hóa đơn</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(model => model.InvoiceNumber, new { @readonly = "readonly", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="divider"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="well hidden">
+                        <fieldset>
+                            <legend class="accordion-heading">
+                                <a data-toggle="collapse" href="#collapse-seller-info" class="">Thông tin người bán</a>
+                            </legend>
+                            <div id="collapse-seller-info" class="accordion-body in collapse" style="height: auto;">
+                                <div class="form-group">
+
+                                    <label for="sellerDisplayName.01GTKT" class="control-label col-sm-4">Đơn vị bán hàng</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.CompanyNameAcc, new { @id = "sellerLegalName", @name = "sellerLegalName", @readonly = "readonly", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!-- Ma so thue -->
+
+                                <div class="form-group">
+
+                                    <label for="sellerTaxCode" class="control-label col-sm-4">Mã số thuế</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.CompanyCodeAcc, new { @id = "sellerTaxCode", @name = "sellerTaxCode", @readonly = "readonly", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!-- Dia chi -->
+
+                                <div class="form-group">
+
+                                    <label for="addressLine" class="control-label col-sm-4">Địa chỉ</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.AddressAcc, new { @id = "sellerAddressLine", @name = "sellerAddressLine", @readonly = "readonly", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <!-- Dien thoai -->
+
+                                <div class="form-group">
+
+                                    <label for="sellerPhoneNumber" class="control-label col-sm-4">Điện thoại</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.PhoneAcc, new { @id = "sellerPhoneNumber", @name = "sellerPhoneNumber", @readonly = "readonly", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="well">
+                        <fieldset>
+                            <legend class="accordion-heading">
+                                <a data-toggle="collapse" href="#collapse-buyer-info">Thông tin người mua hàng</a>
+                            </legend>
+                            <div id="collapse-buyer-info" class="accordion-body collapse in">
+                                <!-- Ten nguoi mua -->
+                                <div class="form-group">
+                                    @Html.HiddenFor(model => model.CustomerId)
+                                    <label class="control-label col-sm-4">Họ tên người mua *</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.CustomerName, new { maxlength = "100", @class = "form-control validate[required]", @placeholder = "Tìm kiếm..." })
+                                        <div id="suggesstion-box"></div>
+                                        @* <a href="/" id="openBuyerformPopup" tabindex="-1" style="padding-left: 2px; padding-right: 5px;">Thêm mới</a>*@
+                                        @*<a style="padding-left: 20px;" href="@Url.Action("Add", "Customer", new { id = 0 })"><img alt="" src="@Url.Content("~/Content/icons/add.png")" />Thêm mới</a>*@
+                                    </div>
+                                </div>
+                                <!-- Ma so thue -->
+                                <div class="form-group">
+                                    <label for="companyCode" class="control-label col-sm-4">Mã số thuế *</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.CompanyCode, new { maxlength = "14", @class = "form-control validate[required]" })
+                                    </div>
+                                </div>
+
+                                <!-- Ten don vi -->
+
+                                <div class="form-group">
+
+                                    <label for="companyName" class="control-label col-sm-4">Tên đơn vị *</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.CompanyName, new { maxlength = "200", @class = "form-control validate[required]" })
+                                    </div>
+                                </div>
+
+                                <!-- Email -->
+
+                                <div class="form-group">
+
+                                    <label for="buyerEmail" class="control-label col-sm-4">Email *</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.BuyerEmail, new { maxlength = "50", @class = "form-control validate[required]" })
+                                    </div>
+                                </div>
+
+                                <!-- Dia chi -->
+
+                                <div class="form-group">
+
+                                    <label for="addressLine" class="control-label col-sm-4">Địa chỉ *</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.Address, new { maxlength = "500", @class = "form-control validate[required]" })
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend class="accordion-heading">
+                                <a data-toggle="collapse" href="#collapse-note-info">Thông tin ghi chú</a>
+                            </legend>
+                            <div id="collapse-note-info" class="accordion-body collapse in">
+                                <!-- Ten nguoi van chuyen -->
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4">Ghi chú *</label>
+                                    <div class="col-sm-8">
+                                        @Html.TextAreaFor(model => model.Comment, new { maxlength = "400", @class = "auto-trim form-control validate[required]", rows = "5" })
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </div>
+            </div>
+            <div class="well form-horizontal">
+                <!-- thong tin nguoi ban -->
+                <!-- thong tin nguoi mua -->
+                <!-- thong tin giao dich -->
+                <fieldset>
+                    <legend class="accordion-heading">
+                        <a data-toggle="collapse" href="#collapse-transaction-info">Thông tin giao dịch</a>
+                    </legend>
+                    <div id="collapse-transaction-info" class="accordion-body collapse in">
+                        <div class="row-fluid">
+                            <div class="form-group">
+                                <label for="s2id_autogen2" class="control-label col-sm-2">Hình thức thanh toán</label>
+                                <div class="col-sm-2">
+                                    @Html.DropDownListForEnum(model => model.PaymentsType, typeof(iHoaDon.Entities.Enum.PaymentsType), new { @class = "form-control", tabindex = "-1" })
+
+                                </div>
+                                <label for="type" class="control-label col-sm-2">Loại tiền</label>
+                                <div class="col-sm-2">
+                                    @Html.DropDownListFor(model => model.CurrencyId, Model.Currencies, new { @class = "form-control", tabindex = "-1" })
+                                </div>
+                                <label for="exchangeRate" class="control-label req col-sm-2">Tỷ giá</label>
+                                <div class="col-sm-2">
+                                    @Html.TextBoxFor(model => model.CurrencyRate, new { @class = "format-currency validate[positive] input-medium form-control", @readonly = "readonly", maxlength = "20" })
+                                </div>
+                            </div>
+                            <div class="form-group no-margin span3">
+                            </div>
+                            <div class="form-group no-margin span3">
+                            </div>
+                        </div>
+
+                        <div class="row-fluid" id="bankInfoDiv" style="display: none;">
+                            <div class="divider"></div>
+                            <!-- Tai khoan nguoi ban -->
+                            <div class="form-group" style="margin-bottom: 10px">
+                                <label class="control-label col-sm-2">Tài khoản người bán</label>
+                                <div class="col-sm-4">
+                                    @Html.DropDownListFor(model => model.BankIdSeller, Model.BanksSeller.Select(c => new SelectListItem
+                                    {
+                                        Value = c.Id + "",
+                                        Text = c.BankCode
+                                    }), new { @class = "form-control", tabindex = "-1" })
+
+                                </div>
+                                <div class="col-sm-4" style="margin-left: 10px">
+                                    @Html.TextBoxFor(model => model.BankNameBuy, new { placeholder = "Tên ngân hàng", @class = "input-xxlarge form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+
+                            <!-- Tai khoan nguoi mua -->
+                            <div class="form-group" style="margin-bottom: 10px">
+                                <label class="control-label col-sm-2">Tài khoản người mua</label>
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(model => model.BankCodeBuy, new { placeholder = "Số tài khoản", @class = "uppercase form-control", maxlength = "20" })
+                                </div>
+                                <div class="col-sm-4" style="margin-left: 10px">
+                                    @Html.TextBoxFor(model => model.BankNameBuy, new { placeholder = "Tên ngân hàng", @class = "uppercase form-control", maxlength = "255" })
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+            <div class="well form-horizontal">
+                <!-- thong tin nguoi mua -->
+                <!-- thong tin nguoi ban -->
+                <!-- thong tin nguoi mua -->
+                <!-- thong tin giao dich -->
+                <!-- Chi tiet hoa don -->
+                <fieldset style="overflow: hidden">
+                    <legend class="accordion-heading">
+                        <a data-toggle="collapse" href="#collapse-detail">Chi tiết hóa đơn</a>
+                    </legend>
+
+                    <div id="collapse-detail" class="table-responsive form no-border-bottom accordion-body collapse in">
+                        <table class="table table-bordered invoice-items-table" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th style="width: 5px;text-align:center;">STT</th>
+                                    <th width="80px" style="text-align: center;" title="Là sản phẩm khuyến mại hoặc không">Khuyến mại</th>
+                                    <th width="120px" title="Chọn mã hàng hóa để tự hoàn thành các trường khác">Mã sản phẩm</th>
+                                    <th>Tên hàng hóa, dịch vụ</th>
+                                    <th style="width: 80px;">Đơn vị tính</th>
+                                    <th style="width: 15px;">Số lượng</th>
+                                    <th width="100px">Đơn giá</th>
+                                    <th style="width: 100px;display: none">Thuế suất</th>
+                                    <th width="150px">Thành tiền</th>
+                                    <th style="width: 80px;text-align:center;">Cho nhập tiền</th>
+                                    <th style="width: 60px; text-align: center;">
+                                        <i class="fa fa-plus-circle add-row" title="Thêm sản phẩm" onclick="addRow('dataTable', '07KPTQ')"></i>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr suffix="0">
+                                    <!-- STT -->
+                                    <td>
+                                        <input id="lineNumber0" style="text-align: center; border: none;" class="disable form-control" type="text" name="invoiceItemList[0].lineNumber" readonly="true" value="1">
+                                    </td>
+                                    <!-- Khuyến mại -->
+                                    <td style="text-align: center;">
+                                        <input id="itemPromotion0" name="invoiceItemList[0].promotion" type="checkbox" onchange="changeItemPromotion(0);" title="Sản phẩm khuyến mại" class="js-switch1" />
+                                    </td>
+                                    <!-- Mã hàng hóa, dịch vụ -->
+                                    <td>
+                                        <select id="itemCode0" name="invoiceItemList[0].itemCode" class="form-control" tabindex="-1">
+                                            <option value="">--- Chọn ---</option>
+                                            @foreach (var item in Model.Products)
+                                            {
+                                                <option value="@item.ProductCode" data-name='@item.ProductName' data-unit='@item.Unit.Name' data-price='@item.Price'>@item.ProductCode</option>
+                                            }
+                                        </select>
+                                    </td>
+                                    <!-- Tên hàng hóa, dịch vụ -->
+                                    <td>
+                                        <input type="text" id="itemName0" name="invoiceItemList[0].itemName" class="validate[required] form-control" style="min-width: 150px;" maxlength="255">
+                                    </td>
+                                    <!-- Đơn vị tính -->
+                                    <td>
+                                        <select id="itemUnit0" name="invoiceItemList[0].unitCode" style="min-width: 80px;" onchange="changeUnitName(this, 'invoiceItemList[0].unitName');" tabindex="-1" class="form-control">
+                                            <option value=" ">--- Chọn ---</option>
+                                            @foreach (var item in Model.Units)
+                                            {
+                                                <option value="@item.Id" unit-name="@item.Name">@item.Name</option>
+                                            }
+                                        </select>
+                                        <input type="text" id="invoiceItemList[0].unitName" name="invoiceItemList[0].unitName" style="display: none; width: 85px; height: 20px;" class="validate[required] custom-select-combo-input" maxlength="20">
+                                    </td>
+                                    <!-- Số lượng -->
+                                    <td>
+                                        <input type="text" id="itemQty0" name="invoiceItemList[0].quantity" style="width: 60px;" class="validate[required, positive] format-float form-control" maxlength="20">
+                                    </td>
+                                    <!-- Đơn giá -->
+                                    <td>
+                                        <input type="text" id="itemPrice0" name="invoiceItemList[0].unitPrice" class="validate[required, positive] format-currency form-control" maxlength="15">
+                                    </td>
+                                    <!-- Thuế suất -->
+                                    <td style="display: none;">
+
+                                        <select id="itemVat0" name="invoiceItemList[0].vatCategoryPercentage" tabindex="-1" class="select2 validate[required] form-control">
+                                            <option value="">--- Chọn ---</option>
+
+                                            <option value="10">10%</option>
+
+                                            <option value="0">0%</option>
+
+                                            <option value="5">5%</option>
+
+                                            <option value="-1">Không chịu thuế</option>
+
+                                            <option value="-2">Không kê khai nộp thuế</option>
+
+                                        </select>
+                                    </td>
+                                    <!-- Thành tiền -->
+                                    <td>
+                                        <input type="text" id="itemTotal0" name="invoiceItemList[0].itemTotalAmountWithoutVat" class="format-currency disable form-control" readonly="readonly">
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <input id="enableItemTotal0" type="checkbox" onchange="toggleItemTotal(0);" title="Cho phép nhập Thành tiền" class="js-switch1" style="width: 60px;" />
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <i id="deleteRow1" title="Xóa sản phẩm" class="fa fa-trash-o remove-row"></i>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                        <button class="btn btn-success btn-sm" type="button" style="background-color: #26b99a;" onclick="addRow('dataTable', '07KPTQ')" title="Thêm sản phẩm"><i class="fa fa-plus"></i>&nbsp;Thêm sản phẩm</button>
+
+                        <div class="inv-right">
+                            <div class="row form-group">
+                                <label for="label.tplno" class="control-label col-sm-4 col-sm-offset-6">Tổng tiền chiết khấu thương mại</label>
+                                <div class="col-sm-2">
+                                    <input id="discountAmount" name="discountAmount" class="input-large format-currency form-control" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Chu ky dien tu nguoi mua -->
+                    </div>
+                </fieldset>
+
+                <!-- thong tin tong tien tong thue -->
+                <fieldset>
+                    <legend class="accordion-heading">
+                        <a data-toggle="collapse" href="#collapse-summary">Tổng tiền</a>
+                    </legend>
+                    <div id="collapse-summary" class="table-responsive form no-border-bottom accordion-body collapse in">
+                        <table id="summaryTable" class="table sum-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Ngoại tệ</th>
+                                    <th>Tiền thuế GTGT</th>
+                                    <th>Thành tiền VND</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-align-left">
+                                        Cộng tiền hàng
+                                    </td>
+                                    <td>
+                                        <input type="text" id="totalForeign" name="totalAmountWithoutVatFrn" value="" class="format-currency disable" readonly="true">
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <input type="text" id="totalVnd" name="totalAmountWithoutVat" value="" data-a-sign=" VND" class="format-currency disable" readonly="true">
+                                    </td>
+                                </tr>
+                                <tr id="totalVatAmountRow" style="display:none">
+                                    <td class="text-align-left">Tổng tiền thuế GTGT</td>
+                                    <td></td>
+                                    <td>
+                                        <input type="text" id="totalVatAmount" name="totalVatAmount" value="" data-a-sign=" VND" class="format-currency disable" readonly="true">
+                                    </td>
+                                    <td>
+                                        <input id="validTotalGoods" type="hidden" value="true">
+                                    </td>
+                                </tr>
+                                <tr style="display: none">
+                                    <td class="text-align-left">Tổng tiền thanh toán</td>
+                                    <td>
+                                        <input type="text" id="amountForPaymentForeign" name="totalAmountWithVatFrn" value="" class="format-currency disable" readonly="true">
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <input type="text" id="amountForPaymentVnd" name="totalAmountWithVat" value="" data-a-sign=" VND" class="format-currency disable" readonly="true">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-align-left">Số tiền viết bằng chữ</td>
+                                    <td colspan="3">
+                                        <input type="text" id="totalAmtWithVatInWords" name="totalAmtWithVatInWords" value="" class="text-align-right disable" readonly="true" style="width: 100%">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+
+                <input type="hidden" name="tranId" id="tranId" value="0" />
+                <fieldset class="form-actions">
+                    <button type="button" class="btn btn-success" id="submit" onclick="saveInvoice()">
+                        <i class="fa fa-save"></i> Lưu thông tin hóa đơn
+                    </button>
+                    <button type="button" class="btn btn-primary invoice-actions" id="viewContent">
+                        <i class="fa fa-globe"></i> Xem hóa đơn
+                    </button>
+                    <input type="hidden" id="hasPermissionToPrintInv" value="true">
+                    <input type="hidden" id="hasPermissionToCreateNewInv" value="true">
+                    <button type="button" id="btnSign" class="btn btn-danger invoice-actions" name="sign">
+                        <i class="fa fa-pencil-square-o"></i> Ký và gửi hóa đơn
+                    </button>
+                    <button type="button" onclick="createNewBlankInvoice();" id="btnNewBlank" class="btn btn-outline-success invoice-actions">
+                        <i class="fa fa-file-o"></i> Tạo hóa đơn mới
+                    </button>
+                    <div id="mydiv"></div>
+                </fieldset>
+            </div>
         }
-    </style>
+    </div>
+</fieldset>
 
-    <link rel="stylesheet" type="text/css" media="all" href="/Content/ics.css">
-    <link rel="stylesheet" type="text/css" media="all" href="/Content/validationEngine.jquery.css">
-    <link rel="stylesheet" type="text/css" media="all" href="/Content/ics-responsive.css">
-    <link rel="stylesheet" type="text/css" media="all" href="/Content/style.css">
-    <link href="/Content/select2.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="all" href="/Content/datepicker.css">
 
+@section ContentScript{
 
     <script type="text/javascript" src="/Scripts/jquery-1.8.2.min.js"></script>
     <script src="/Scripts/jquery.unobtrusive-ajax.min.js?v=20" type="text/javascript"></script>
@@ -57,70 +495,48 @@
     <script type="text/javascript" src="/Scripts/script.js"></script>
     <script type="text/javascript" src="/Scripts/select2.js"></script>
     <script type="text/javascript" src="/Scripts/jquery.maxlength.js"></script>
-}
-<div id="content-title">
-    <span>Thông báo phát hành hóa đơn</span>
-</div>
- @Html.Partial("_MenuInvoice")
-<style type="text/css">
-    #country-list
-    {
-        float: left;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        width: 190px;
-    }
 
-        #country-list li
-        {
-            padding: 10px;
-            background: #FAFAFA;
-            border-bottom: #F0F0F0 1px solid;
+    <script type="text/javascript" src="/Scripts/sign-invoice.js"></script>
+
+
+
+    <script type="text/javascript" src="/Scripts/custom-select-combo.js"></script>
+    <script type="text/javascript" src="/Scripts/invoice.js"></script>
+    <script type="text/javascript" src="/Scripts/invoice_normal.js"></script>
+
+
+
+    <script type="text/javascript" src="/Scripts/doctienbangchu.js"></script>
+    <script type="text/javascript" src="/Scripts/select2.js"></script>
+    <script type="text/javascript" src="/Scripts/bootstrap-formhelpers.js"></script>
+    <link href="/Content/select2.css" rel="stylesheet">
+    <script>
+        $(document).ready(function () {
+            var temp = $('#templateCode').val();
+            $('.nav-' + temp).addClass('current-page');
+            $('.nav-' + temp).closest('ul').css('display', 'block');
+            $('.nav-' + temp).closest('li.nav-invoice').addClass('active');
+        })
+    </script>
+
+    <script type="text/javascript">
+        function createNewBlankInvoice() {
+            var url = "/van-portal/invoiceform/create?method=NewBlankInv&searchForm=&templateCode=" + $("#templateCode").val()
+                + "&invTypeCode=" + $("#invTypeCode").val();
+            msg = "Có muốn thoát hóa đơn hiện tại không?";
+            $("#btnYes").html($("#yesLabel").val());
+            $("#btnNo").html($("#noLabel").val());
+
+            $('#confirmModal').find($('p')).text(msg);
+            $('#confirmModal').modal('show');
+
+            $('#btnYes').off("click").click(function () {
+                $('#confirmModal').modal('hide');
+                window.location.href = url
+            });
         }
-
-            #country-list li:hover
-            {
-                background: #F0F0F0;
-            }
-</style>
-<fieldset>
-    <div id="invoice">
-
-        @using (Ajax.BeginForm("Index", "Invoice", FormMethod.Post, new AjaxOptions
-        {
-            HttpMethod = "POST",
-            OnSuccess = "onSuccess"
-        }, new { @class = "confirm-form", id = "myForm", onSubmit = "disableAutoNumeric();" }))
-        {
-            <div class="inv-title">
-                <h3>HOÁ ĐƠN BÁN HÀNG KHU PHI THUẾ QUAN</h3>
-                @DateTime.Now.ToString("dd/MM/yyyy")
-
-                <input type="hidden" name="templateCode" id="templateCode" value="01GTKT" />
-            </div>
-
-            <div class="inv-right">
-                <label for="label.tplno">Mẫu số</label>
-                @Html.DropDownListFor(model => model.ResleaseIdNo, Model.RelesaseNos, new { @class = "select2 select2-offscreen", tabindex = "-1" })
-                <div style="height: 5px"></div>
-                <label for="label.symbol">Ký hiệu</label>
-
-                @Html.DropDownListFor(model => model.Serial, new List<SelectListItem>
-                                                                 {
-                                                                     new SelectListItem
-                                                                         {
-                                                                             Text = "",
-                                                                             Value = ""
-                                                                         }
-                                                                 }, new { @class = "select2 select2-offscreen", tabindex = "-1" })
-                <div style="height: 5px"></div>
-                <label for="label.number">Số hóa đơn</label>
-                @Html.TextBoxFor(model => model.InvoiceNumber, new { @readonly = "readonly", style = "background: #fff;border: none;" })
-            </div>
-            <div class="well form-horizontal">
-                <!-- thong tin nguoi mua -->
-                <script type="text/javascript">
+    </script>
+    <script type="text/javascript">
                     $(document).ready(function () {
                         $('.combo-select2').select2();
                         $("select[id='ResleaseIdNo']").change(function () {
@@ -162,7 +578,7 @@
                         $("select[id='PaymentsType']").change(function () {
                             var paymentsType = $("select[id='PaymentsType'] option:selected").val();
                             if (paymentsType == '@iHoaDon.Entities.Enum.PaymentsType.Cash.ToString()' || paymentsType == '@iHoaDon.Entities.Enum.PaymentsType.Liabilities.ToString()') {
-                                //hiên thị ra 
+                                //hiên thị ra
                                 $("#bankInfoDiv").hide();
                                 console.log('a');
                             } else {
@@ -220,490 +636,92 @@
 
                         }).trigger('change');
                     });
-                </script>
-                <!-- thong tin nguoi ban -->
-                <fieldset>
-                    <legend class="accordion-heading">
-                        <a data-toggle="collapse" href="#collapse-seller-info" class="">Thông tin người bán</a>
-                    </legend>
-                    <div id="collapse-seller-info" class="accordion-body in collapse" style="height: auto;">
-                        <div class="control-group">
+    </script>
+    <script>
 
-                            <label for="sellerDisplayName.01GTKT" class="control-label">Đơn vị bán hàng</label>
-                            <div class="controls">
-                                   @Html.TextBoxFor(model => model.CompanyNameAcc, new {@id="sellerLegalName", @name="sellerLegalName",@readonly="readonly"})
-                           @*     <input id="sellerLegalName" name="sellerLegalName" readonly="readonly" type="text" value="" maxlength="200">*@
-                            </div>
-                        </div>
+        var hasWarningAboutPaymentMethod = false;
+        var isDeletionInvoice = false;
 
-                        <!-- Ma so thue -->
+        var warningAboutPaymentMethod = "Hóa đơn hiện tại có giá trị thanh toán >= 20tr vnđ, cần phải thực hiện thanh toán bằng hình thức chuyển khoản và có thông tin tài khoản của người mua và người bán. ";
+        var warningMessageTB0012 = "Tổng số hóa đơn trong ngày có giá trị thanh toán >= 20tr vnđ, cần phải thực hiện thanh toán bằng hình thức chuyển khoản và có thông tin tài khoản của người mua và người bán. ";
+        var warningAboutPaymentMethodConfirmSave = "Bạn có thực sự muốn lưu hóa đơn với trạng thái hiện tại hay không?";
+        var warningAboutPaymentMethodConfirmSend = "Bạn có thực sự muốn ký gửi hóa đơn hay không?";
 
-                        <div class="control-group">
+        $(document).ready(function () {
 
-                            <label for="sellerTaxCode" class="control-label">Mã số thuế</label>
-                            <div class="controls">
-                                   @Html.TextBoxFor(model => model.CompanyCodeAcc, new {@id="sellerTaxCode", @name="sellerTaxCode",@readonly="readonly"})
-                                @*<input id="sellerTaxCode" name="sellerTaxCode" class="input-medium" readonly="readonly" type="text" value="0106538422" maxlength="14">*@
-                            </div>
-                        </div>
+            setSelect2Validation('invSeries', 'validate[required]');
 
-                        <!-- Dia chi -->
+            $("#dataTable tbody > tr").each(function () {
+                console.log("bbbb");
+                var suffix = parseInt($(this).attr('suffix'));
 
-                        <div class="control-group">
+                //$("#itemCode" + suffix).select2({ formatSelection: itemCodeFormatSelection });
+                //$("#itemUnit" + suffix).select2();
 
-                            <label for="addressLine" class="control-label">Địa chỉ</label>
-                            <div class="controls">
-                                 @Html.TextBoxFor(model => model.AddressAcc, new {@id="sellerAddressLine", @name="sellerAddressLine",@readonly="readonly"})
-                                @*<input id="sellerAddressLine" name="sellerAddressLine" class="validate[required]" readonly="readonly" type="text" value="P401 tầng 4 tòa nhà HH1 khu ĐT Yên Hòa" maxlength="500">*@
-                            </div>
-                        </div>
+                $("#itemUnit" + suffix).customSelectCombo({
+                    customInputTarget: 'invoiceItemList[' + suffix + '].unitName',
+                    inputDimensions: ['85px', '20px'],
+                    setInputValueOnTrigger: false
+                });
+                $("#itemUnit" + suffix).trigger('change');
 
-                        <!-- Dien thoai -->
+                if ($("#templateCode").val().indexOf('01GTKT') >= 0) {
+                    $("#itemVat" + suffix).select2();
 
-                        <div class="control-group">
-
-                            <label for="sellerPhoneNumber" class="control-label">Điện thoại</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.PhoneAcc, new {@id="sellerPhoneNumber", @name="sellerPhoneNumber",@readonly="readonly"})
-                                @*  <input id="sellerPhoneNumber" name="sellerPhoneNumber" class="input-xxlarge validate[required]" readonly="readonly" type="text" value="0972855393" maxlength="11">*@
-                            </div>
-                        </div>
-
-                    </div>
-                </fieldset>
-                <!-- thong tin nguoi mua -->
-                <fieldset>
-                    <legend class="accordion-heading">
-                        <a data-toggle="collapse" href="#collapse-buyer-info">Thông tin người mua</a>
-                    </legend>
-                    <div id="collapse-buyer-info" class="accordion-body collapse in">
-                        <!-- Ten nguoi mua -->
-                        <div class="control-group">
-                            @Html.HiddenFor(model => model.CustomerId)
-                            <label class="control-label">Họ tên người mua</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.CustomerName, new { maxlength = "100" })
-                                <div id="suggesstion-box"></div>
-                             @* <a href="/" id="openBuyerformPopup" tabindex="-1" style="padding-left: 2px; padding-right: 5px;">Thêm mới</a>*@
-                                <a style="padding-left: 20px;" href="@Url.Action("Add", "Customer", new { id = 0 })" ><img alt="" src="@Url.Content("~/Content/icons/add.png")" />Thêm mới</a></div>
-                        </div>
-                        <!-- Ma so thue -->
-                        <div class="control-group no-margin">
-                            <label for="companyCode" class="control-label">Mã số thuế</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.CompanyCode, new { maxlength = "14" })
-                            </div>
-                        </div>
-
-                        <!-- Ten don vi -->
-
-                        <div class="control-group">
-
-                            <label for="companyName" class="control-label">Tên đơn vị</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.CompanyName, new { maxlength = "200" })
-                            </div>
-                        </div>
-
-                        <!-- Email -->
-
-                        <div class="control-group">
-
-                            <label for="buyerEmail" class="control-label">Email</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.BuyerEmail, new { maxlength = "50" })
-                            </div>
-                        </div>
-
-                        <!-- Dia chi -->
-
-                        <div class="control-group">
-
-                            <label for="addressLine" class="control-label">Địa chỉ</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.Address, new { maxlength = "500" })
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend class="accordion-heading">
-                        <a data-toggle="collapse" href="#collapse-note-info">Thông tin ghi chú</a>
-                    </legend>
-                    <div id="collapse-note-info" class="accordion-body collapse in">
-                        <!-- Ten nguoi van chuyen -->
-                        <div class="control-group">
-                            <label class="control-label">Ghi chú</label>
-                            <div class="controls">
-                                @Html.TextAreaFor(model => model.Comment, new { maxlength = "400", @class = "auto-trim", rows = "3" })
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-                <!-- thong tin giao dich -->
-                <fieldset>
-                    <legend class="accordion-heading">
-                        <a data-toggle="collapse" href="#collapse-transaction-info">Thông tin giao dịch</a>
-                    </legend>
-                    <div id="collapse-transaction-info" class="accordion-body collapse in">
-                        <div class="row-fluid">
-                            <div class="control-group no-margin span4">
-
-                                <div class="control-group">
-                                    <label for="s2id_autogen2" class="control-label">Hình thức thanh toán</label>
-                                    <div class="controls">
-                                        @Html.DropDownListForEnum(model => model.PaymentsType, typeof(iHoaDon.Entities.Enum.PaymentsType), new { @class = "select2 select2-offscreen", style = "width: 200px;", tabindex = "-1" })
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="control-group no-margin span3">
-                                <label for="type" class="control-label">Loại tiền</label>
-                                <div class="controls">
-                                    @Html.DropDownListFor(model => model.CurrencyId, Model.Currencies, new { @class = "select2 select2-offscreen", tabindex = "-1" })
-                                </div>
-                            </div>
-                            <div class="control-group no-margin span3">
-                                <label for="exchangeRate" class="control-label req">Tỷ giá</label>
-                                <div class="controls">
-                                    @Html.TextBoxFor(model => model.CurrencyRate, new { @class = "format-currency validate[positive] input-medium", @readonly = "readonly", maxlength = "20" })
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row-fluid" id="bankInfoDiv" style="display: none;">
-                            <!-- Tai khoan nguoi ban -->
-                            <div class="row-fluid" style="margin-bottom: 10px">
-                                <div class="pull-left first">
-                                    <label class="control-label" style="font-size: 13px;">Tài khoản người bán</label>
-                                    <div class="controls">
-                                        @Html.DropDownListFor(model => model.BankIdSeller, Model.BanksSeller.Select(c => new SelectListItem
-                                                                                                                             {
-                                                                                                                                 Value = c.Id + "",
-                                                                                                                                 Text = c.BankCode
-                                                                                                                             }), new { style = "width: 300px;", @class = "select2 select2-offscreen", tabindex = "-1" })
-
-                                    </div>
-                                </div>
-                                <div class="pull-left" style="margin-left: 10px">
-                                    @Html.TextBoxFor(model => model.BankNameBuy, new { placeholder = "Tên ngân hàng", @class = "input-xxlarge", @readonly = "readonly" })
-                                </div>
-                            </div>
-
-                            <!-- Tai khoan nguoi mua -->
-                            <div class="row-fluid" style="margin-bottom: 10px">
-                                <div class="pull-left first">
-                                    <label class="control-label" style="font-size: 13px;">Tài khoản người mua</label>
-                                    <div class="controls">
-                                        @Html.TextBoxFor(model => model.BankCodeBuy, new { style = "width: 292px;", placeholder = "Số tài khoản", @class = "uppercase", maxlength = "20" })
-                                    </div>
-                                </div>
-                                <div class="pull-left" style="margin-left: 10px">
-                                    @Html.TextBoxFor(model => model.BankNameBuy, new { style = "width: 292px;", placeholder = "Tên ngân hàng", @class = "uppercase", maxlength = "255" })
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </fieldset>
-
-
-                <!-- Chi tiet hoa don -->
-                <fieldset style="overflow: hidden">
-                    <legend class="accordion-heading"><a data-toggle="collapse" href="#collapse-detail">Chi tiết hóa đơn</a>
-                    </legend>
-
-                    <div id="collapse-detail" class="table-responsive form no-border-bottom accordion-body collapse in">
-                        <table class="table_main" id="dataTable">
-                            <thead>
-                                <tr>
-                                    <th style="width: 5px;">STT</th>
-                                    <th>Khuyến mại</th>
-                                    <th>Mã hàng hóa, dịch vụ</th>
-                                    <th>Tên hàng hóa, dịch vụ</th>
-                                    <th style="width: 120px;">Đơn vị tính</th>
-                                    <th style="width: 15px;">Số lượng</th>
-                                    <th>Đơn giá</th>
-
-                                    <th style="width: 120px;display: none">Thuế suất</th>
-
-                                    <th>Thành tiền</th>
-                                    <th></th>
-                                    <th style="width: 5px;">
-                                        <i class="icon-plus icon-white" title="Thêm dòng" onclick="addRow('dataTable', '07KPTQ')"></i>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr suffix="0">
-                                    <td>
-                                        <input id="lineNumber0" class="disable" type="text" name="invoiceItemList[0].lineNumber" readonly="true" value="1"></td>
-                                    <td style="padding: 10px">
-                                        <select id="itemPromotion0" name="invoiceItemList[0].promotion" style="width: 100%;" onchange="changeItemPromotion(0);" class="select2 select2-offscreen" tabindex="-1">
-                                            <option value="0"></option>
-                                            <option value="1">Khuyến mại</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select id="itemCode0" name="invoiceItemList[0].itemCode" style="width: 100%;" class="product combo-select2 select2-offscreen" tabindex="-1">
-                                            <option value="">--- Chọn ---</option>
-                                            @foreach (var item in Model.Products)
-                                            {
-                                                <option value="@item.ProductCode" data-name='@item.ProductName' data-unit='@item.Unit.Name' data-price='@item.Price'>@item.ProductCode</option>
-                                            }
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" id="itemName0" name="invoiceItemList[0].itemName" class="validate[required]" maxlength="255"></td>
-                                    <td>
-                                        <select id="itemUnit0" name="invoiceItemList[0].unitCode" style="width: 100%;" onchange="changeUnitName(this, 'invoiceItemList[0].unitName');" tabindex="-1" class="select2 select2-offscreen custom-select-comboized">
-                                            <option value=" ">--- Chọn ---</option>
-                                            @foreach (var item in Model.Units)
-                                            {
-                                                <option value="@item.Id" unit-name="@item.Name">@item.Name</option>
-                                            }
-                                        </select>
-                                        <input type="text" id="invoiceItemList[0].unitName" name="invoiceItemList[0].unitName" style="display: none; width: 85px; height: 20px;" class="validate[required] custom-select-combo-input" maxlength="20">
-                                    </td>
-                                    <td>
-                                        <input type="text" id="itemQty0" name="invoiceItemList[0].quantity" class="validate[required, positive] format-float" maxlength="20"></td>
-                                    <td>
-                                        <input type="text" id="itemPrice0" name="invoiceItemList[0].unitPrice" class="validate[required, positive] format-currency" maxlength="15"></td>
-
-                                    <td style="display: none">
-
-                                        <select id="itemVat0" name="invoiceItemList[0].vatCategoryPercentage" style="width: 100%;" tabindex="-1" class="select2 select2-offscreen validate[required]">
-                                            <option value="">--- Chọn ---</option>
-
-                                            <option value="10">10%</option>
-
-                                            <option value="0">0%</option>
-
-                                            <option value="5">5%</option>
-
-                                            <option value="-1">Không chịu thuế</option>
-
-                                            <option value="-2">Không kê khai nộp thuế</option>
-
-                                        </select>
-                                    </td>
-
-                                    <td>
-                                        <input type="text" id="itemTotal0" name="invoiceItemList[0].itemTotalAmountWithoutVat" class="format-currency disable" readonly="readonly">
-                                    </td>
-                                    <td>
-                                        <input id="enableItemTotal0" style="width: 12px" type="checkbox" onclick="toggleItemTotal(0);" title="Cho phép nhập Thành tiền">
-                                    </td>
-                                    <td>
-                                        <i id="deleteRow1" title="Xóa" class="icon-trash"></i>
-                                    </td>
-                                </tr>
-
-
-                            </tbody>
-                        </table>
-
-                        <div class="row-fluid" style="margin-bottom: 10px; margin-top: 20px;">
-                            <div class="pull-right" style="margin-left: 10px">
-                                <input id="discountAmount" name="discountAmount" class="input-large format-currency" type="text" value="">
-                            </div>
-                            <label class="pull-right" style="font-size: 13px; width: 200px;">Tổng tiền chiết khấu thương mại</label>
-                        </div>
-                        <!-- Chu ky dien tu nguoi mua -->
-                    </div>
-                </fieldset>
-
-                <!-- thong tin tong tien tong thue -->
-                <fieldset>
-                    <legend class="accordion-heading"><a data-toggle="collapse" href="#collapse-summary">Tổng tiền</a>
-                    </legend>
-                    <div id="collapse-summary" class="table-responsive form no-border-bottom accordion-body collapse in">
-                        <table id="summaryTable" class="table_main">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Ngoại tệ</th>
-                                    <th>Tiền thuế GTGT</th>
-                                    <th>Thành tiền VND</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-align-left">Cộng tiền hàng
-                                    </td>
-                                    <td>
-                                        <input type="text" id="totalForeign" name="totalAmountWithoutVatFrn" value="" class="format-currency disable" readonly="true">
-                                    </td>
-                                    <td>&nbsp;</td>
-                                    <td>
-                                        <input type="text" id="totalVnd" name="totalAmountWithoutVat" value="" data-a-sign=" VND" class="format-currency disable" readonly="true">
-                                    </td>
-                                </tr>
-                                <tr id="totalVatAmountRow" style="display:none">
-                                    <td class="text-align-left">Tổng tiền thuế GTGT</td>
-                                    <td></td>
-                                    <td>
-                                        <input type="text" id="totalVatAmount" name="totalVatAmount" value="" data-a-sign=" VND" class="format-currency disable" readonly="true"></td>
-                                    <td>
-                                        <input id="validTotalGoods" type="hidden" value="true">
-                                    </td>
-                                </tr>
-                                <tr style="display: none">
-                                    <td class="text-align-left">Tổng tiền thanh toán</td>
-                                    <td>
-                                        <input type="text" id="amountForPaymentForeign" name="totalAmountWithVatFrn" value="" class="format-currency disable" readonly="true">
-                                    </td>
-                                    <td>&nbsp;</td>
-                                    <td>
-                                        <input type="text" id="amountForPaymentVnd" name="totalAmountWithVat" value="" data-a-sign=" VND" class="format-currency disable" readonly="true">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-align-left">Số tiền viết bằng chữ</td>
-                                    <td colspan="3">
-                                        <input type="text" id="totalAmtWithVatInWords" name="totalAmtWithVatInWords" value="" class="text-align-right disable" readonly="true"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </fieldset>
-
-                <script type="text/javascript">
-                    function createNewBlankInvoice() {
-                        var url = "/van-portal/invoiceform/create?method=NewBlankInv&searchForm=&templateCode=" + $("#templateCode").val()
-                            + "&invTypeCode=" + $("#invTypeCode").val();
-                        msg = "Có muốn thoát hóa đơn hiện tại không?";
-                        $("#btnYes").html($("#yesLabel").val());
-                        $("#btnNo").html($("#noLabel").val());
-
-                        $('#confirmModal').find($('p')).text(msg);
-                        $('#confirmModal').modal('show');
-
-                        $('#btnYes').off("click").click(function () {
-                            $('#confirmModal').modal('hide');
-                            window.location.href = url
-                        });
+                    if ($('#itemPromotion' + suffix).val() != '1') {
+                        setSelect2Validation("itemVat" + suffix, 'validate[required]');
+                    } else {
+                        setSelect2Validation("itemVat" + suffix, '');
                     }
-                </script>
-                <input type="hidden" name="tranId" id="tranId" value="0" />
-                <fieldset class="form-actions">
-                    @*<input type="submit" class="btn btn-primary" value="Submit" name="submit" style="width: 70px; height: 25px !important; padding: 0px !important;" />*@
-                    <button type="submit" class="button" id="submit">
-                        <img alt="" src="@Url.Content("~/Content/icons/disk.png")" />
-                        Lưu tạm
-                    </button>
-
-                    <button type="button" class="button" id="viewContent">
-                       <img alt="" src="@Url.Content("~/Content/icons/View.png")" />
-                        Xem hóa đơn 
-                    </button>
-                    <input type="hidden" id="hasPermissionToPrintInv" value="true">
-                    <input type="hidden" id="hasPermissionToCreateNewInv" value="true">
-                    <button type="button" onclick="createNewBlankInvoice();" id="btnNewBlank" class="button">
-                        <img alt="" src="@Url.Content("~/Content/icons/add.png")" />
-                        Tạo hóa đơn mới
-                    </button>
-                    <button type="button" id="btnSign" class="button" name="sign" onclick="callApplet('Bạn chắc chắn muốn ký &amp; gửi hóa đơn?')">
-                        <img alt="" src="@Url.Content("~/Content/icons/script_edit.png")" />
-                        Ký và gửi hóa đơn
-                    </button>
-                    <button type="button" class="btn" id="btnCancel" style="width: 85px; height: 28px">
-                        <img alt="" src="@Url.Content("~/Content/icons/arrow_redo.png")" />
-                        Quay lại
-                    </button>
-                    <div id="mydiv"></div>
-                </fieldset>
-            </div>
-        }
-    </div>
-</fieldset>
-<script type="text/javascript" src="/Scripts/sign-invoice.js"></script>
-
-
-
-<script type="text/javascript" src="/Scripts/custom-select-combo.js"></script>
-<script type="text/javascript" src="/Scripts/invoice.js"></script>
-<script type="text/javascript" src="/Scripts/invoice_normal.js"></script>
-
-
-
-<script type="text/javascript" src="/Scripts/doctienbangchu.js"></script>
-<script type="text/javascript" src="/Scripts/select2.js"></script>
-<script type="text/javascript" src="/Scripts/bootstrap-formhelpers.js"></script>
-<link href="/Content/select2.css" rel="stylesheet">
-<script>
-
-    var hasWarningAboutPaymentMethod = false;
-    var isDeletionInvoice = false;
-
-    var warningAboutPaymentMethod = "Hóa đơn hiện tại có giá trị thanh toán >= 20tr vnđ, cần phải thực hiện thanh toán bằng hình thức chuyển khoản và có thông tin tài khoản của người mua và người bán. ";
-    var warningMessageTB0012 = "Tổng số hóa đơn trong ngày có giá trị thanh toán >= 20tr vnđ, cần phải thực hiện thanh toán bằng hình thức chuyển khoản và có thông tin tài khoản của người mua và người bán. ";
-    var warningAboutPaymentMethodConfirmSave = "Bạn có thực sự muốn lưu hóa đơn với trạng thái hiện tại hay không?";
-    var warningAboutPaymentMethodConfirmSend = "Bạn có thực sự muốn ký gửi hóa đơn hay không?";
-
-    $(document).ready(function () {
-
-        setSelect2Validation('invSeries', 'validate[required]');
-
-        $("#dataTable tbody > tr").each(function () {
-            console.log("bbbb");
-            var suffix = parseInt($(this).attr('suffix'));
-
-            //$("#itemCode" + suffix).select2({ formatSelection: itemCodeFormatSelection });
-            //$("#itemUnit" + suffix).select2();
-
-            $("#itemUnit" + suffix).customSelectCombo({
-                customInputTarget: 'invoiceItemList[' + suffix + '].unitName',
-                inputDimensions: ['85px', '20px'],
-                setInputValueOnTrigger: false
-            });
-            $("#itemUnit" + suffix).trigger('change');
-
-            if ($("#templateCode").val().indexOf('01GTKT') >= 0) {
-                $("#itemVat" + suffix).select2();
-
-                if ($('#itemPromotion' + suffix).val() != '1') {
-                    setSelect2Validation("itemVat" + suffix, 'validate[required]');
-                } else {
-                    setSelect2Validation("itemVat" + suffix, '');
                 }
-            }
 
-            changeItemPromotion(suffix);
-            setOnItemCodeChanged(suffix);
-            setOnDeleteRowClick(suffix + 1);
-            var adjustRow = $(this).attr('adjustRow');
-            if (adjustRow == 'true') {
-                var rowSuffix = parseInt($(this).attr('suffix'));
-                setOnDeleteRowClick(rowSuffix);
-            }
-            calTotalAmount(suffix);
-            /* 		if (false) {
-                        $("#itemName" + suffix).attr("readonly", "readonly");
-                    } */
+                changeItemPromotion(suffix);
+                setOnItemCodeChanged(suffix);
+                setOnDeleteRowClick(suffix + 1);
+                var adjustRow = $(this).attr('adjustRow');
+                if (adjustRow == 'true') {
+                    var rowSuffix = parseInt($(this).attr('suffix'));
+                    setOnDeleteRowClick(rowSuffix);
+                }
+                calTotalAmount(suffix);
+                /* 		if (false) {
+                            $("#itemName" + suffix).attr("readonly", "readonly");
+                        } */
 
-            /* 		if ($("#itemCode" + suffix).val() == '') {
-                        $("#itemName" + suffix).removeAttr("readonly");
-                    } else {
-                        $("#itemName" + suffix).attr("readonly", "readonly");
-                    } */
-        });
+                /* 		if ($("#itemCode" + suffix).val() == '') {
+                            $("#itemName" + suffix).removeAttr("readonly");
+                        } else {
+                            $("#itemName" + suffix).attr("readonly", "readonly");
+                        } */
+            });
 
-        jQuery('#01GTKT').validationEngine();
+            jQuery('#01GTKT').validationEngine();
 
-        $("#btnSave").click(function (e) {
-            e.preventDefault();
-            if (validateForm()) {
-                var $buyerTaxCode = $("input[name='buyerTaxCode']").val();
-                if (hasWarningAboutPaymentMethod && !isDeletionInvoice) {
+            $("#btnSave").click(function (e) {
+                e.preventDefault();
+                if (validateForm()) {
+                    var $buyerTaxCode = $("input[name='buyerTaxCode']").val();
+                    if (hasWarningAboutPaymentMethod && !isDeletionInvoice) {
 
-                    if ($("#taxCode").val() != '') {
-                        $('#warningModal').find($('p')).text(warningAboutPaymentMethod);
-                        $('#warningModal').modal('show');
-                    } else {
-                        $('#confirmModal').find($('p')).text(warningAboutPaymentMethod).append(warningAboutPaymentMethodConfirmSave);
+                        if ($("#taxCode").val() != '') {
+                            $('#warningModal').find($('p')).text(warningAboutPaymentMethod);
+                            $('#warningModal').modal('show');
+                        } else {
+                            $('#confirmModal').find($('p')).text(warningAboutPaymentMethod).append(warningAboutPaymentMethodConfirmSave);
+                            $("#btnYes").html($("#yesLabel").val());
+                            $("#btnNo").html($("#noLabel").val());
+
+                            $('#confirmModal').modal('show');
+
+                            $('#btnYes').off("click").click(function () {
+                                $('#confirmModal').modal('hide');
+                                showPleaseWaitDialog();
+                                $('#01GTKT').submit();
+                            });
+                        }
+
+                    } else if (!isDeletionInvoice && $buyerTaxCode != '' && isWarningBuyerTotalAmountWithinDay($buyerTaxCode)) {
+                        $('#confirmModal').find($('p')).text(warningMessageTB0012).append(warningAboutPaymentMethodConfirmSave);
                         $("#btnYes").html($("#yesLabel").val());
                         $("#btnNo").html($("#noLabel").val());
 
@@ -714,203 +732,200 @@
                             showPleaseWaitDialog();
                             $('#01GTKT').submit();
                         });
-                    }
-
-                } else if (!isDeletionInvoice && $buyerTaxCode != '' && isWarningBuyerTotalAmountWithinDay($buyerTaxCode)) {
-                    $('#confirmModal').find($('p')).text(warningMessageTB0012).append(warningAboutPaymentMethodConfirmSave);
-                    $("#btnYes").html($("#yesLabel").val());
-                    $("#btnNo").html($("#noLabel").val());
-
-                    $('#confirmModal').modal('show');
-
-                    $('#btnYes').off("click").click(function () {
-                        $('#confirmModal').modal('hide');
+                    } else {
                         showPleaseWaitDialog();
                         $('#01GTKT').submit();
-                    });
-                } else {
-                    showPleaseWaitDialog();
-                    $('#01GTKT').submit();
-                }
-            }
-        });
-
-        $("#btnCancel").click(function () {
-            $('#01GTKT').validationEngine('detach');
-
-            msg = "Có muốn thoát hóa đơn hiện tại không?";
-            $("#btnYes").html($("#yesLabel").val());
-            $("#btnNo").html($("#noLabel").val());
-
-            $('#confirmModal').modal('show');
-            $('#confirmModal').find($('p')).text(msg);
-
-            $('#btnYes').off("click").click(function () {
-                $('#confirmModal').modal('hide');
-                $("[name=cancel]").val("true");
-                if (('' == '') && ('' == '3')) {
-                    window.location.href = "/van-portal/replacementform/initialize";
-                } else {
-                    $('.confirm-form').submit();
+                    }
                 }
             });
-        });
 
-        $("#paymentMethodName").change(function () {
+            $("#btnCancel").click(function () {
+                $('#01GTKT').validationEngine('detach');
 
-            if ($("#paymentMethodName").val().indexOf("Chuyển khoản") >= 0) {
-                document.getElementById('bankInfoDiv').style.display = 'block';
+                msg = "Có muốn thoát hóa đơn hiện tại không?";
+                $("#btnYes").html($("#yesLabel").val());
+                $("#btnNo").html($("#noLabel").val());
 
-                setSelect2Validation('sellerBankAccount', 'validate[required]');
-                /* $( "#buyerBankName" ).addClass( "validate[required]");
-                $( "#buyerBankAccount" ).addClass( "validate[required,custom[onlyLetterNumber]]"); */
-            } else {
-                document.getElementById('bankInfoDiv').style.display = 'none';
-                /* $( "#buyerBankAccount" ).removeClass( "validate[required,custom[onlyLetterNumber]]");
-                $( "#buyerBankName" ).removeClass( "validate[required]"); */
-                $("#sellerBankAccountValidate").removeClass("validate[required]");
+                $('#confirmModal').modal('show');
+                $('#confirmModal').find($('p')).text(msg);
 
-                $("#buyerBankAccount").val("");
-                $("#buyerBankName").val("");
-                $("#sellerBankName").val("");
-                $("#sellerBankAccount").select2("val", '');
-                $("#sellerBankAccount").trigger("change");
-            }
-        });
-
-        $("#buyerBankAccount").blur(function () {
-            checkSameBankAcc();
-        });
-
-        $("#sellerBankAccount").change(function () {
-            checkSameBankAcc();
-        });
-
-        function checkSameBankAcc() {
-            var message = "Số tài khoản trùng với số tài khoản của người mua hàng.";
-            if (($("#sellerBankAccountNumber").val() != '') && ($("#buyerBankAccount").val() == $("#sellerBankAccountNumber").val())) {
-                showWarningBox(message);
-            }
-        }
-
-        if ('' == '7') {
-            disableOrgInputs();
-        }
-    });
-
-    function disableOrgInputs() {
-        $('select, textarea, input:not(#additionalReferenceDesc):not(#additionalReferenceDate)').attr('readonly', 'readonly');
-        $('input.datepicker:not(#additionalReferenceDate)').datepicker("remove");
-
-        $('.select2').select2('readonly', 'readonly');
-        $('.combo-select2').select2('readonly', 'readonly');
-        $('.select2-container').select2('readonly', 'readonly');
-
-        $('#btnNewBlank').hide();
-
-        $("#dataTable th:last-child, #dataTable td:last-child").remove();
-
-        $('#dataTable').find('input[id^="enableItemTotal"]').attr('disabled', 'disabled');
-
-        $('#buyerSignature').click(function () {
-            return false;
-        });
-
-        $('#openBuyerformPopup').hide();
-        $('#addBuyerLink').hide();
-    }
-
-    /*
-     * Display invoice details.
-     * Call this after cetification.
-     */
-    function displayInvDetail(invId) {
-        window.open("/van-portal" + "/viewInvoice?id=" + invId, "", "scrollbars=yes,resizable=yes");
-    }
-
-    function isWarningBuyerTotalAmountWithinDay($buyerTaxCode) {
-        var returnVal = false;
-
-        var isDecreaseInv = $("#adjAmountForPaymentVnd").val() == 'false';
-        if (!isDecreaseInv && document.getElementById('paymentMethodName')) {
-            $.ajax({
-                type: 'GET',
-                url: "/van-portal/invoices/totalAmountWithVat/" + $buyerTaxCode,
-                dataType: 'json',
-                async: false,
-                success: function (data) {
-
-                    var totalMountWithVat = parseFloat(data);
-
-                    if (document.getElementById('totalAmountWithVat')) {
-
-                        if ($("#invId").val() != '') {
-                            totalMountWithVat += parseFloat($("input[name='totalAmountWithVat']").autoNumeric('get')) - parseFloat('');
-                        } else {
-                            totalMountWithVat += parseFloat($("input[name='totalAmountWithVat']").autoNumeric('get'));
-                        }
-
+                $('#btnYes').off("click").click(function () {
+                    $('#confirmModal').modal('hide');
+                    $("[name=cancel]").val("true");
+                    if (('' == '') && ('' == '3')) {
+                        window.location.href = "/van-portal/replacementform/initialize";
                     } else {
-
-                        if ($("#invId").val() != '') {
-                            totalMountWithVat += parseFloat($("input[name='totalAmountWithoutVat']").autoNumeric('get')) - parseFloat('');
-                        } else {
-                            totalMountWithVat += parseFloat($("input[name='totalAmountWithoutVat']").autoNumeric('get'));
-                        }
+                        $('.confirm-form').submit();
                     }
+                });
+            });
 
-                    if (totalMountWithVat >= 20000000) {
+            $("#paymentMethodName").change(function () {
 
-                        if ($('#paymentMethodName').select2('val').indexOf("Chuyển khoản") < 0) {
-                            returnVal = true;
-                        }
-                    }
+                if ($("#paymentMethodName").val().indexOf("Chuyển khoản") >= 0) {
+                    document.getElementById('bankInfoDiv').style.display = 'block';
+
+                    setSelect2Validation('sellerBankAccount', 'validate[required]');
+                    /* $( "#buyerBankName" ).addClass( "validate[required]");
+                    $( "#buyerBankAccount" ).addClass( "validate[required,custom[onlyLetterNumber]]"); */
+                } else {
+                    document.getElementById('bankInfoDiv').style.display = 'none';
+                    /* $( "#buyerBankAccount" ).removeClass( "validate[required,custom[onlyLetterNumber]]");
+                    $( "#buyerBankName" ).removeClass( "validate[required]"); */
+                    $("#sellerBankAccountValidate").removeClass("validate[required]");
+
+                    $("#buyerBankAccount").val("");
+                    $("#buyerBankName").val("");
+                    $("#sellerBankName").val("");
+                    $("#sellerBankAccount").select2("val", '');
+                    $("#sellerBankAccount").trigger("change");
                 }
             });
+
+            $("#buyerBankAccount").blur(function () {
+                checkSameBankAcc();
+            });
+
+            $("#sellerBankAccount").change(function () {
+                checkSameBankAcc();
+            });
+
+            function checkSameBankAcc() {
+                var message = "Số tài khoản trùng với số tài khoản của người mua hàng.";
+                if (($("#sellerBankAccountNumber").val() != '') && ($("#buyerBankAccount").val() == $("#sellerBankAccountNumber").val())) {
+                    showWarningBox(message);
+                }
+            }
+
+            if ('' == '7') {
+                disableOrgInputs();
+            }
+        });
+
+        function disableOrgInputs() {
+            $('select, textarea, input:not(#additionalReferenceDesc):not(#additionalReferenceDate)').attr('readonly', 'readonly');
+            $('input.datepicker:not(#additionalReferenceDate)').datepicker("remove");
+
+            $('.select2').select2('readonly', 'readonly');
+            $('.combo-select2').select2('readonly', 'readonly');
+            $('.select2-container').select2('readonly', 'readonly');
+
+            $('#btnNewBlank').hide();
+
+            $("#dataTable th:last-child, #dataTable td:last-child").remove();
+
+            $('#dataTable').find('input[id^="enableItemTotal"]').attr('disabled', 'disabled');
+
+            $('#buyerSignature').click(function () {
+                return false;
+            });
+
+            $('#openBuyerformPopup').hide();
+            $('#addBuyerLink').hide();
         }
 
-        return returnVal;
-    }
-
-    function validateForm() {
-        var isValidForm = true;
-        if ($('#01GTKT').validationEngine('validate')) {
-
-            isValidForm = true;
-
-        } else {
-            $('#01GTKT').find('div.accordion-body:not(.in)').collapse('show');
-            isValidForm = false;
+        /*
+         * Display invoice details.
+         * Call this after cetification.
+         */
+        function displayInvDetail(invId) {
+            window.open("/van-portal" + "/viewInvoice?id=" + invId, "", "scrollbars=yes,resizable=yes");
         }
 
-        if (isValidForm && document.getElementById('validTotalGoods')) {
-            if ($('#validTotalGoods').val() == 'false') {
-                showWarningBox("Cộng tiền hàng không đúng!");
+        function isWarningBuyerTotalAmountWithinDay($buyerTaxCode) {
+            var returnVal = false;
+
+            var isDecreaseInv = $("#adjAmountForPaymentVnd").val() == 'false';
+            if (!isDecreaseInv && document.getElementById('paymentMethodName')) {
+                $.ajax({
+                    type: 'GET',
+                    url: "/van-portal/invoices/totalAmountWithVat/" + $buyerTaxCode,
+                    dataType: 'json',
+                    async: false,
+                    success: function (data) {
+
+                        var totalMountWithVat = parseFloat(data);
+
+                        if (document.getElementById('totalAmountWithVat')) {
+
+                            if ($("#invId").val() != '') {
+                                totalMountWithVat += parseFloat($("input[name='totalAmountWithVat']").autoNumeric('get')) - parseFloat('');
+                            } else {
+                                totalMountWithVat += parseFloat($("input[name='totalAmountWithVat']").autoNumeric('get'));
+                            }
+
+                        } else {
+
+                            if ($("#invId").val() != '') {
+                                totalMountWithVat += parseFloat($("input[name='totalAmountWithoutVat']").autoNumeric('get')) - parseFloat('');
+                            } else {
+                                totalMountWithVat += parseFloat($("input[name='totalAmountWithoutVat']").autoNumeric('get'));
+                            }
+                        }
+
+                        if (totalMountWithVat >= 20000000) {
+
+                            if ($('#paymentMethodName').select2('val').indexOf("Chuyển khoản") < 0) {
+                                returnVal = true;
+                            }
+                        }
+                    }
+                });
+            }
+
+            return returnVal;
+        }
+
+        function validateForm() {
+            var isValidForm = true;
+            if ($('#01GTKT').validationEngine('validate')) {
+
+                isValidForm = true;
+
+            } else {
+                $('#01GTKT').find('div.accordion-body:not(.in)').collapse('show');
                 isValidForm = false;
             }
+
+            if (isValidForm && document.getElementById('validTotalGoods')) {
+                if ($('#validTotalGoods').val() == 'false') {
+                    showWarningBox("Cộng tiền hàng không đúng!");
+                    isValidForm = false;
+                }
+            }
+            // check if TotalAmount is greater than 20 million  or not
+            return isValidForm;
         }
-        // check if TotalAmount is greater than 20 million  or not
-        return isValidForm;
-    }
-    function submitSave() {
-        document.forms["myForm"].submit();
-    }
+        function submitSave() {
+            document.forms["myForm"].submit();
+        }
 
-    function onSuccess(data) {
-        //if (date != null) {
-        //  if (date.Flag = "True") {
-        $("#tranId").val(data.TransactionId);
-        $("#mydiv").html(data.Message);
-        //} else {
-        //  $("#mydiv").html(data.Message);
-        //}
-        //}
-    }
+        function onSuccess(data) {
+            //if (date != null) {
+            //  if (date.Flag = "True") {
+            $("#tranId").val(data.TransactionId);
+            $("#mydiv").html(data.Message);
+            if (data.TransactionId > 0) {
+                $('.invoice-actions').show();
+            }
+            //} else {
+            //  $("#mydiv").html(data.Message);
+            //}
+            //}
+        }
 
-    $("#viewContent").click(function () {
-        var tranId = $("#tranId").val();
-        document.location.href = "/Invoice/ViewXML/" + tranId;
-    });
-</script>
-
-
+        $("#viewContent").click(function () {
+            var tranId = $("#tranId").val();
+            if (tranId > 0) {
+                var win = window.open('/Invoice/ViewXML/' + tranId, '_blank');
+                if (win) {
+                    //Browser has allowed it to be opened
+                    win.focus();
+                } else {
+                    //Browser has blocked it
+                    alert('Please allow popups for this website');
+                }
+            }
+        });
+    </script>
+}

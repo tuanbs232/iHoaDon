@@ -1,4 +1,5 @@
-﻿@{
+﻿@model iHoaDon.Web.LogOnUseModel
+@{
     Layout = null;
 }
 <html>
@@ -85,10 +86,12 @@
             line-height: 30px;
             padding: 0px;
         }
+
         .counters label {
             text-transform: uppercase;
             padding-top: 10px;
         }
+
         .counters .fa, .counters .icons {
             display: inline-block;
             font-size: 35px;
@@ -100,8 +103,12 @@
             border: solid 2px;
             border-radius: 50%;
         }
+
         .counter p {
             padding: 0px 50px;
+        }
+        .field-validation-error {
+            color: #dc3545 !important;
         }
     </style>
 </head>
@@ -149,10 +156,10 @@
                                                     </a>
                                                 </li>
                                                 @*<li class="">
-                                                    <a href="javascript::void(0)" class="user-profile" data-target="#examplePositionSidebar" data-toggle="modal">
-                                                        <i class="fa fa-sign-in"></i>&nbsp;&nbsp;ĐĂNG NHẬP
-                                                    </a>
-                                                </li>*@
+                                                        <a href="javascript::void(0)" class="user-profile" data-target="#examplePositionSidebar" data-toggle="modal">
+                                                            <i class="fa fa-sign-in"></i>&nbsp;&nbsp;ĐĂNG NHẬP
+                                                        </a>
+                                                    </li>*@
                                             </ul>
                                         </nav>
                                     </div>
@@ -256,7 +263,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
 
                 <div class="slider-contact-form">
                     <div class="container">
@@ -269,16 +276,17 @@
                                         <div class="box-content">
                                             <h4 class="mb-none">ĐĂNG NHẬP</h4>
                                             <p>Phát hành và quản lý hóa đơn điện tử.</p>
-                                            <form action="/Accounts/LogOnUser" method="post">
+                                            @using (Html.BeginForm("LogOnUser", "Accounts", FormMethod.Post))
+                                            {
                                                 <input type="hidden" name="returnUrl" />
                                                 <div class="form-group">
                                                     <label class="sr-only" for="CompanyCode">Tên đăng nhập</label>
-                                                    <input type="text" class="form-control" id="" name="CompanyCode" placeholder="Tên đăng nhập" value="">
+                                                    @Html.TextBoxFor(m => m.CompanyCode, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(m => m.CompanyCode)
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="sr-only" for="Password">Mật khẩu</label>
-                                                    <input type="password" class="form-control" id="Password" name="Password"
-                                                           placeholder="Mật khẩu">
+                                                    @Html.PasswordFor(m => m.Password, new {@class="form-control" })
+                                                    @Html.ValidationMessageFor(m => m.Password)
                                                 </div>
                                                 <div class="form-group clearfix">
                                                     <a class="float-right" href="#">Quên mật khẩu?</a>
@@ -286,7 +294,7 @@
                                                 <button type="submit" class="btn btn-primary btn-block submit-btn" id="submit-login">Đăng nhập</button>
                                                 <p>Chưa có tài khoản? <a href="/Accounts/Register">Đăng ký ngay</a></p>
                                                 <br />
-                                            </form>
+                                            }
                                         </div>
                                     </div>
                                 </div>

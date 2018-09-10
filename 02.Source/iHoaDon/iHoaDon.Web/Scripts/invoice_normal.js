@@ -15,13 +15,16 @@ function addListener(suffix) {
 		  setInputValueOnTrigger: false });
 	$("#itemUnit" + suffix).trigger('change');
 	
-	//$("#itemVat"+suffix).select2();
+	$("#itemVat"+suffix).select2();
 	$("#itemVat"+suffix).select2('val', '');
 	if ($('#itemPromotion' + suffix).val() != '1') {
-		setSelect2Validation("itemVat" + suffix, 'validate[required]');
+        setSelect2Validation("itemVat" + suffix, 'validate[required]');
+        $('.select2-container').removeClass('validate[required]');
 	} else {
 		setSelect2Validation("itemVat" + suffix, '');
-	}
+    }
+    $('.select2-container').addClass('select2-offscreen');
+    $("#itemVat" + suffix).removeClass('select2-offscreen');
 	
 	$("#itemName"+suffix).removeAttr("readonly"); 
 
@@ -123,9 +126,9 @@ function addRow(tableID, invType) {
 	var oldSuffix = parseInt(table.rows[(rowCount - 1)].getAttribute('suffix'));
 	var newSuffix = oldSuffix + 1;
 	
-    var idxCol = "<td><input id='lineNumber" + newSuffix + "' class='disable form-control' type='text' name='invoiceItemList[" + newSuffix + "].lineNumber' readonly='true' value='" + rowCount + "'></td>";
-	var promotionCol = "<td><select id='itemPromotion" + newSuffix +"' name='invoiceItemList[" + newSuffix + "].promotion' onchange='changeItemPromotion(" + newSuffix + ");' class='form-control'>"		                
-			           + "<option value='0'></option><option value='1'>Khuyến mại</option></select></td>";
+    var idxCol = "<td><input style=\"text-align: center; border: none\" id='lineNumber" + newSuffix + "' class='disable form-control' type='text' name='invoiceItemList[" + newSuffix + "].lineNumber' readonly='true' value='" + rowCount + "'></td>";
+	var promotionCol = "<td style=\"text-align:center;\"><input type='checkbox' id='itemPromotion" + newSuffix +"' name='invoiceItemList[" + newSuffix + "].promotion' onchange='changeItemPromotion(" + newSuffix + ");' />"		                
+			           + "</td>";
 	
 	var itemCodeCol = cloneItemCodeCol(tableID, newSuffix);
 	
@@ -350,8 +353,9 @@ function setTaxBreakdown() {
 
 function changeItemPromotion(suffix) {
 	removeFormError();
-	var promotion = $('#itemPromotion' + suffix).val();
-	if (promotion == '1'){
+    var promotion = $('#itemPromotion' + suffix).is(":checked");
+
+	if (promotion){
 		$("#itemVat" + suffix).removeClass('validate[required]');
 		
 		var itemName = $("#itemName" + suffix).val();
@@ -377,7 +381,7 @@ function changeItemPromotion(suffix) {
 		doToggleItemTotal(suffix, false);
 		$("#enableItemTotal" + suffix).hide();
 	}else{
-		setSelect2Validation('itemVat' + suffix, 'validate[required]');
+        setSelect2Validation('itemVat' + suffix, 'validate[required]');
 		var itemName = $("#itemName" + suffix).val();
 		if (itemName){
 			itemName = itemName.replace(/khuyến mại/ig, '');

@@ -57,7 +57,7 @@
     </Reference>
     <Reference Include="Bkav.eHoadon.XML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\Bkav.eHoadon.XML.dll</HintPath>
+      <HintPath>..\..\..\..\..\Lap_Hoa_Don\02.Source\new\iHoaDon - Copy\Libs\Bkav.eHoadon.XML.dll</HintPath>
     </Reference>
     <Reference Include="CKFinder, Version=2.3.1.2492, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -2130,6 +2130,7 @@
     <Content Include="Content\logo_footer.gif" />
     <Content Include="Content\sao.png" />
     <Content Include="Content\select2.css" />
+    <Content Include="Content\select2.png" />
     <Content Include="Content\signature-plugin\base64.js" />
     <Content Include="Content\signature-plugin\signature-plugin.js" />
     <Content Include="Content\site.css" />
@@ -3415,6 +3416,8 @@
     <Content Include="Content\Vendors\formvalidation\language\zh_CN.js" />
     <Content Include="Content\Vendors\formvalidation\language\zh_TW.js" />
     <Content Include="Content\Vendors\isotope\jquery.isotope.js" />
+    <Content Include="Content\Vendors\jquery-3.2.1\jquery.js" />
+    <Content Include="Content\Vendors\jquery-3.2.1\jquery.min.js" />
     <Content Include="Content\Vendors\jquery-cookie\jquery-cookie.js" />
     <Content Include="Content\Vendors\jquery-sparkline\Changelog.txt" />
     <Content Include="Content\Vendors\jquery-sparkline\dist\jquery.sparkline.js" />
@@ -4272,7 +4275,24 @@
     <Content Include="Content\Vendors\switchery\switchery.css" />
     <Content Include="Content\Vendors\switchery\switchery.js" />
     <Content Include="Content\Vendors\vide\vide.js" />
-    <Content Include="Content\Viewer\01GTKT.xslt" />
+    <Content Include="Content\Viewer\04HGDL.xslt">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\Viewer\03XKNB.xslt">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\Viewer\07KPTQ.xslt">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\Viewer\02GTTT.xslt">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\Viewer\01GTKT.xslt">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\Viewer\back.png" />
+    <Content Include="Content\Viewer\check.png" />
+    <Content Include="Content\Viewer\back.jpg" />
     <Content Include="Content\Viewer\details.js" />
     <Content Include="Content\Viewer\InvoiceResult.xml" />
     <Content Include="Content\Viewer\jquery-1.8.2.min.js" />
@@ -4702,6 +4722,7 @@
     <Content Include="Content\Vendors\switchery\bower.json" />
     <Content Include="Content\Vendors\switchery\CHANGELOG.md" />
     <Content Include="Content\Vendors\switchery\package.json" />
+    <Content Include="Content\Vendors\jquery-3.2.1\jquery.min.map" />
     <None Include="Properties\PublishProfiles\BCSEWhiteHat.pubxml" />
     <None Include="Properties\PublishProfiles\eBHXH.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />

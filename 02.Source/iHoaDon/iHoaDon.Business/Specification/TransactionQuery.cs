@@ -20,5 +20,9 @@ namespace iHoaDon.Business
             return al => al.Id == id;
         }
 
+        public static Expression<Func<Transaction, bool>> WithByInvoiceId(int invoiceId)
+        {
+            return u => u.InvoiceID == invoiceId;
+        }
     }
 }

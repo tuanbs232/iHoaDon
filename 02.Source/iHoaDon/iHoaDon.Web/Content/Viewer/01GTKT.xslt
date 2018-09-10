@@ -55,16 +55,22 @@ xmlns:inv="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1"
 			</xsl:if>
 			
 			<div class="container">
+        <div class="invoice_background">
+          <img class="" src="/Content/Viewer/back.png" />
+        </div>
 				<div class="row-fluid">
 				  <div class="span9">
 					<div class="row-fluid">
 						<div class="span4">
 							<b>Mẫu số: </b><xsl:value-of select="inv:invoiceData/inv:templateCode"/><br/>
 							<b>Ký hiệu: </b><xsl:value-of select="inv:invoiceData/inv:invoiceSeries"/><br/>
-							<b>Số: </b><xsl:value-of select="inv:invoiceData/inv:invoiceNumber"/>
+							<b>Số: </b>
+              <span style="font-size: 15px; color: red;font-weight:700;">
+                <xsl:value-of select="inv:invoiceData/inv:invoiceNumber"/>
+              </span>
 						</div>
 						<div class="span8">
-							<p class="invName"><xsl:value-of select="inv:invoiceData/inv:invoiceName"/></p>
+							<p class="invName" style="color: #dc3545;"><xsl:value-of select="inv:invoiceData/inv:invoiceName"/></p>
 							<p class="text-center">
 								<xsl:if test="inv:viewData/inv:printFlag = 'true'">
 									<i>(HÓA ĐƠN CHUYỂN ĐỔI TỪ HÓA ĐƠN XÁC THỰC)</i>
@@ -103,7 +109,7 @@ xmlns:inv="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1"
 				  </div>
 				</div>
 				
-				<table style="margin-top:5px;" class="table table-bordered table-condensed">
+				<table style="margin-top:5px;font-size: 13px;" class="table table-bordered table-condensed">
 					<tr>
 						<td style="width:50%;">
 							<fieldset>
@@ -160,7 +166,7 @@ xmlns:inv="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1"
 					</div>
 				</div>
 
-				<table class="table table-bordered table-condensed">
+				<table class="table table-bordered table-condensed" style="font-size: 11px;">
 					<tbody>
 						<tr class="thead">
 							<th>STT</th>
@@ -183,7 +189,7 @@ xmlns:inv="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1"
 							<th>(8=5x6)</th>
 						</tr>
 						<xsl:for-each select="inv:invoiceData/inv:items/inv:item">
-							<tr>
+              <tr class="item-row">
 								<td class="text-center"><xsl:value-of select="inv:lineNumber"/></td>
 								<td><xsl:value-of select="inv:itemCode"/></td>
 								<td>
@@ -265,7 +271,7 @@ xmlns:inv="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1"
 					</tbody>
 				</table>
 
-				<table style="margin-top:15px;" class="table table-bordered table-condensed">
+				<table style="margin-top:20px; font-size: 11px;" class="table table-bordered table-condensed">
 				   <tbody>
 						<tr class="thead">
 							<th class="text-center">Loại thuế suất</th>
@@ -487,18 +493,19 @@ xmlns:inv="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1"
 								</p>
 							</div>
 							<div class="span4"></div>
-							<div class="span4">
-								<xsl:if test="inv:invoiceData/inv:signedDate != ''">
+							<div class="span4 signature">
+                <xsl:if test="inv:invoiceData/inv:signedDate != ''">
+                  <img src="/Content/Viewer/check.png"></img>
 									<p class="text-center">
 										Được ký bởi <xsl:value-of select="inv:invoiceData/inv:sellerLegalName"/>
-										<!-- <br/>
+										<br/>
 										<p class="text-center">
 						                    Ngày ký: 
 											<i>
 												<xsl:variable name="signedDate" select="inv:invoiceData/inv:signedDate"/>
 												<xsl:value-of select="concat('Ngày ', substring($signedDate, 9, 2), ' tháng ', substring($signedDate, 6, 2), ' năm ', substring($signedDate, 1, 4))"/>
 											</i>
-										</p> -->
+										</p>
 									</p>
 								</xsl:if>
 							</div>
@@ -523,18 +530,19 @@ xmlns:inv="http://laphoadon.gdt.gov.vn/2014/09/invoicexml/v1"
 					  	</div>
 					  	<div class="row-fluid">
 							<div class="span6"></div>
-							<div class="span6">
+							<div class="span6 signature">
+                <img src="/Content/Viewer/check.png"></img>
 								<xsl:if test="inv:invoiceData/inv:signedDate != ''">
 									<p class="text-center">
 										Được ký bởi <xsl:value-of select="inv:invoiceData/inv:sellerLegalName"/>
-										<!-- <br/>
+										<br/>
 										<p class="text-center">
 						                    Ngày ký: 
 											<i>
 												<xsl:variable name="signedDate" select="inv:invoiceData/inv:signedDate"/>
 												<xsl:value-of select="concat('Ngày ', substring($signedDate, 9, 2), ' tháng ', substring($signedDate, 6, 2), ' năm ', substring($signedDate, 1, 4))"/>
 											</i>
-										</p> -->
+										</p>
 									</p>
 								</xsl:if>
 							</div>

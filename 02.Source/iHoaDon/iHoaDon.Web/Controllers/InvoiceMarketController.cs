@@ -58,10 +58,18 @@ namespace iHoaDon.Web.Controllers
         [HttpGet]
         public ActionResult Index(string id)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                id = "02GTTT";
+            }
             //lấy ra danh sách tờ khai thuộc GTGT
             var accountId = User.GetAccountId();
             var acc = _accountSvc.GetById(accountId);
             var lstInvoiceNum = _listReleaseInvoiceSvc.GetByTemplateId(id, accountId);
+            if (lstInvoiceNum == null || lstInvoiceNum.Count() < 1)
+            {
+                return RedirectToAction("Index", "ListReleaseInvoice", new { message = "Chưa phát hành hóa đơn. Vui lòng chọn phát hành hóa đơn trước", messageType = "error" });
+            }
 
             var invoiceModel = new InvoiceModel();
             invoiceModel.RelesaseNos = lstInvoiceNum.Select(c => new SelectListItem { Text = c.No, Value = c.Id + "" });
@@ -75,6 +83,8 @@ namespace iHoaDon.Web.Controllers
             invoiceModel.CompanyCodeAcc = acc.CompanyCode;
             invoiceModel.AddressAcc = acc.Address;
             invoiceModel.PhoneAcc = acc.Phone;
+            ViewBag.TemplateCode = id;
+            ViewBag.TemplateName = _templateInvoiceSvc.GetByTemplateCode(id).TemplateName;
 
             return View(invoiceModel);
         }
@@ -94,18 +104,35 @@ namespace iHoaDon.Web.Controllers
                 invoice.invoiceData = invoiceData;
                 invoiceData.id = "data"; //Thuộc tính ID của thẻ <invoiceData ID="data">
 
-                var sss = Bkav.eHoadon.XML.eHoadon.Entity.Create.invoiceDataInvoiceType.Item01GTKT;
+                var sss = Bkav.eHoadon.XML.eHoadon.Entity.Create.invoiceDataInvoiceType.Item02GTTT;
 
                 //Thông tin chung về hóa đơn
                 invoiceData.invoiceAppRecordId = getRandomNumber(999999);
                 //ID của bản ghi được quản lý bởi phần mềm Lập hóa đơn của DN.
                 invoiceData.invoiceType = sss; //Ký hiệu loại hóa đơn
-                invoiceData.templateCode = formCollection["ResleaseIdNo"];
+                invoiceData.invoiceName = "Hóa đơn giá trị gia tăng"; //Tên loại hóa đơn
+                var releaseId = -1;
+                if (int.TryParse(formCollection["ResleaseIdNo"], out releaseId))
+                {
+                    var release = _listReleaseInvoiceSvc.GetById(releaseId);
+                    invoiceData.templateCode = release.No;
+                    invoiceData.invoiceSeries = release.SerialInvoice;
+                    var template = _templateInvoiceSvc.GetByTemplateCode(release.TemplateCode);
+                    if (template != null)
+                    {
+                        invoiceData.invoiceName = template.TemplateName;
+                    }
+                }
+                else
+                {
+                    invoiceData.templateCode = formCollection["ResleaseIdNo"];
+                    //"01GTKT0/089";                //Ký hiệu mẫu hóa đơn
+                    invoiceData.invoiceSeries = formCollection["Serial"]; //"AC/14E";    
+                }
                 //"01GTKT0/089";                //Ký hiệu mẫu hóa đơn
-                invoiceData.invoiceSeries = formCollection["Serial"]; //"AC/14E";                    //Ký hiệu hóa đơn
                 invoiceData.invoiceNumber = formCollection["InvoiceNumber"];
                 //createUid(20);               //Số hóa đơn hiện tại có chiều dài 7 chữ số
-                invoiceData.invoiceName = "Hóa đơn giá trị gia tăng"; //Tên loại hóa đơn
+                
                 invoiceData.invoiceIssuedDate = DateTime.Now; //Ngày xuất hóa đơn
                 invoiceData.signedDate = DateTime.Now; //Ngày ký số lên hóa đơn, có thể lấy là ngày xuất hóa đơn
                 invoiceData.submittedDate = DateTime.Now;
@@ -123,18 +150,17 @@ namespace iHoaDon.Web.Controllers
 
                 //Thông tin người bán (Seller)
                 //invoiceData.sellerAppRecordId = createUid(20);                            //Tùy doanh nghiệp có thể dùng chung trường ID của bản ghi được quản lý bởi phần mềm Lập hóa đơn của DN.
-                invoiceData.sellerLegalName = formCollection["CustomerName"];
+                invoiceData.sellerLegalName = formCollection["CompanyNameAcc"];
                 //"CÔNG TY TNHH DỊCH VỤ TIN HỌC FPT (Demo)";  //Tên doanh nghiệp bán hàng hóa dịch vụ
 
                 var random = new Random();
                 //String tin = allowTin[random.Next(allowTin.Length)];
                 //invoiceData.sellerTaxCode = tin;                                          //Mã số thuến người bán
-
-                invoiceData.sellerAddressLine = formCollection["sellerAddressLine"];
+                invoiceData.sellerAddressLine = formCollection["AddressAcc"];
                 //"Tầng 6 Tòa nhà Thành Công, Dịch Vọng Hậu, Cầu Giấy, Hà Nội";  //Địa chỉ người bán
-                invoiceData.sellerPhoneNumber = formCollection["sellerPhoneNumber"];
+                invoiceData.sellerPhoneNumber = formCollection["PhoneAcc"];
                 //"0812345678";                                                  //Số điện thoại người bán
-                invoiceData.sellerFaxNumber = formCollection["sellerPhoneNumber"]; //"0812345678";
+                invoiceData.sellerFaxNumber = formCollection["PhoneAcc"];
                 //invoiceData.sellerContactPersonName = formCollection["sellerAddressLine"];// "Đỗ C";                                            //Tên người đại diện công ty đăng ký kinh doanh
                 //invoiceData.sellerEmail = formCollection["sellerAddressLine"]; //"yyy@fpt.com.vn";                                              //email đăng ký kinh doanh
                 //invoiceData.sellerSignedPersonName = formCollection["sellerAddressLine"];// "Phạm A";                                   //Người bán hàng hoặc người thực hiện việc xuất hóa đơn
@@ -168,6 +194,7 @@ namespace iHoaDon.Web.Controllers
 
                 for (int j = 0; j < (data - 27) / 10; j++)
                 {
+                    invoiceItem = new invoiceItem();
                     var vatCategoryPercentage = 0;
                     int.TryParse(formCollection[string.Format("invoiceItemList[{0}].vatCategoryPercentage", j)],
                                  out vatCategoryPercentage);
@@ -193,30 +220,32 @@ namespace iHoaDon.Web.Controllers
                     invoiceData.items.Add(invoiceItem);
                     i++;
                 }
-                invoiceData.invoiceTaxBreakdowns = new List<invoiceTaxBreakdownInfo>();
+                //invoiceData.invoiceTaxBreakdowns = new List<invoiceTaxBreakdownInfo>();
 
-                //Tạo thông tin cho mức thuế xuất 5%
-                var invoiceTaxBreakdownInfo = new invoiceTaxBreakdownInfo();
-                invoiceTaxBreakdownInfo.vatPercentage = 5; //Mức thuế 
-                invoiceTaxBreakdownInfo.vatTaxableAmount = 42000000; //Tổng tiền trên hóa đơn chịu mức thuế xuất này
-                invoiceTaxBreakdownInfo.vatTaxAmount = 2100000; //Tổng tiền thuế của mức thuế xuất này
-                invoiceData.invoiceTaxBreakdowns.Add(invoiceTaxBreakdownInfo);
+                ////Tạo thông tin cho mức thuế xuất 5%
+                //var invoiceTaxBreakdownInfo = new invoiceTaxBreakdownInfo();
+                //invoiceTaxBreakdownInfo.vatPercentage = 5; //Mức thuế 
+                //invoiceTaxBreakdownInfo.vatTaxableAmount = 42000000; //Tổng tiền trên hóa đơn chịu mức thuế xuất này
+                //invoiceTaxBreakdownInfo.vatTaxAmount = 2100000; //Tổng tiền thuế của mức thuế xuất này
+                //invoiceData.invoiceTaxBreakdowns.Add(invoiceTaxBreakdownInfo);
 
-                //Tạo thông tin cho mức thuế xuất 10%
-                invoiceTaxBreakdownInfo = new invoiceTaxBreakdownInfo();
-                invoiceTaxBreakdownInfo.vatPercentage = 10; //Mức thuế 
-                invoiceTaxBreakdownInfo.vatTaxableAmount = 48000000; //Tổng tiền trên hóa đơn chịu mức thuế xuất này
-                invoiceTaxBreakdownInfo.vatTaxAmount = 4800000; //Tổng tiền thuế của mức thuế xuất này
+                ////Tạo thông tin cho mức thuế xuất 10%
+                //invoiceTaxBreakdownInfo = new invoiceTaxBreakdownInfo();
+                //invoiceTaxBreakdownInfo.vatPercentage = 10; //Mức thuế 
+                //invoiceTaxBreakdownInfo.vatTaxableAmount = 48000000; //Tổng tiền trên hóa đơn chịu mức thuế xuất này
+                //invoiceTaxBreakdownInfo.vatTaxAmount = 4800000; //Tổng tiền thuế của mức thuế xuất này
 
-                invoiceData.invoiceTaxBreakdowns.Add(invoiceTaxBreakdownInfo);
+                //invoiceData.invoiceTaxBreakdowns.Add(invoiceTaxBreakdownInfo);
 
-                invoiceData.totalAmountWithoutVAT = 90000000; //Tổng tiền không chịu thuế trên toàn hóa đơn
+                var totalAmountWithoutVAT = 0;
+                int.TryParse(formCollection["totalAmountWithoutVat"], out totalAmountWithoutVAT);//Tổng tiền không chịu thuế trên toàn hóa đơn
+                invoiceData.totalAmountWithoutVAT = totalAmountWithoutVAT;
 
-                var amountForPaymentVnd = 0;
-                int.TryParse(formCollection["amountForPaymentVnd"], out amountForPaymentVnd);
-                invoiceData.totalVATAmount = amountForPaymentVnd; //Tổng tiền thuế trên toàn hóa đơn
-                invoiceData.totalAmountWithVAT = amountForPaymentVnd; //Tổng tiền đã bao gồm cả thuế trên toàn hóa đơn
-                invoiceData.totalAmountWithVATInWords = formCollection["totalAmtWithVatInWords"];
+                //var amountForPaymentVnd = 0;
+                //int.TryParse(formCollection["amountForPaymentVnd"], out amountForPaymentVnd);
+                //invoiceData.totalVATAmount = amountForPaymentVnd; //Tổng tiền thuế trên toàn hóa đơn
+                //invoiceData.totalAmountWithVAT = amountForPaymentVnd; //Tổng tiền đã bao gồm cả thuế trên toàn hóa đơn
+                //invoiceData.totalAmountWithVATInWords = formCollection["totalAmtWithVatInWords"];
                 //Tổng tiền đã bao gồm cả thuế trên toàn hóa đơn được viết bằng chữ
                 invoice.invoiceData = invoiceData;
                 string xmlInvoice = invoice.Serialize(Encoding.UTF8);
@@ -254,7 +283,7 @@ namespace iHoaDon.Web.Controllers
                 invoices.InvoiceNumber = invoiceData.invoiceNumber;
                 invoices.Serial = invoiceData.invoiceSeries;
 
-                invoices.TotalAmountWithVAT = invoiceData.totalAmountWithVAT;
+                invoices.TotalAmountWithVAT = invoiceData.totalAmountWithoutVAT;
                 invoices.TotalAmountWithoutVAT = invoiceData.totalAmountWithoutVAT;
                 invoices.TotalVATAmount = invoiceData.totalAmountWithVAT;
                 invoices.TemplateCode = formCollection["templateCode"];
@@ -278,8 +307,21 @@ namespace iHoaDon.Web.Controllers
 
 
                 transaction.InvoiceXML = fileName;
+                transaction.TemplateCode = invoices.TemplateCode;
+                transaction.InvoiceSeries = invoices.Serial;
                 int tranId = _invoiceSvc.Create(invoices, transaction);
 
+                if (releaseId > 0)
+                {
+                    var invoiceNums = _invoiceNumberSvc.GetByReleaseIdAnduseStatus(releaseId, 0);
+                    if (invoiceNums != null && invoiceNums.FirstOrDefault() != null)
+                    {
+                        var invoiceNum = invoiceNums.FirstOrDefault();
+                        invoiceNum.UseStatus = 1;
+                        invoiceNum.Status = 1;
+                        _invoiceNumberSvc.UpdateInvoiceNumbers(invoiceNum);
+                    }
+                }
 
                 return Json(new ResultInvoice
                                 {

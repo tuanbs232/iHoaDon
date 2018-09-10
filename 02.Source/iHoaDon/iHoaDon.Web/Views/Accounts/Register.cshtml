@@ -253,7 +253,12 @@
         {
             var serial = ' '; //serial mặc định
             function loadToken() {
+                setLicense(getCert);
+            }
+
+            function getCert() {
                 vnpt_plugin.getCertInfo(registerGetCertCallback);
+
             }
 
             function registerGetCertCallback(data) {

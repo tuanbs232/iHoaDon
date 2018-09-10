@@ -21,6 +21,11 @@ namespace iHoaDon.Business
             return _transaction.One(TransactionQuery.WithById(id));
         }
 
+        public Transaction GetByInvoiceId(int id)
+        {
+            return _transaction.One(TransactionQuery.WithByInvoiceId(id));
+        }
+
         /// <summary>
         /// 
         /// </summary>

@@ -89,7 +89,7 @@ namespace iHoaDon.Business
                    _invoice.Create(invoice);
                    Context.SaveChanges();
 
-                   transaction.InvoiceID = invoice.Id;
+                    transaction.InvoiceID = invoice.Id;
                    transaction.CreateDate = dateNow;
                    transaction.DateModify = dateNow;
                    
